@@ -1,0 +1,68 @@
+// Brand Colors
+$brand-red: #ff4458;
+$brand-red-light: #ff5a6d;
+$brand-red-dark: #e63946;
+
+// Neutrals
+$white: #ffffff;
+$black: #000000;
+$gray-1: #0a0909;  // Darkest (used in sections)
+$gray-2: #100b0b;  // Footer background
+$gray-3: #1a1515;
+$gray-4: #2a2020;
+$gray-5: #4a4040;
+$gray-6: #6a6060;
+$gray-7: #8a8080;
+$gray-8: #aaaaaa;  // Light gray for text
+
+// Gradients
+$gradient-brand-1: linear-gradient(90deg, #ff4458 0%, #e63946 100%);
+$gradient-dark-1: linear-gradient(90deg, #1a1a1a 0%, #0a0a0a 100%);
+
+// Spacing Scale (4px increments)
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+$spacing-4xl: 80px;
+$spacing-5xl: 96px;
+$spacing-6xl: 128px;
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Typography
+$font-primary: 'Raleway', sans-serif;
+
+// Z-index layers
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-base: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// Border radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+$shadow-glow-red: 0 0 20px rgba(255, 68, 88, 0.5);
