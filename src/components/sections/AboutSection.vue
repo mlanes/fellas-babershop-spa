@@ -25,11 +25,7 @@ onMounted(() => {
           <h2 class="about__heading text-h2">Fellas Barbershop</h2>
 
           <p class="about__description text-body-lg">
-            A nossa paixão é fornecer aos nossos clientes masculinos o mais
-            alto nível de cuidados pessoais, desde a barba até o cabelo. Na
-            Fellas, você encontrará um ambiente acolhedor e profissional onde
-            pode relaxar e aproveitar uma experiência personalizada em todos e
-            cada um dos nossos serviços.
+						A nossa equipa é formada por verdadeiros mestres na arte da transformação, prontos para criar um visual único que celebra a tua individualidade. Acreditamos que cada cliente deve expressar a sua essência autêntica.
           </p>
 
           <FButton variant="gradient" size="lg">SABER MAIS</FButton>
