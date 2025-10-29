@@ -25,12 +25,14 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" id="antes-depois" class="before-after-section">
     <div class="before-after-section__container container">
+      <p class="before-after-section__label">CONFIRA ESTE</p>
+
       <h2 class="before-after-section__heading text-h2">
         Antes <span class="before-after-section__heading-accent">&</span> Depois
       </h2>
 
       <p class="before-after-section__subtitle text-body-lg">
-        Arraste a barra para seguir uma antes/depois
+        Arraste a barra para algum dos lados
       </p>
 
       <div class="before-after-section__grid">
@@ -69,6 +71,16 @@ onMounted(() => {
 
   @include element('container') {
     @include container;
+  }
+
+  @include element('label') {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: $brand-red;
+    text-transform: uppercase;
+    margin-bottom: $spacing-sm;
   }
 
   @include element('heading') {
