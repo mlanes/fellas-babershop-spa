@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" id="sobre" class="about">
+  <section id="sobre" ref="sectionRef" class="about">
     <div class="about__container container">
       <div class="about__content">
         <div class="about__text">
@@ -25,7 +25,9 @@ onMounted(() => {
           <h2 class="about__heading text-h2">Fellas Barbershop</h2>
 
           <p class="about__description text-body-lg">
-						A nossa equipa é formada por verdadeiros mestres na arte da transformação, prontos para criar um visual único que celebra a tua individualidade. Acreditamos que cada cliente deve expressar a sua essência autêntica.
+            A nossa equipa é formada por verdadeiros mestres na arte da transformação, prontos para
+            criar um visual único que celebra a tua individualidade. Acreditamos que cada cliente
+            deve expressar a sua essência autêntica.
           </p>
 
           <FButton variant="gradient" size="lg">SABER MAIS</FButton>

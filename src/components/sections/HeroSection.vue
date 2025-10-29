@@ -23,21 +23,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="heroRef" id="home" class="hero">
+  <section id="home" ref="heroRef" class="hero">
     <div class="hero__container container">
       <div class="hero__content">
         <FLogo size="lg" class="hero__logo" />
 
-        <h1 class="hero__title text-h1">
-          FELLAS BARBERSHOP
-        </h1>
+        <h1 class="hero__title text-h1">FELLAS BARBERSHOP</h1>
 
-        <p class="hero__tagline text-h5">
-          A SUA BARBEARIA DE CONFIANÇA
-        </p>
+        <p class="hero__tagline text-h5">A SUA BARBEARIA DE CONFIANÇA</p>
 
         <p class="hero__description text-body-lg">
-          Cuidados pessoais de excelência. Combine tradição e inovação em um ambiente acolhedor, com barbeiros especializados em estilo e confiança.
+          Cuidados pessoais de excelência. Combine tradição e inovação em um ambiente acolhedor, com
+          barbeiros especializados em estilo e confiança.
         </p>
       </div>
 
