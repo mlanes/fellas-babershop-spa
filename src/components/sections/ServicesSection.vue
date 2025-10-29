@@ -70,6 +70,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+@use 'sass:color';
 @use '@/assets/styles/variables' as *;
 @use '@/assets/styles/mixins' as *;
 
@@ -147,7 +148,7 @@ onMounted(() => {
   @include element('icon') {
     color: $white !important;
     background-color: $brand-red;
-    border: 4px solid lighten($brand-red, 10%);
+    border: 4px solid color.adjust($brand-red, $lightness: 10%);
     border-radius: 50%;
     padding: 2px;
     flex-shrink: 0;
