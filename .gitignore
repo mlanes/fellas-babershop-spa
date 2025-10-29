@@ -26,6 +26,7 @@ dist-ssr
 *.local
 build
 out
+.vite
 
 # Editor directories and files
 .vscode/*
