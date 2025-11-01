@@ -209,7 +209,7 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $spacing-sm;
+    gap: $spacing-md;
 
     &:hover {
       transform: translateX(-50%) translateY(-8px);

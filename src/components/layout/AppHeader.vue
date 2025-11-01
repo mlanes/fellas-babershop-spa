@@ -92,7 +92,7 @@ onUnmounted(() => {
 
       <!-- Booking Button (Desktop) -->
       <div class="header__actions">
-        <FButton variant="primary" size="md" @click="handleBookingClick">
+        <FButton variant="gradient" size="md" @click="handleBookingClick">
           AGENDAR
         </FButton>
       </div>
@@ -124,7 +124,7 @@ onUnmounted(() => {
         </nav>
 
         <div class="header__mobile-actions">
-          <FButton variant="primary" size="lg" full-width @click="handleBookingClick">
+          <FButton variant="gradient" size="md" full-width @click="handleBookingClick">
             AGENDAR
           </FButton>
         </div>

@@ -32,24 +32,22 @@ onMounted(() => {
           :key="index"
           class="expanded-services__card"
         >
-          <div class="expanded-services__card-header">
-            <FIcon name="scissors" :size="32" class="expanded-services__card-icon" />
+          <div class="expanded-services__card-image">
+            <!-- Placeholder for service image -->
+          </div>
+
+          <div class="expanded-services__card-content">
             <h3 class="expanded-services__card-title text-h5">
               {{ service.name }}
             </h3>
-          </div>
 
-          <p class="expanded-services__card-description text-body">
-            {{ service.detailedDescription }}
-          </p>
-
-          <div class="expanded-services__card-meta">
-            <div class="expanded-services__card-meta-item">
-              <FIcon name="clock" :size="20" />
-              <span>{{ service.duration }}</span>
-            </div>
             <div class="expanded-services__card-price">
               {{ service.price }}
+            </div>
+
+            <div class="expanded-services__card-meta">
+              <FIcon name="clock" :size="16" />
+              <span>{{ service.duration }}</span>
             </div>
           </div>
         </div>
@@ -106,78 +104,101 @@ onMounted(() => {
     }
 
     @include desktop {
-      grid-template-columns: repeat(2, 1fr);
-      gap: $spacing-2xl;
+      grid-template-columns: repeat(4, 1fr);
+      gap: $spacing-xl;
     }
   }
 
   @include element('card') {
     background: $gray-2;
     border-radius: $radius-lg;
-    padding: $spacing-xl;
-    transition: transform $transition-base, box-shadow $transition-base;
-    animation: scale-in $transition-base forwards;
-
-    @for $i from 1 through 4 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i * 0.1}s;
-        opacity: 0;
-      }
-    }
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: $shadow-xl;
-    }
-
-    @include tablet {
-      padding: $spacing-2xl;
+      box-shadow: $shadow-glow-red;
     }
   }
 
-  @include element('card-header') {
+  @include element('card-image') {
+    width: 100%;
+    height: 240px;
+    background: $gradient-dark-1;
     display: flex;
     align-items: center;
-    gap: $spacing-md;
-    margin-bottom: $spacing-lg;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    @include desktop {
+      height: 220px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
   }
 
-  @include element('card-icon') {
-    color: $brand-red;
-    flex-shrink: 0;
+  @include element('card') {
+    &:hover {
+      .expanded-services__card-image img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  @include element('card-content') {
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $spacing-sm;
+    flex: 1;
+
+    @include desktop {
+      padding: $spacing-md;
+    }
   }
 
   @include element('card-title') {
     color: $white;
     font-weight: 700;
+    font-size: 16px;
+    line-height: 1.3;
+
+    @include desktop {
+      font-size: 15px;
+    }
   }
 
-  @include element('card-description') {
-    color: $gray-6;
-    margin-bottom: $spacing-xl;
-    line-height: 1.6;
+  @include element('card-price') {
+    font-size: 20px;
+    font-weight: 700;
+    color: $brand-red;
+    margin-top: auto;
+
+    @include desktop {
+      font-size: 18px;
+    }
   }
 
   @include element('card-meta') {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-top: $spacing-lg;
-    border-top: 1px solid $gray-3;
-  }
-
-  @include element('card-meta-item') {
-    display: flex;
-    align-items: center;
-    gap: $spacing-sm;
+    gap: $spacing-xs;
     color: $gray-6;
-    font-size: 14px;
-  }
-
-  @include element('card-price') {
-    font-size: 24px;
-    font-weight: 700;
-    color: $brand-red;
+    font-size: 13px;
+    padding-top: $spacing-sm;
+    border-top: 1px solid $gray-3;
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>

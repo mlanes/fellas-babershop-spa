@@ -30,7 +30,7 @@ onMounted(() => {
             deve expressar a sua essência autêntica.
           </p>
 
-          <FButton variant="gradient" size="lg">SABER MAIS</FButton>
+          <FButton variant="gradient" size="md">SABER MAIS</FButton>
         </div>
 
         <div class="about__badge">

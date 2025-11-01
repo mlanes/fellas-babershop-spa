@@ -35,7 +35,7 @@ onMounted(() => {
 
           <div class="services__list">
             <div
-              v-for="(service, index) in services.slice(0, 4)"
+              v-for="(service, index) in services.slice(0, 6)"
               :key="index"
               class="services__item"
             >
@@ -45,8 +45,9 @@ onMounted(() => {
           </div>
 
           <FButton
-            variant="primary"
-            size="lg"
+            variant="gradient"
+            size="md"
+            class="services__button"
             @click="handleViewServices"
           >
             VER PREÇÁRIO
@@ -54,14 +55,29 @@ onMounted(() => {
         </div>
 
         <div class="services__images">
-          <div class="services__image-placeholder services__image-placeholder--1">
-            <p class="text-body-sm">Imagem 1</p>
+          <div class="services__image-row">
+            <div class="services__image-placeholder services__image-placeholder--large services__image-placeholder--1">
+              <p class="text-body-sm">Imagem 1</p>
+            </div>
+            <div class="services__image-placeholder services__image-placeholder--small services__image-placeholder--2">
+              <p class="text-body-sm">Imagem 2</p>
+            </div>
           </div>
-          <div class="services__image-placeholder services__image-placeholder--2">
-            <p class="text-body-sm">Imagem 2</p>
+          <div class="services__image-row">
+            <div class="services__image-placeholder services__image-placeholder--small services__image-placeholder--3">
+              <p class="text-body-sm">Imagem 3</p>
+            </div>
+            <div class="services__image-placeholder services__image-placeholder--large services__image-placeholder--4">
+              <p class="text-body-sm">Imagem 4</p>
+            </div>
           </div>
-          <div class="services__image-placeholder services__image-placeholder--3">
-            <p class="text-body-sm">Imagem 3</p>
+          <div class="services__image-row">
+            <div class="services__image-placeholder services__image-placeholder--large services__image-placeholder--5">
+              <p class="text-body-sm">Imagem 5</p>
+            </div>
+            <div class="services__image-placeholder services__image-placeholder--small services__image-placeholder--6">
+              <p class="text-body-sm">Imagem 6</p>
+            </div>
           </div>
         </div>
       </div>
@@ -96,7 +112,7 @@ onMounted(() => {
     gap: $spacing-4xl;
 
     @include tablet {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 0.8fr 1.2fr;
       gap: $spacing-5xl;
       align-items: center;
     }
@@ -124,8 +140,8 @@ onMounted(() => {
   }
 
   @include element('list') {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: $spacing-lg;
     margin-bottom: $spacing-xl;
 
@@ -140,7 +156,7 @@ onMounted(() => {
     align-items: center;
     animation: slide-up $transition-base forwards;
 
-    @for $i from 1 through 4 {
+    @for $i from 1 through 6 {
       &:nth-child(#{$i}) {
         animation-delay: #{$i * 0.1}s;
         opacity: 0;
@@ -173,54 +189,92 @@ onMounted(() => {
     font-weight: 400;
   }
 
-  @include element('images') {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-md;
+  @include element('button') {
+    width: fit-content;
+    min-width: auto;
+  }
 
-    @include tablet {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: $spacing-lg;
-    }
+  @include element('images') {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  @include element('image-row') {
+    display: flex;
+    gap: $spacing-md;
+    width: 100%;
   }
 
   @include element('image-placeholder') {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 6 / 3;
     background: $gradient-dark-1;
-    border-radius: $radius-lg;
+    border-radius: $radius-md;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $white;
     overflow: hidden;
-    transition: transform $transition-base;
+    animation: float 8s ease-in-out infinite;
 
     &:hover {
-      transform: scale(1.02);
+      animation-play-state: paused;
+    }
+
+    @include modifier('large') {
+      width: 100%;
+
+      @include tablet {
+        width: 60%;
+      }
+    }
+
+    @include modifier('small') {
+      width: 100%;
+
+      @include tablet {
+        width: 37%;
+      }
     }
 
     @include modifier('1') {
-      @include tablet {
-        grid-column: 1 / 2;
-        grid-row: 1 / 3;
-        aspect-ratio: 3 / 4;
-      }
+      animation-delay: 0s;
     }
 
     @include modifier('2') {
-      @include tablet {
-        grid-column: 2 / 3;
-        grid-row: 1 / 2;
-      }
+      animation-delay: 1.2s;
     }
 
     @include modifier('3') {
-      @include tablet {
-        grid-column: 2 / 3;
-        grid-row: 2 / 3;
-      }
+      animation-delay: 2.8s;
     }
+
+    @include modifier('4') {
+      animation-delay: 4.5s;
+    }
+
+    @include modifier('5') {
+      animation-delay: 1.8s;
+    }
+
+    @include modifier('6') {
+      animation-delay: 3.5s;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(5px, -10px);
+  }
+  50% {
+    transform: translate(0px, -15px);
+  }
+  75% {
+    transform: translate(-5px, -10px);
   }
 }
 </style>
