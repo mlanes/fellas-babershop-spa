@@ -95,110 +95,129 @@ onMounted(() => {
   }
 
   @include element('grid') {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-xl;
-
-    @include tablet {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include desktop {
-      grid-template-columns: repeat(4, 1fr);
-      gap: $spacing-xl;
-    }
+    display: flex;
+    flex-direction: column;
   }
 
   @include element('card') {
-    background: $gray-2;
-    border-radius: $radius-lg;
-    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid $gray-3;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
+    padding: $spacing-3xl 0;
+    gap: $spacing-2xl;
+
+    @include tablet {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
 
     &:hover {
-      box-shadow: $shadow-glow-red;
+      .expanded-services__card-image {
+        &::before {
+          opacity: 1;
+        }
+
+        img {
+          transform: scale(1.08);
+        }
+      }
+
+      .expanded-services__card-price {
+        transform: translate3d(5px, 0, 0);
+      }
+    }
+  }
+
+  @include element('card-content') {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  @include element('card-category') {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: $gray-6;
+    margin: 0;
+  }
+
+  @include element('card-title') {
+    color: $white;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 0;
+
+    @include desktop {
+      font-size: 28px;
+    }
+  }
+
+  @include element('card-description') {
+    color: $gray-6;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @include element('card-price') {
+    font-size: 18px;
+    font-weight: 700;
+    color: $brand-red;
+    margin-top: $spacing-sm;
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    transition: transform 0.3s ease;
+
+    @include desktop {
+      font-size: 20px;
     }
   }
 
   @include element('card-image') {
     width: 100%;
-    height: 240px;
+    height: 200px;
     background: $gradient-dark-1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    border-radius: $radius-md;
     overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+
+    @include tablet {
+      width: 240px;
+      height: 180px;
+    }
 
     @include desktop {
-      height: 220px;
+      width: 280px;
+      height: 200px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 1;
     }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: scale(1);
     }
-  }
-
-  @include element('card') {
-    &:hover {
-      .expanded-services__card-image img {
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  @include element('card-content') {
-    padding: $spacing-lg;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: $spacing-sm;
-    flex: 1;
-
-    @include desktop {
-      padding: $spacing-md;
-    }
-  }
-
-  @include element('card-title') {
-    color: $white;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.3;
-
-    @include desktop {
-      font-size: 15px;
-    }
-  }
-
-  @include element('card-price') {
-    font-size: 20px;
-    font-weight: 700;
-    color: $brand-red;
-    margin-top: auto;
-
-    @include desktop {
-      font-size: 18px;
-    }
-  }
-
-  @include element('card-meta') {
-    display: flex;
-    align-items: center;
-    gap: $spacing-xs;
-    color: $gray-6;
-    font-size: 13px;
-    padding-top: $spacing-sm;
-    border-top: 1px solid $gray-3;
-    width: 100%;
-    justify-content: center;
   }
 }
 </style>
