@@ -18,13 +18,15 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" id="expanded-services" class="expanded-services">
     <div class="expanded-services__container container">
-      <h2 class="expanded-services__heading text-h2">
-        Todos os Serviços
-      </h2>
+      <div class="expanded-services__sidebar">
+        <h2 class="expanded-services__heading text-h2">
+          Todos os Serviços
+        </h2>
 
-      <p class="expanded-services__subtitle text-body-lg">
-        Serviços profissionais de barbeiro com qualidade premium
-      </p>
+        <p class="expanded-services__subtitle text-body-lg">
+          Serviços profissionais de barbeiro com qualidade premium
+        </p>
+      </div>
 
       <div class="expanded-services__grid">
         <div
@@ -76,27 +78,44 @@ onMounted(() => {
 
   @include element('container') {
     @include container;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4xl;
+
+    @include desktop {
+      flex-direction: row;
+      gap: $spacing-6xl;
+      align-items: flex-start;
+    }
+  }
+
+  @include element('sidebar') {
+    @include desktop {
+      flex: 0 0 35%;
+      position: sticky;
+      top: calc($header-height + $spacing-4xl);
+      align-self: flex-start;
+    }
   }
 
   @include element('heading') {
-    text-align: center;
     color: $white;
     margin-bottom: $spacing-md;
   }
 
   @include element('subtitle') {
-    text-align: center;
     color: $gray-6;
-    margin-bottom: $spacing-4xl;
-
-    @include tablet {
-      margin-bottom: $spacing-5xl;
-    }
+    margin-bottom: 0;
   }
 
   @include element('grid') {
     display: flex;
     flex-direction: column;
+    flex: 1;
+
+    @include desktop {
+      flex: 0 0 65%;
+    }
   }
 
   @include element('card') {
