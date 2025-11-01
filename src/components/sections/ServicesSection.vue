@@ -75,6 +75,9 @@ onMounted(() => {
 @use '@/assets/styles/mixins' as *;
 
 .services {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   padding: $spacing-6xl 0;
   background-color: $gray-1;
   opacity: 0;

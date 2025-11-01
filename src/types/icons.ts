@@ -19,6 +19,7 @@ export type IconName =
   | 'scissors'
   | 'crown'
   | 'quote'
+  | 'see-more'
 
 /**
  * Icon component props
