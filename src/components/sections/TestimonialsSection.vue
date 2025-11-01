@@ -126,7 +126,7 @@ const nextTestimonial = () => {
 @use '@/assets/styles/mixins' as *;
 
 .testimonials {
-  min-height: 100vh;
+  min-height: calc(100vh - $header-height);
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
