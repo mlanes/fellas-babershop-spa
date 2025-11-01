@@ -12,7 +12,7 @@ const { scrollTo } = useSmoothScroll()
 const sectionRef = ref<HTMLElement | null>(null)
 
 const handleViewServices = () => {
-  scrollTo('#expanded-services', 80)
+  scrollTo('#expanded-services')
 }
 
 onMounted(() => {

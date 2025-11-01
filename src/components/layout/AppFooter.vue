@@ -16,7 +16,7 @@ const currentYear = ref(new Date().getFullYear())
  * Handle navigation click
  */
 const handleNavClick = (href: string) => {
-  scrollTo(href, 80)
+  scrollTo(href)
 }
 </script>
 

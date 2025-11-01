@@ -12,7 +12,7 @@ const heroRef = ref<HTMLElement | null>(null)
 const videoRef = ref<HTMLVideoElement | null>(null)
 
 const handleScrollClick = () => {
-  scrollTo('#sobre', 80)
+  scrollTo('#sobre')
 }
 
 onMounted(() => {

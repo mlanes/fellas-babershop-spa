@@ -42,7 +42,7 @@ const handleScroll = () => {
  * Handle navigation click
  */
 const handleNavClick = (href: string) => {
-  scrollTo(href, 80)
+  scrollTo(href)
   uiStore.closeMobileMenu()
 }
 
