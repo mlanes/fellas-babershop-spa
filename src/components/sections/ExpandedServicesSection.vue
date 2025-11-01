@@ -32,23 +32,23 @@ onMounted(() => {
           :key="index"
           class="expanded-services__card"
         >
-          <div class="expanded-services__card-image">
-            <!-- Placeholder for service image -->
-          </div>
-
           <div class="expanded-services__card-content">
-            <h3 class="expanded-services__card-title text-h5">
+            <h6 class="expanded-services__card-category">
+              {{ service.duration }}
+            </h6>
+            <h3 class="expanded-services__card-title">
               {{ service.name }}
             </h3>
-
+            <p class="expanded-services__card-description">
+              {{ service.description }}
+            </p>
             <div class="expanded-services__card-price">
               {{ service.price }}
             </div>
+          </div>
 
-            <div class="expanded-services__card-meta">
-              <FIcon name="clock" :size="16" />
-              <span>{{ service.duration }}</span>
-            </div>
+          <div class="expanded-services__card-image">
+            <!-- Placeholder for service image -->
           </div>
         </div>
       </div>
