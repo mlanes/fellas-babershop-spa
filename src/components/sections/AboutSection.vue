@@ -117,20 +117,22 @@ onMounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, rgba($brand-red-dark, 0.8) 0%, transparent 70%);
-      filter: blur(150px);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba($brand-red-dark, 1) 0%, transparent 70%);
+      filter: blur(250px);
       z-index: -1;
 
       @include tablet {
-        filter: blur(180px);
+        width: 600px;
+        height: 600px;
+        filter: blur(300px);
       }
 
       @include desktop {
-        width: 450px;
-        height: 450px;
-        filter: blur(200px);
+        width: 700px;
+        height: 700px;
+        filter: blur(350px);
       }
     }
   }
@@ -151,15 +153,35 @@ onMounted(() => {
       max-width: 400px;
     }
 
+    // Change text stroke to match theme
+    :deep(path[stroke="#F7F9FC"]) {
+      stroke: var(--text-color-primary);
+    }
+
+    // Change text fill to match theme (but not the center white circle)
+    :deep(path[fill="#F7F9FC"]:not([data-figma-bg-blur-radius])) {
+      fill: var(--text-color-primary);
+    }
+
+    // Center white circle background - inverted (dark in light mode, light in dark mode)
+    :deep(path[data-figma-bg-blur-radius][fill="#F7F9FC"]) {
+      fill: var(--text-color-primary);
+    }
+
+    // Center logo (comb/scissors) - inverted color for contrast
+    :deep(path[fill="#121111"]) {
+      fill: var(--page-background);
+      animation: none;
+    }
+
     // Animate the text paths and red dots around the circle
     :deep(path) {
       animation: rotate-text 20s linear infinite;
       transform-origin: 175px 175px; // Center of the SVG viewBox (350x350)
     }
 
-    // Keep center white circle and comb/scissors static
-    :deep(path[data-figma-bg-blur-radius]),
-    :deep(path[fill="#121111"]) {
+    // Keep center circle static
+    :deep(path[data-figma-bg-blur-radius]) {
       animation: none;
     }
   }

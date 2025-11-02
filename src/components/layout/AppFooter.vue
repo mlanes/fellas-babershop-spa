@@ -153,6 +153,19 @@ const handleNavClick = (href: string) => {
     color: var(--text-color-primary);
     margin-bottom: $spacing-sm;
     transition: color $transition-base;
+
+    // Make SVG adapt to theme
+    :deep(path[fill="#F7F9FC"]) {
+      fill: var(--text-color-primary);
+    }
+
+    :deep(path[stroke="#F7F9FC"]) {
+      stroke: var(--text-color-primary);
+    }
+
+    :deep(path[fill="#121111"]) {
+      fill: var(--text-color-primary);
+    }
   }
 
   @include element('tagline') {
