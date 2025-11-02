@@ -83,7 +83,7 @@ onUnmounted(() => {
           <span class="language-selector__option-label">{{ lang.label }}</span>
           <FIcon
             v-if="lang.code === locale"
-            name="checkmark"
+            name="check"
             :size="16"
             class="language-selector__option-check"
           />

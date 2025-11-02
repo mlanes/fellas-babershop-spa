@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // Custom icons that aren't in feather-icons
-const customIcons = ['quote', 'see-more']
+const customIcons = ['quote', 'see-more', 'checkmark', 'close', 'star-filled', 'email', 'location', 'crown']
 
 const isCustomIcon = computed(() => customIcons.includes(props.name))
 
@@ -31,7 +31,8 @@ const featherIconSvg = computed(() => {
   if (isCustomIcon.value) return ''
 
   try {
-    const icon = feather.icons[props.name]
+    const iconName = props.name as keyof typeof feather.icons
+    const icon = feather.icons[iconName]
     if (!icon) {
       console.warn(`Icon "${props.name}" not found in feather-icons`)
       return ''

@@ -10,22 +10,20 @@ const meta = {
     name: {
       control: 'select',
       options: [
-        'checkmark',
+        'check',
         'chevron-down',
         'chevron-left',
         'chevron-right',
         'chevron-up',
-        'close',
+        'x',
         'menu',
         'star',
-        'star-filled',
         'instagram',
         'phone',
-        'email',
-        'location',
+        'mail',
+        'map-pin',
         'clock',
         'scissors',
-        'crown',
       ] as IconName[],
       description: 'Icon name',
     },
@@ -43,9 +41,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Checkmark: Story = {
+export const Check: Story = {
   args: {
-    name: 'checkmark',
+    name: 'check',
     size: 24,
   },
 }
@@ -78,14 +76,6 @@ export const Star: Story = {
   },
 }
 
-export const StarFilled: Story = {
-  args: {
-    name: 'star-filled',
-    size: 24,
-    color: '#FFD700',
-  },
-}
-
 export const Instagram: Story = {
   args: {
     name: 'instagram',
@@ -94,13 +84,16 @@ export const Instagram: Story = {
 }
 
 export const AllIcons: Story = {
+  args: {
+    name: 'star',
+  },
   render: () => ({
     components: { FIcon },
     template: `
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 24px; padding: 24px;">
         <div style="text-align: center;">
-          <FIcon name="checkmark" :size="32" />
-          <p style="margin-top: 8px; font-size: 12px;">checkmark</p>
+          <FIcon name="check" :size="32" />
+          <p style="margin-top: 8px; font-size: 12px;">check</p>
         </div>
         <div style="text-align: center;">
           <FIcon name="chevron-down" :size="32" />
@@ -119,8 +112,8 @@ export const AllIcons: Story = {
           <p style="margin-top: 8px; font-size: 12px;">chevron-up</p>
         </div>
         <div style="text-align: center;">
-          <FIcon name="close" :size="32" />
-          <p style="margin-top: 8px; font-size: 12px;">close</p>
+          <FIcon name="x" :size="32" />
+          <p style="margin-top: 8px; font-size: 12px;">x</p>
         </div>
         <div style="text-align: center;">
           <FIcon name="menu" :size="32" />
@@ -131,10 +124,6 @@ export const AllIcons: Story = {
           <p style="margin-top: 8px; font-size: 12px;">star</p>
         </div>
         <div style="text-align: center;">
-          <FIcon name="star-filled" :size="32" color="#FFD700" />
-          <p style="margin-top: 8px; font-size: 12px;">star-filled</p>
-        </div>
-        <div style="text-align: center;">
           <FIcon name="instagram" :size="32" />
           <p style="margin-top: 8px; font-size: 12px;">instagram</p>
         </div>
@@ -143,12 +132,12 @@ export const AllIcons: Story = {
           <p style="margin-top: 8px; font-size: 12px;">phone</p>
         </div>
         <div style="text-align: center;">
-          <FIcon name="email" :size="32" />
-          <p style="margin-top: 8px; font-size: 12px;">email</p>
+          <FIcon name="mail" :size="32" />
+          <p style="margin-top: 8px; font-size: 12px;">mail</p>
         </div>
         <div style="text-align: center;">
-          <FIcon name="location" :size="32" />
-          <p style="margin-top: 8px; font-size: 12px;">location</p>
+          <FIcon name="map-pin" :size="32" />
+          <p style="margin-top: 8px; font-size: 12px;">map-pin</p>
         </div>
         <div style="text-align: center;">
           <FIcon name="clock" :size="32" />
@@ -157,10 +146,6 @@ export const AllIcons: Story = {
         <div style="text-align: center;">
           <FIcon name="scissors" :size="32" />
           <p style="margin-top: 8px; font-size: 12px;">scissors</p>
-        </div>
-        <div style="text-align: center;">
-          <FIcon name="crown" :size="32" />
-          <p style="margin-top: 8px; font-size: 12px;">crown</p>
         </div>
       </div>
     `,

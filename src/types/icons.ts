@@ -6,6 +6,12 @@ export type IconName =
   // Custom icons
   | 'quote'
   | 'see-more'
+  | 'checkmark'
+  | 'close'
+  | 'star-filled'
+  | 'email'
+  | 'location'
+  | 'crown'
   // Feather icons (commonly used subset)
   | 'activity'
   | 'alert-circle'
