@@ -3,12 +3,18 @@ import { ref, onMounted } from 'vue'
 import FButton from '@/components/ui/FButton.vue'
 import FellasAuthenticBadge from '@/assets/img/fellas-authentic.svg?component'
 import { useLocale } from '@/composables/useLocale'
+import { useSmoothScroll } from '@/composables/useSmoothScroll'
 
 /**
  * AboutSection - About Fellas Barbershop with crown badge
  */
 const sectionRef = ref<HTMLElement | null>(null)
 const { t } = useLocale()
+const { scrollTo } = useSmoothScroll()
+
+const handleLearnMoreClick = () => {
+  scrollTo('#barbershops')
+}
 
 onMounted(() => {
   if (sectionRef.value) {
@@ -30,7 +36,7 @@ onMounted(() => {
             {{ t('about.description') }}
           </p>
 
-          <FButton variant="primary" size="md">{{ t('about.learnMore') }}</FButton>
+          <FButton variant="primary" size="md" @click="handleLearnMoreClick">{{ t('about.learnMore') }}</FButton>
         </div>
 
         <div class="about__badge">

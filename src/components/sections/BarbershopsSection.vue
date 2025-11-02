@@ -75,7 +75,7 @@ const isTransitioning = ref<Record<string, boolean>>({
 })
 
 // Auto-play intervals for each carousel
-const intervals = ref<Record<string, NodeJS.Timeout | null>>({
+const intervals = ref<Record<string, ReturnType<typeof setInterval> | null>>({
   alameda: null,
   'campo-grande': null
 })
@@ -104,7 +104,7 @@ const nextImage = (shopId: string, totalImages: number) => {
 
   setTimeout(() => {
     isTransitioning.value[shopId] = false
-  }, 600)
+  }, 400)
 
   resetAutoPlay(shopId, totalImages)
 }
@@ -117,7 +117,7 @@ const prevImage = (shopId: string, totalImages: number) => {
 
   setTimeout(() => {
     isTransitioning.value[shopId] = false
-  }, 600)
+  }, 400)
 
   resetAutoPlay(shopId, totalImages)
 }
@@ -130,7 +130,7 @@ const goToImage = (shopId: string, index: number, totalImages: number) => {
 
   setTimeout(() => {
     isTransitioning.value[shopId] = false
-  }, 600)
+  }, 400)
 
   resetAutoPlay(shopId, totalImages)
 }
@@ -319,31 +319,39 @@ onUnmounted(() => {
   background-color: var(--section-background);
   overflow: hidden;
 
-  &::before {
+  // Bottom blur (centered)
+  &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('@/assets/img/bg-compostion.svg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.2;
+    bottom: 0;
+    left: 50%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba($brand-red-dark, 0.8) 0%, transparent 70%);
+    filter: blur(200px);
+    -webkit-filter: blur(200px);
     z-index: 0;
     pointer-events: none;
-    animation: pulse 8s ease-in-out infinite;
+    transform: translate(-50%, 50%);
+    animation: pulse-blur-bottom 6s ease-in-out infinite;
+    animation-delay: 3s; // Offset from the shared blur
+
+    @include tablet {
+      width: 800px;
+      height: 800px;
+      filter: blur(250px);
+      -webkit-filter: blur(250px);
+    }
   }
 
-  @keyframes pulse {
+  @keyframes pulse-blur-bottom {
     0%, 100% {
-      opacity: 0.2;
-      transform: scale(1);
+      opacity: 0.8;
+      transform: translate(-50%, 50%) scale(1);
     }
     50% {
-      opacity: 0.5;
-      transform: scale(1.05);
+      opacity: 1;
+      transform: translate(-50%, 50%) scale(1.1);
     }
   }
 
@@ -416,13 +424,11 @@ onUnmounted(() => {
   background: var(--footer-background);
   border-radius: $radius-xl;
   overflow: hidden;
-  box-shadow: $shadow-md;
-  transition: transform $transition-base, box-shadow $transition-base;
+  transition: transform $transition-base;
   border: 1px solid var(--border-color);
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: $shadow-xl, 0 0 0 1px rgba($brand-red-dark, 0.1);
   }
 
   &__carousel {
@@ -438,7 +444,7 @@ onUnmounted(() => {
     display: flex;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
   }
 
@@ -593,7 +599,7 @@ onUnmounted(() => {
   &__footer {
     display: flex;
     gap: $spacing-md;
-    padding: $spacing-md $spacing-xl;
+    padding: $spacing-xl;
     border-top: 1px solid var(--border-color);
     background: var(--section-background);
 

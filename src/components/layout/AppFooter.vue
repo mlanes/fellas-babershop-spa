@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import FLogoFooter from '@/components/ui/FLogoFooter.vue'
 import FIcon from '@/components/ui/FIcon.vue'
-import { contactInfo } from '@/data/contact'
 import { navigationItems } from '@/data/navigation'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import { useLocale } from '@/composables/useLocale'

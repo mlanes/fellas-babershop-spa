@@ -12,6 +12,7 @@ export type IconName =
   | 'email'
   | 'location'
   | 'crown'
+  | 'whatsapp'
   // Feather icons (commonly used subset)
   | 'activity'
   | 'alert-circle'

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import feather from 'feather-icons'
+import { featherIcons, type FeatherIconName } from './icons/feather-icons'
 import type { IconName } from '@/types/icons'
 
 /**
- * FIcon - SVG icon component using Feather Icons
+ * FIcon - SVG icon component using optimized Feather Icons
  * Provides a consistent icon system across the application
+ * Only includes icons actually used in the app for optimal bundle size
  */
 interface Props {
   /** Icon name */
@@ -26,18 +27,18 @@ const customIcons = ['quote', 'see-more', 'checkmark', 'close', 'star-filled', '
 
 const isCustomIcon = computed(() => customIcons.includes(props.name))
 
-// Get feather icon SVG
+// Get feather icon SVG using tree-shakeable approach
 const featherIconSvg = computed(() => {
   if (isCustomIcon.value) return ''
 
   try {
-    const iconName = props.name as keyof typeof feather.icons
-    const icon = feather.icons[iconName]
-    if (!icon) {
+    const iconName = props.name as FeatherIconName
+    const iconGenerator = featherIcons[iconName]
+    if (!iconGenerator) {
       console.warn(`Icon "${props.name}" not found in feather-icons`)
       return ''
     }
-    return icon.toSvg({
+    return iconGenerator({
       width: props.size,
       height: props.size,
       color: props.color,

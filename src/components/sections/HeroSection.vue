@@ -15,7 +15,7 @@ const videoRef = ref<HTMLVideoElement | null>(null)
 const mobileVideoRef = ref<HTMLVideoElement | null>(null)
 
 const handleScrollClick = () => {
-  scrollTo('#sobre')
+  scrollTo('#about')
 }
 
 onMounted(() => {
@@ -60,7 +60,8 @@ onMounted(() => {
       muted
       loop
       playsinline
-      preload="auto"
+      preload="metadata"
+      poster="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3e%3crect fill='%23000' width='1920' height='1080'/%3e%3c/svg%3e"
       aria-hidden="true"
     >
       <source src="@/assets/videos/fellas-barbershop-header-video.webm" type="video/webm" />
@@ -76,7 +77,8 @@ onMounted(() => {
       muted
       loop
       playsinline
-      preload="auto"
+      preload="metadata"
+      poster="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='1920' viewBox='0 0 1080 1920'%3e%3crect fill='%23000' width='1080' height='1920'/%3e%3c/svg%3e"
       aria-hidden="true"
     >
       <source src="@/assets/videos/fellas-barbershop-mobile-hero.webm" type="video/webm" />
