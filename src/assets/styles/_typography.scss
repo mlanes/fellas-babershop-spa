@@ -3,6 +3,8 @@
 
 // Import Raleway font
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap');
+// Import Bebas Neue font
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 // Base typography
 body {
@@ -25,7 +27,7 @@ body {
   }
 
   @include desktop {
-    font-size: 96px;
+    font-size: 72px;
   }
 }
 

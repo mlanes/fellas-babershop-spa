@@ -64,7 +64,7 @@ onMounted(() => {
       <div class="hero__content">
         <FLogo size="lg" class="hero__logo" />
 
-        <h1 class="hero__title text-h1">FELLAS BARBERSHOP</h1>
+        <h1 class="hero__title text-h1">FELLAS BARBERS <span class="hero__title hero__title--premium">PREMIUM</span></h1>
 
         <p class="hero__tagline text-h5">A SUA BARBEARIA DE CONFIANÇA</p>
 
@@ -165,6 +165,8 @@ onMounted(() => {
   }
 
   @include element('title') {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.1em;
     background: $gradient-brand-1;
     background-clip: text;
     -webkit-background-clip: text;
@@ -172,6 +174,13 @@ onMounted(() => {
     animation: slide-up $transition-base forwards;
     animation-delay: 0.4s;
     opacity: 0;
+
+    @include modifier('premium') {
+      color: $white;
+      background: none;
+      -webkit-text-fill-color: $white;
+      letter-spacing: 0.2em;
+    }
   }
 
   @include element('tagline') {
