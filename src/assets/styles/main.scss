@@ -23,8 +23,8 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: var(--theme-background);
-  color: var(--theme-text-primary);
+  background-color: var(--page-background);
+  color: var(--page-color);
   overflow-x: hidden;
   transition: background-color variables.$transition-base, color variables.$transition-base;
 }
@@ -50,7 +50,7 @@ a {
   transition: color variables.$transition-fast;
 
   &:hover {
-    color: variables.$brand-red;
+    color: var(--brand-color-primary);
   }
 }
 
