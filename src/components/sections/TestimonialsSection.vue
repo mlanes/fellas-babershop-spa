@@ -200,8 +200,8 @@ const nextTestimonial = () => {
     transition: all 0.3s ease;
 
     &:hover {
-      background: $brand-red-dark;
-      border-color: $brand-red-dark;
+      background: $gradient-brand-dark-red;
+      border-color: transparent;
       color: $white;
       transform: scale(1.1);
     }
