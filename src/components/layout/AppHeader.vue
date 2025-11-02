@@ -7,6 +7,7 @@ import FButton from '@/components/ui/FButton.vue'
 import { navigationItems } from '@/data/navigation'
 import { useUIStore } from '@/stores/ui'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
+import { useTheme } from '@/composables/useTheme'
 
 /**
  * AppHeader - Main navigation header
@@ -14,6 +15,7 @@ import { useSmoothScroll } from '@/composables/useSmoothScroll'
 const uiStore = useUIStore()
 const { isMobileMenuOpen, activeSection } = storeToRefs(uiStore)
 const { scrollTo } = useSmoothScroll()
+const { isDark, toggleTheme } = useTheme()
 
 const headerRef = ref<HTMLElement | null>(null)
 const isScrolled = ref(false)
@@ -92,6 +94,14 @@ onUnmounted(() => {
 
       <!-- Booking Button (Desktop) -->
       <div class="header__actions">
+        <button
+          class="header__theme-toggle"
+          :aria-label="isDark ? 'Mudar para modo claro' : 'Mudar para modo escuro'"
+          @click="toggleTheme"
+        >
+          <FIcon :name="isDark ? 'sun' : 'moon'" :size="20" />
+        </button>
+
         <FButton variant="gradient" size="md" @click="handleBookingClick">
           AGENDAR
         </FButton>
@@ -124,6 +134,15 @@ onUnmounted(() => {
         </nav>
 
         <div class="header__mobile-actions">
+          <button
+            class="header__theme-toggle header__theme-toggle--mobile"
+            :aria-label="isDark ? 'Mudar para modo claro' : 'Mudar para modo escuro'"
+            @click="toggleTheme"
+          >
+            <FIcon :name="isDark ? 'sun' : 'moon'" :size="20" />
+            <span>{{ isDark ? 'Modo Claro' : 'Modo Escuro' }}</span>
+          </button>
+
           <FButton variant="gradient" size="md" full-width @click="handleBookingClick">
             AGENDAR
           </FButton>
@@ -143,18 +162,18 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: rgba($gray-1, 0.3);
+  background-color: color-mix(in srgb, var(--theme-background) 30%, transparent);
   backdrop-filter: blur(10px);
   transition: all $transition-base;
 
   &--scrolled {
-    background-color: rgba($gray-1, 0.7);
+    background-color: color-mix(in srgb, var(--theme-background) 85%, transparent);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba($black, 0.3);
+    box-shadow: 0 2px 10px var(--theme-shadow);
   }
 
   &--menu-open {
-    background-color: $gray-1;
+    background-color: var(--theme-background);
     backdrop-filter: none;
   }
 
@@ -168,7 +187,7 @@ onUnmounted(() => {
   }
 
   @include element('logo') {
-    color: $white;
+    color: var(--theme-text-primary);
     text-decoration: none;
     transition: opacity $transition-base;
 
@@ -187,7 +206,7 @@ onUnmounted(() => {
   }
 
   @include element('nav-link') {
-    color: $white;
+    color: var(--theme-text-primary);
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
@@ -228,7 +247,45 @@ onUnmounted(() => {
     display: none;
 
     @include desktop {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: $spacing-lg;
+    }
+  }
+
+  @include element('theme-toggle') {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid var(--theme-border);
+    border-radius: $radius-full;
+    color: var(--theme-text-primary);
+    cursor: pointer;
+    transition: all $transition-base;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--theme-text-primary) 10%, transparent);
+      border-color: $brand-red;
+      color: $brand-red;
+    }
+
+    @include modifier('mobile') {
+      width: 100%;
+      height: auto;
+      padding: $spacing-md $spacing-lg;
+      border-radius: $radius-md;
+      justify-content: flex-start;
+      margin-bottom: $spacing-lg;
+
+      span {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
     }
   }
 
@@ -240,7 +297,7 @@ onUnmounted(() => {
     height: 48px;
     background: none;
     border: none;
-    color: $white;
+    color: var(--theme-text-primary);
     cursor: pointer;
     transition: color $transition-base;
 
@@ -259,7 +316,8 @@ onUnmounted(() => {
 			left: 0;
 			right: 0;
 			z-index: 999;
-			background-color: rgba($gray-1, 0.95);
+			background-color: color-mix(in srgb, var(--theme-background) 95%, transparent);
+			backdrop-filter: blur(10px);
 			padding: $spacing-2xl;
 			transition: all $transition-base;
 			height: calc(100vh - $header-height);
@@ -278,13 +336,13 @@ onUnmounted(() => {
   }
 
   @include element('mobile-nav-link') {
-    color: $white;
+    color: var(--theme-text-primary);
     text-decoration: none;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 1px;
     padding: $spacing-md 0;
-    border-bottom: 1px solid rgba($white, 0.1);
+    border-bottom: 1px solid var(--theme-border);
     transition: color $transition-base;
 
     &:hover {
