@@ -18,8 +18,13 @@ export function useTheme() {
   /**
    * Apply theme to document
    */
-  const applyTheme = (theme: Theme) => {
+  const applyTheme = (theme: Theme, withTransition = false) => {
     const htmlElement = document.documentElement
+
+    // Add transition class if requested
+    if (withTransition) {
+      htmlElement.classList.add('theme-transitioning')
+    }
 
     if (theme === 'auto') {
       // Remove explicit theme attribute to allow media query to work
@@ -30,14 +35,21 @@ export function useTheme() {
       htmlElement.setAttribute('data-theme', theme)
       isDark.value = theme === 'dark'
     }
+
+    // Remove transition class after animation completes
+    if (withTransition) {
+      setTimeout(() => {
+        htmlElement.classList.remove('theme-transitioning')
+      }, 300) // Match transition duration
+    }
   }
 
   /**
    * Set theme preference
    */
-  const setTheme = (theme: Theme) => {
+  const setTheme = (theme: Theme, withTransition = false) => {
     currentTheme.value = theme
-    applyTheme(theme)
+    applyTheme(theme, withTransition)
     localStorage.setItem(THEME_STORAGE_KEY, theme)
   }
 
@@ -46,7 +58,7 @@ export function useTheme() {
    */
   const toggleTheme = () => {
     const newTheme = isDark.value ? 'light' : 'dark'
-    setTheme(newTheme)
+    setTheme(newTheme, true) // Enable transition when toggling
   }
 
   /**
