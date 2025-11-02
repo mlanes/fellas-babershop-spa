@@ -11,6 +11,7 @@ const { scrollTo } = useSmoothScroll()
 const sectionRef = ref<HTMLElement | null>(null)
 const currentPage = ref(1)
 const itemsPerPage = 10
+const slideDirection = ref<'left' | 'right'>('right')
 
 const totalPages = computed(() => Math.ceil(services.length / itemsPerPage))
 
@@ -25,6 +26,7 @@ const canGoNext = computed(() => currentPage.value < totalPages.value)
 
 const nextPage = () => {
   if (canGoNext.value) {
+    slideDirection.value = 'right'
     currentPage.value++
     scrollTo('#expanded-services')
   }
@@ -32,6 +34,7 @@ const nextPage = () => {
 
 const prevPage = () => {
   if (canGoPrev.value) {
+    slideDirection.value = 'left'
     currentPage.value--
     scrollTo('#expanded-services')
   }
@@ -85,32 +88,34 @@ onMounted(() => {
       </div>
 
       <div class="expanded-services__content">
-        <div class="expanded-services__grid">
-          <div
-            v-for="(service, index) in paginatedServices"
-            :key="index"
-            class="expanded-services__card"
-          >
-            <div class="expanded-services__card-content">
-              <h6 class="expanded-services__card-category">
-                {{ service.duration }}
-              </h6>
-              <h3 class="expanded-services__card-title">
-                {{ service.name }}
-              </h3>
-              <p class="expanded-services__card-description">
-                {{ service.description }}
-              </p>
-              <div class="expanded-services__card-price">
-                {{ service.price }}
+        <transition :name="`slide-${slideDirection}`" mode="out-in">
+          <div :key="currentPage" class="expanded-services__grid">
+            <div
+              v-for="(service, index) in paginatedServices"
+              :key="index"
+              class="expanded-services__card"
+            >
+              <div class="expanded-services__card-content">
+                <h6 class="expanded-services__card-category">
+                  {{ service.duration }}
+                </h6>
+                <h3 class="expanded-services__card-title">
+                  {{ service.name }}
+                </h3>
+                <p class="expanded-services__card-description">
+                  {{ service.description }}
+                </p>
+                <div class="expanded-services__card-price">
+                  {{ service.price }}
+                </div>
+              </div>
+
+              <div class="expanded-services__card-image">
+                <!-- Placeholder for service image -->
               </div>
             </div>
-
-            <div class="expanded-services__card-image">
-              <!-- Placeholder for service image -->
-            </div>
           </div>
-        </div>
+        </transition>
 
         <div class="expanded-services__pagination expanded-services__pagination--mobile">
           <button
