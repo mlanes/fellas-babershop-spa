@@ -231,6 +231,14 @@
     "subtitle": "Visite nuestras unidades en Lisboa y descubra el ambiente único de cada espacio",
     "unit": "Unidad",
     "viewMap": "Ver en el Mapa",
-    "bookNow": "Reservar"
+    "bookNow": "Reservar",
+    "schedule": {
+      "weekdays": "Lun - Vie",
+      "saturday": "Sábado",
+      "sunday": "Domingo",
+      "holidays": "Festivos",
+      "closed": "Cerrado",
+      "and": "y"
+    }
   }
 }

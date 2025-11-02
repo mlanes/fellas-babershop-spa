@@ -64,6 +64,14 @@
     "subtitle": "Visite as nossas unidades em Lisboa e descubra o ambiente único de cada espaço",
     "unit": "Unidade",
     "viewMap": "Ver no Mapa",
-    "bookNow": "Agendar"
+    "bookNow": "Agendar",
+    "schedule": {
+      "weekdays": "Seg - Sex",
+      "saturday": "Sábado",
+      "sunday": "Domingo",
+      "holidays": "Feriados",
+      "closed": "Fechado",
+      "and": "e"
+    }
   }
 }

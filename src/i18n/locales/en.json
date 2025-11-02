@@ -231,6 +231,14 @@
     "subtitle": "Visit our units in Lisbon and discover the unique atmosphere of each space",
     "unit": "Unit",
     "viewMap": "View on Map",
-    "bookNow": "Book Now"
+    "bookNow": "Book Now",
+    "schedule": {
+      "weekdays": "Mon - Fri",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "holidays": "Holidays",
+      "closed": "Closed",
+      "and": "and"
+    }
   }
 }
