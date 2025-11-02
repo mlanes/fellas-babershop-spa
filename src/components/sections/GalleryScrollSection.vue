@@ -80,7 +80,7 @@ const handleScroll = () => {
 
   // Use a continuous loop without modulo jump
   // Multiply progress by a large number to scroll through multiple cycles
-  const cycles = 2 // Number of complete loops during scroll
+  const cycles = 1 // Number of complete loops during scroll
 
   // Row 1: moves left continuously
   const scroll1 = (progress * row1HalfWidth * cycles) % row1HalfWidth
