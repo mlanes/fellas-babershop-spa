@@ -28,7 +28,7 @@ withDefaults(defineProps<Props>(), {
 .f-logo {
   display: inline-flex;
   align-items: center;
-  color: $gray-1;
+  color: inherit;
 
   @include modifier('sm') {
     height: 24px;

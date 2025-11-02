@@ -158,7 +158,7 @@ onMounted(() => {
   }
 
   @include element('logo') {
-    color: $brand-red-dark;
+    color: var(--text-color-primary);
     height: auto;
 
     :deep(.f-logo__svg) {
@@ -170,7 +170,7 @@ onMounted(() => {
   @include element('title') {
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 0.1em;
-    background: $gradient-brand-1;
+    background: $gradient-brand-dark-red;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
