@@ -235,6 +235,27 @@ withDefaults(defineProps<Props>(), {
         </linearGradient>
       </defs>
     </g>
+
+    <!-- Sun -->
+    <g v-else-if="name === 'sun'">
+      <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" />
+      <path
+        d="M12 1V3M12 21V23M23 12H21M3 12H1M20.07 20.07L18.66 18.66M5.34 5.34L3.93 3.93M20.07 3.93L18.66 5.34M5.34 18.66L3.93 20.07"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </g>
+
+    <!-- Moon -->
+    <path
+      v-else-if="name === 'moon'"
+      d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </svg>
 </template>
 

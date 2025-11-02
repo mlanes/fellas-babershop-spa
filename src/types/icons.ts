@@ -20,6 +20,8 @@ export type IconName =
   | 'crown'
   | 'quote'
   | 'see-more'
+  | 'sun'
+  | 'moon'
 
 /**
  * Icon component props
