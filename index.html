@@ -32,6 +32,26 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <title>Fellas Barbers - A Sua Barbearia de Confiança</title>
+
+    <script>
+      // This logic must execute early, so that we set the necessary
+      // theme attribute to the document node and avoid unstyled content
+      // from appearing on the page.
+      const THEME_STORAGE_KEY = 'fellas-theme-preference';
+
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+
+      const htmlElement = document.documentElement;
+
+      if (storedTheme === 'auto' || !storedTheme) {
+        // Auto mode: remove attribute to allow CSS media queries to work
+        htmlElement.removeAttribute('data-theme');
+      } else if (storedTheme === 'dark' || storedTheme === 'light') {
+        // Explicit theme: set the data-theme attribute
+        htmlElement.setAttribute('data-theme', storedTheme);
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
