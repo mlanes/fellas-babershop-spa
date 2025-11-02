@@ -414,4 +414,36 @@ onMounted(() => {
     }
   }
 }
+
+// Services list transitions - slide right (going forward)
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+// Services list transitions - slide left (going backward)
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
+}
 </style>
