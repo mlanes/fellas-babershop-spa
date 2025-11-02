@@ -57,5 +57,13 @@
     "darkMode": "Modo Escuro",
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu"
+  },
+  "barbershops": {
+    "label": "AS NOSSAS",
+    "title": "Barbearias",
+    "subtitle": "Visite as nossas unidades em Lisboa e descubra o ambiente único de cada espaço",
+    "unit": "Unidade",
+    "viewMap": "Ver no Mapa",
+    "bookNow": "Agendar"
   }
 }

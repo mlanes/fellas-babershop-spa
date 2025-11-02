@@ -9,6 +9,7 @@ import ExpandedServicesSection from '@/components/sections/ExpandedServicesSecti
 import GalleryScrollSection from '@/components/sections/GalleryScrollSection.vue'
 import BeforeAfterSection from '@/components/sections/BeforeAfterSection.vue'
 import TestimonialsSection from '@/components/sections/TestimonialsSection.vue'
+import BarbershopsSection from '@/components/sections/BarbershopsSection.vue'
 </script>
 
 <template>
@@ -20,6 +21,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection.vue'
     <GalleryScrollSection />
     <BeforeAfterSection />
     <TestimonialsSection />
+    <BarbershopsSection />
   </div>
 </template>
 

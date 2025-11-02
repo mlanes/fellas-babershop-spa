@@ -224,5 +224,13 @@
       "description": "Corte especial cortesia",
       "detailedDescription": "Serviço de corte cortesia mediante consulta prévia."
     }
+  },
+  "barbershops": {
+    "label": "NOSSAS",
+    "title": "Barbearias",
+    "subtitle": "Visite nossas unidades em Lisboa e descubra o ambiente único de cada espaço",
+    "unit": "Unidade",
+    "viewMap": "Ver no Mapa",
+    "bookNow": "Agendar"
   }
 }

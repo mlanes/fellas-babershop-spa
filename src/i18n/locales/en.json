@@ -224,5 +224,13 @@
       "description": "Special courtesy haircut",
       "detailedDescription": "Courtesy haircut service upon prior consultation."
     }
+  },
+  "barbershops": {
+    "label": "OUR",
+    "title": "Barbershops",
+    "subtitle": "Visit our units in Lisbon and discover the unique atmosphere of each space",
+    "unit": "Unit",
+    "viewMap": "View on Map",
+    "bookNow": "Book Now"
   }
 }
