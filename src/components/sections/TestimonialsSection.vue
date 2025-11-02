@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import QuoteIcon from '@/assets/icons/quote.svg?component'
+import GoogleLogo from '@/assets/img/testimonials/google-logo.svg?component'
 import { testimonials } from '@/data/testimonials'
 import { useLocale } from '@/composables/useLocale'
 
@@ -96,6 +97,11 @@ const nextTestimonial = () => {
             {{ t('testimonials.heading') }}
           </h2>
 
+          <div class="testimonials__google">
+            <GoogleLogo class="testimonials__google-logo" />
+            <span class="testimonials__reviews-count">{{ t('testimonials.reviewsCount') }}</span>
+          </div>
+
           <div class="testimonials__navigation">
             <button
               class="testimonials__nav-button"
@@ -127,7 +133,6 @@ const nextTestimonial = () => {
                 </div>
                 <div class="testimonials__featured-details">
                   <span class="testimonials__featured-name">{{ testimonials[selectedTestimonial].customerName }}</span>
-                  <span class="testimonials__featured-date">{{ testimonials[selectedTestimonial].date }}</span>
                 </div>
               </div>
 
@@ -207,6 +212,24 @@ const nextTestimonial = () => {
     color: var(--text-color-primary);
     margin-bottom: $spacing-lg;
     line-height: 1.2;
+  }
+
+  @include element('google') {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+
+  @include element('google-logo') {
+    width: 120px;
+    height: auto;
+  }
+
+  @include element('reviews-count') {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color-secondary);
   }
 
   @include element('navigation') {
