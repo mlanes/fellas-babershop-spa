@@ -13,15 +13,22 @@ const { t } = useLocale()
 const selectedTestimonial = ref(0)
 let autoRotateInterval: ReturnType<typeof setInterval> | null = null
 
+/**
+ * Start auto-rotation
+ */
+const startAutoRotate = () => {
+  autoRotateInterval = setInterval(() => {
+    selectedTestimonial.value = (selectedTestimonial.value + 1) % testimonials.length
+  }, 5000)
+}
+
 onMounted(() => {
   if (sectionRef.value) {
     sectionRef.value.classList.add('fade-in')
   }
 
   // Auto-rotate testimonials every 5 seconds
-  autoRotateInterval = setInterval(() => {
-    nextTestimonial()
-  }, 5000)
+  startAutoRotate()
 })
 
 onUnmounted(() => {
@@ -31,10 +38,32 @@ onUnmounted(() => {
 })
 
 /**
+ * Get customer initials from name
+ */
+const getInitials = (name: string) => {
+  return name
+    .split(' ')
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2)
+}
+
+/**
  * Render star rating
  */
 const renderStars = (rating: number) => {
   return Array.from({ length: 5 }, (_, i) => i < rating)
+}
+
+/**
+ * Reset auto-rotation timer
+ */
+const resetAutoRotate = () => {
+  if (autoRotateInterval) {
+    clearInterval(autoRotateInterval)
+  }
+  startAutoRotate()
 }
 
 /**
@@ -43,6 +72,7 @@ const renderStars = (rating: number) => {
 const previousTestimonial = () => {
   selectedTestimonial.value =
     selectedTestimonial.value === 0 ? testimonials.length - 1 : selectedTestimonial.value - 1
+  resetAutoRotate()
 }
 
 /**
@@ -50,6 +80,7 @@ const previousTestimonial = () => {
  */
 const nextTestimonial = () => {
   selectedTestimonial.value = (selectedTestimonial.value + 1) % testimonials.length
+  resetAutoRotate()
 }
 </script>
 
@@ -91,11 +122,9 @@ const nextTestimonial = () => {
             <div :key="selectedTestimonial" class="testimonials__content">
               <!-- Customer info (mobile only) -->
               <div class="testimonials__featured-info">
-                <img
-                  :src="testimonials[selectedTestimonial].avatarUrl"
-                  :alt="testimonials[selectedTestimonial].customerName"
-                  class="testimonials__featured-avatar"
-                />
+                <div class="testimonials__featured-avatar">
+                  {{ getInitials(testimonials[selectedTestimonial].customerName) }}
+                </div>
                 <div class="testimonials__featured-details">
                   <span class="testimonials__featured-name">{{ testimonials[selectedTestimonial].customerName }}</span>
                   <span class="testimonials__featured-date">{{ testimonials[selectedTestimonial].date }}</span>
@@ -255,11 +284,16 @@ const nextTestimonial = () => {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    object-fit: cover;
-    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: $gradient-brand-dark-red;
+    color: $white;
+    font-size: 16px;
+    font-weight: 700;
     flex-shrink: 0;
-    box-sizing: content-box;
+    letter-spacing: 0.5px;
+    border: 2px solid $brand-red-dark;
   }
 
   @include element('featured-details') {
