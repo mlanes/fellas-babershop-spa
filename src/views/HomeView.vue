@@ -15,7 +15,9 @@ import BarbershopsSection from '@/components/sections/BarbershopsSection.vue'
 <template>
   <div class="home">
     <HeroSection />
-    <AboutSection />
+    <div class="home__section-wrapper">
+      <AboutSection />
+    </div>
     <ServicesSection />
     <ExpandedServicesSection />
     <GalleryScrollSection />
@@ -35,11 +37,15 @@ import BarbershopsSection from '@/components/sections/BarbershopsSection.vue'
 
 .home {
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+
+  &__section-wrapper {
+    overflow-x: clip;
+  }
 
   &__testimonials-wrapper {
     position: relative;
-    overflow: hidden;
+    overflow-x: clip;
   }
 
   &__section-blur {
