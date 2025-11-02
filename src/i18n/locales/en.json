@@ -38,6 +38,11 @@
     "before": "Before",
     "after": "After"
   },
+  "gallery": {
+    "label": "OUR WORK",
+    "title": "Gallery",
+    "subtitle": "Discover our transformations and the art behind each cut"
+  },
   "footer": {
     "tagline": "YOUR TRUSTED BARBERSHOP",
     "description": "Professional experience in haircuts and beard grooming. Quality and style since always.",

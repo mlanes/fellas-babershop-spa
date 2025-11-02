@@ -38,6 +38,11 @@
     "before": "Antes",
     "after": "Después"
   },
+  "gallery": {
+    "label": "NUESTRO TRABAJO",
+    "title": "Galería",
+    "subtitle": "Descubre nuestras transformaciones y el arte detrás de cada corte"
+  },
   "footer": {
     "tagline": "TU BARBERÍA DE CONFIANZA",
     "description": "Experiencia profesional en cortes de cabello y barba. Calidad y estilo desde siempre.",

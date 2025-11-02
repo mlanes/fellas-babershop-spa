@@ -38,6 +38,11 @@
     "before": "Antes",
     "after": "Depois"
   },
+  "gallery": {
+    "label": "NOSSO TRAMPO",
+    "title": "Galeria",
+    "subtitle": "Descubra nossas transformações e a arte por trás de cada corte"
+  },
   "footer": {
     "tagline": "SUA BARBEARIA DE CONFIANÇA",
     "description": "Experiência profissional em cortes de cabelo e barba. Qualidade e estilo desde sempre.",

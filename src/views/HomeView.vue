@@ -6,6 +6,7 @@ import HeroSection from '@/components/sections/HeroSection.vue'
 import AboutSection from '@/components/sections/AboutSection.vue'
 import ServicesSection from '@/components/sections/ServicesSection.vue'
 import ExpandedServicesSection from '@/components/sections/ExpandedServicesSection.vue'
+import GalleryScrollSection from '@/components/sections/GalleryScrollSection.vue'
 import BeforeAfterSection from '@/components/sections/BeforeAfterSection.vue'
 import TestimonialsSection from '@/components/sections/TestimonialsSection.vue'
 </script>
@@ -16,6 +17,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection.vue'
     <AboutSection />
     <ServicesSection />
     <ExpandedServicesSection />
+    <GalleryScrollSection />
     <BeforeAfterSection />
     <TestimonialsSection />
   </div>
