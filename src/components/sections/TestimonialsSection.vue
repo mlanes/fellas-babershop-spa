@@ -167,7 +167,10 @@ const nextTestimonial = () => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    color: $brand-red-dark;
+    background: $gradient-brand-dark-red;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-transform: uppercase;
   }
 
