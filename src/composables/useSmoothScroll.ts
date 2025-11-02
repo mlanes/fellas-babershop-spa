@@ -2,7 +2,7 @@
  * Composable for smooth scrolling to page sections
  */
 export function useSmoothScroll() {
-	const scrollTo = (target: string, offset = 40) => {
+	const scrollTo = (target: string, offset = 0) => {
 		const element = document.querySelector(target)
 		if (!element) return
 

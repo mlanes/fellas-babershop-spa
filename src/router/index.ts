@@ -7,31 +7,31 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: { title: 'Fellas Barbershop - A Sua Barbearia de Confiança' },
+    meta: { title: 'Fellas Barbers - A Sua Barbearia de Confiança' },
   },
   {
     path: '/score',
     name: 'score',
     component: () => import('@/views/ScoreView.vue'),
-    meta: { title: 'Score - Fellas Barbershop' },
+    meta: { title: 'Score - Fellas Barbers' },
   },
   {
     path: '/services',
     name: 'services',
     component: () => import('@/views/ServicesView.vue'),
-    meta: { title: 'Serviços - Fellas Barbershop' },
+    meta: { title: 'Serviços - Fellas Barbers' },
   },
   {
     path: '/gallery',
     name: 'gallery',
     component: () => import('@/views/GalleryView.vue'),
-    meta: { title: 'Galeria - Fellas Barbershop' },
+    meta: { title: 'Galeria - Fellas Barbers' },
   },
   {
     path: '/contacts',
     name: 'contacts',
     component: () => import('@/views/ContactsView.vue'),
-    meta: { title: 'Contactos - Fellas Barbershop' },
+    meta: { title: 'Contactos - Fellas Barbers' },
   },
 ]
 
@@ -55,7 +55,7 @@ const router = createRouter({
 
 // Update document title on route change
 router.afterEach((to) => {
-  document.title = (to.meta.title as string) || 'Fellas Barbershop'
+  document.title = (to.meta.title as string) || 'Fellas Barbers'
 })
 
 export default router

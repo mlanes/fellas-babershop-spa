@@ -201,11 +201,17 @@ const nextTestimonial = () => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    background: $gradient-brand-dark-red;
+    background: $gradient-brand-light-red;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
   }
 
   @include element('heading') {
@@ -257,10 +263,14 @@ const nextTestimonial = () => {
       content: '';
       position: absolute;
       inset: 0;
-      background: $gradient-brand-dark-red;
+      background: $gradient-brand-light-red;
       opacity: 0;
       transition: opacity 0.3s ease;
       border-radius: 50%;
+
+      @at-root [data-theme='dark'] & {
+        background: $gradient-brand-dark-red;
+      }
     }
 
     :deep(svg) {
@@ -310,11 +320,15 @@ const nextTestimonial = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $gradient-brand-dark-red;
+    background: $gradient-brand-light-red;
     color: $white;
     font-size: 16px;
     font-weight: 700;
     flex-shrink: 0;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+    }
     letter-spacing: 0.5px;
     border: 2px solid $brand-red-dark;
   }

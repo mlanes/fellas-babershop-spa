@@ -140,12 +140,18 @@ onMounted(() => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    background: $gradient-brand-dark-red;
+    background: $gradient-brand-light-red;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     margin-bottom: -$spacing-md;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
   }
 
   @include element('heading') {
@@ -182,7 +188,7 @@ onMounted(() => {
 
   @include element('icon') {
     color: $white !important;
-    background: $gradient-brand-dark-red;
+    background: $gradient-brand-light-red;
     border-radius: 50%;
     padding: 2px;
     flex-shrink: 0;
@@ -192,6 +198,10 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     border: 2px solid $brand-red-dark;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+    }
 
     :deep(svg) {
       color: $white;

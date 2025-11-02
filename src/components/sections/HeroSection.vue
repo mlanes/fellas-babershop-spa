@@ -12,6 +12,7 @@ const { scrollTo } = useSmoothScroll()
 const { t } = useLocale()
 const heroRef = ref<HTMLElement | null>(null)
 const videoRef = ref<HTMLVideoElement | null>(null)
+const mobileVideoRef = ref<HTMLVideoElement | null>(null)
 
 const handleScrollClick = () => {
   scrollTo('#sobre')
@@ -38,6 +39,14 @@ onMounted(() => {
       // Autoplay failed, video will show poster instead
     })
   }
+
+  // Ensure mobile video loops and plays
+  if (mobileVideoRef.value) {
+    mobileVideoRef.value.loop = true
+    mobileVideoRef.value.play().catch(() => {
+      // Autoplay failed, video will show poster instead
+    })
+  }
 })
 </script>
 
@@ -61,6 +70,7 @@ onMounted(() => {
 
     <!-- Background Video - Mobile -->
     <video
+      ref="mobileVideoRef"
       class="hero__video hero__video--mobile"
       autoplay
       muted
@@ -201,13 +211,19 @@ onMounted(() => {
   @include element('title') {
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 0.1em;
-    background: $gradient-brand-dark-red;
+    background: $gradient-brand-light-red;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: slide-up $transition-base forwards;
     animation-delay: 0.4s;
     opacity: 0;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
 
     @include modifier('premium') {
       color: var(--text-color-primary);

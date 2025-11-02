@@ -73,7 +73,11 @@ defineEmits<{
   // Variants
   @include modifier('primary') {
     position: relative;
-    background: $gradient-brand-dark-red;
+    background: $gradient-brand-light-red;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+    }
     color: $white;
     overflow: hidden;
     z-index: 1;

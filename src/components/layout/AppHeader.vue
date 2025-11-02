@@ -275,12 +275,18 @@ onUnmounted(() => {
       top: 0;
       left: 0;
       padding: 10px;
-      background: $gradient-brand-dark-red;
+      background: $gradient-brand-light-red;
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       opacity: 0;
       transition: opacity 0.3s ease;
+
+      @at-root [data-theme='dark'] & {
+        background: $gradient-brand-dark-red;
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
     }
 
     // Vertical gradient line
@@ -291,8 +297,12 @@ onUnmounted(() => {
       left: 50%;
       width: 2px;
       height: 0;
-      background: $gradient-brand-dark-red;
+      background: $gradient-brand-light-red;
       transition: height 0.7s ease;
+
+      @at-root [data-theme='dark'] & {
+        background: $gradient-brand-dark-red;
+      }
     }
 
     &:hover {

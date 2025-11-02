@@ -40,12 +40,6 @@ const galleryItems = [
     type: 'image',
     src: getImageUrl(`gallery-${String(i + 1).padStart(2, '0')}.jpeg`),
     alt: `Gallery image ${i + 1}`
-  })),
-  // Videos
-  ...Array.from({ length: 5 }, (_, i) => ({
-    type: 'video',
-    src: getImageUrl(`gallery-video-${String(i + 1).padStart(2, '0')}.mp4`),
-    alt: `Gallery video ${i + 1}`
   }))
 ]
 
@@ -253,12 +247,18 @@ onUnmounted(() => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    background: $gradient-brand-dark-red;
+    background: $gradient-brand-light-red;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     margin-bottom: $spacing-sm;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
   }
 
   @include element('title') {
@@ -269,7 +269,11 @@ onUnmounted(() => {
   @include element('subtitle') {
     color: var(--text-color-secondary);
     max-width: 600px;
-    margin: 0 auto $spacing-4xl auto;
+    margin: 0 auto;
+
+    @include desktop {
+      margin: 0 auto $spacing-4xl auto;
+    }
   }
 
   @include element('pin-spacer') {
@@ -316,27 +320,14 @@ onUnmounted(() => {
       width: 500px;
       height: 500px;
       background: radial-gradient(circle, rgba($brand-red-dark, 1) 0%, rgba($brand-red-dark, 0.8) 30%, transparent 70%);
-      -webkit-filter: blur(110px);
-      filter: blur(110px);
+      -webkit-filter: blur(80px);
+      filter: blur(80px);
       z-index: -1;
       // Force hardware acceleration for iOS
       transform: translate(-50%, -50%) translateZ(0);
       pointer-events: none;
       opacity: 0.8;
-
-      @include tablet {
-        width: 600px;
-        height: 600px;
-        -webkit-filter: blur(130px);
-        filter: blur(130px);
-      }
-
-      @include desktop {
-        width: 700px;
-        height: 700px;
-        -webkit-filter: blur(150px);
-        filter: blur(150px);
-      }
+      animation: pulse-glow 3s ease-in-out infinite;
     }
   }
 
@@ -400,6 +391,17 @@ onUnmounted(() => {
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) translateZ(0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateZ(0) scale(1.15);
   }
 }
 </style>

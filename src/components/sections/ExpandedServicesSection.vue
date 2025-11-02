@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
+import FellasLogo from '@/assets/img/logo.svg?component'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import { useLocale } from '@/composables/useLocale'
 import { useTranslatedServices } from '@/composables/useTranslatedServices'
@@ -15,6 +16,55 @@ const sectionRef = ref<HTMLElement | null>(null)
 const currentPage = ref(1)
 const itemsPerPage = 10
 const slideDirection = ref<'left' | 'right'>('right')
+
+// Service image mapping - services with available images
+const serviceImageMap: Record<string, string> = {
+  'haircut': new URL('@/assets/img/services/fellas-barbers-haircut.jpeg', import.meta.url).href,
+  'haircut-beard': new URL('@/assets/img/services/fellas-barbers-haircut-beard.jpeg', import.meta.url).href,
+  'beard-premium': new URL('@/assets/img/services/fellas-barbers-beard-premium.jpeg', import.meta.url).href,
+  'beard-simple': new URL('@/assets/img/services/fellas-barbers-beard-simple.jpeg', import.meta.url).href,
+  'haircut-beard-eyebrows': new URL('@/assets/img/services/fellas-barbers-haircut-beard-eyebrows.jpeg', import.meta.url).href,
+  'haircut-beard-premium': new URL('@/assets/img/services/fellas-barbers-haircut-beard-premium.jpeg', import.meta.url).href,
+  'beard-fade': new URL('@/assets/img/services/fellas-barbers-beard-fade.jpeg', import.meta.url).href,
+  'beard-fade-contour': new URL('@/assets/img/services/fellas-barbers-beard-fade-contour.jpeg', import.meta.url).href,
+  'hair-contour': new URL('@/assets/img/services/fellas-barbers-hair-contour.jpeg', import.meta.url).href,
+  'eyebrows': new URL('@/assets/img/services/fellas-barbers-eyebrows.jpeg', import.meta.url).href,
+  'head-shave': new URL('@/assets/img/services/fellas-barbers-head-shave.jpeg', import.meta.url).href,
+  'head-shave-beard': new URL('@/assets/img/services/fellas-barbers-head-shave-beard.jpeg', import.meta.url).href,
+  'hair-hydration': new URL('@/assets/img/services/fellas-barbers-hair-hydration.jpeg', import.meta.url).href,
+  'beard-hydration': new URL('@/assets/img/services/fellas-barbers-beard-hydration.jpeg', import.meta.url).href,
+  'hair-therapy': new URL('@/assets/img/services/fellas-barbers-hair-therapy.jpeg', import.meta.url).href,
+  'haircut-student': new URL('@/assets/img/services/fellas-barbers-haircut-student.jpeg', import.meta.url).href,
+  'haircut-beard-student': new URL('@/assets/img/services/fellas-barbers-haircut-beard-student.jpeg', import.meta.url).href,
+  'highlights': new URL('@/assets/img/services/fellas-barbers-highlights.jpeg', import.meta.url).href,
+}
+
+// Services that should use center object position (rest use top)
+const centerPositionServices = [
+  'haircut',
+  'haircut-beard',
+  'beard-premium',
+  'beard-simple',
+  'haircut-beard-eyebrows',
+  'hair-contour',
+  'eyebrows',
+  'head-shave',
+  'head-shave-beard',
+  'hair-hydration',
+  'beard-hydration',
+  'hair-therapy',
+  'haircut-student'
+]
+
+// Helper to get service image if available
+const getServiceImage = (serviceId: string | undefined) => {
+  return serviceId ? serviceImageMap[serviceId] : undefined
+}
+
+// Helper to determine object position
+const getImagePosition = (serviceId: string | undefined) => {
+  return serviceId && centerPositionServices.includes(serviceId) ? 'center' : 'top'
+}
 
 const totalPages = computed(() => Math.ceil(services.value.length / itemsPerPage))
 
@@ -114,8 +164,22 @@ onMounted(() => {
                 </div>
               </div>
 
-              <div class="expanded-services__card-image">
-                <!-- Placeholder for service image -->
+              <div
+                class="expanded-services__card-image"
+                :class="{ 'expanded-services__card-image--has-image': getServiceImage(service.id) }"
+              >
+                <div
+                  v-if="getServiceImage(service.id)"
+                  class="expanded-services__card-image-wrapper"
+                  :style="{ '--image-position': getImagePosition(service.id) }"
+                >
+                  <img
+                    :src="getServiceImage(service.id)"
+                    :alt="`Fellas Barbers ${service.name} service`"
+                    loading="lazy"
+                  />
+                </div>
+                <FellasLogo v-else class="expanded-services__card-logo" />
               </div>
             </div>
           </div>
@@ -273,10 +337,14 @@ onMounted(() => {
       content: '';
       position: absolute;
       inset: 0;
-      background: $gradient-brand-dark-red;
+      background: $gradient-brand-light-red;
       opacity: 0;
       transition: opacity 0.3s ease;
       border-radius: 50%;
+
+      @at-root [data-theme='dark'] & {
+        background: $gradient-brand-dark-red;
+      }
     }
 
     :deep(svg) {
@@ -343,7 +411,9 @@ onMounted(() => {
           &::before {
             opacity: 1;
           }
+        }
 
+        .expanded-services__card-image-wrapper {
           img {
             transform: scale(1.08);
           }
@@ -417,12 +487,19 @@ onMounted(() => {
   @include element('card-image') {
     width: 180px;
     align-self: stretch;
-    background: var(--surface-background);
+    background: $gradient-brand-light-red;
     overflow: hidden;
     flex-shrink: 0;
     position: relative;
     transform: translateX(0);
     opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+    }
 
     @include tablet {
       width: 180px;
@@ -436,23 +513,28 @@ onMounted(() => {
       opacity: 0;
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      z-index: 1;
-    }
+  }
+
+  @include element('card-logo') {
+    width: 60%;
+    height: auto;
+    color: var(--text-color-primary);
+  }
+
+  @include element('card-image-wrapper') {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: var(--image-position, top);
       transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transform: scale(1);
     }
