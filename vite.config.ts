@@ -1,11 +1,33 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import svgLoader from 'vite-svg-loader'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), svgLoader()],
+  plugins: [
+    vue(),
+    svgLoader(),
+    ViteImageOptimizer({
+      // JPEG optimization
+      jpeg: {
+        quality: 80,
+      },
+      // JPG optimization
+      jpg: {
+        quality: 80,
+      },
+      // PNG optimization
+      png: {
+        quality: 80,
+      },
+      // WebP conversion
+      webp: {
+        quality: 85,
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')

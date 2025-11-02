@@ -129,6 +129,7 @@ onUnmounted(() => {
         :alt="afterLabel"
         class="before-after-slider__image"
         draggable="false"
+        loading="lazy"
       />
       <div class="before-after-slider__label before-after-slider__label--after">
         {{ afterLabel }}
@@ -145,6 +146,7 @@ onUnmounted(() => {
         :alt="beforeLabel"
         class="before-after-slider__image"
         draggable="false"
+        loading="lazy"
       />
       <div class="before-after-slider__label before-after-slider__label--before">
         {{ beforeLabel }}

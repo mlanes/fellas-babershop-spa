@@ -60,7 +60,7 @@ onMounted(() => {
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="auto"
       aria-hidden="true"
     >
       <source src="@/assets/videos/fellas-barbershop-header-video.webm" type="video/webm" />
@@ -76,7 +76,7 @@ onMounted(() => {
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="auto"
       aria-hidden="true"
     >
       <source src="@/assets/videos/fellas-barbershop-mobile-hero.webm" type="video/webm" />
