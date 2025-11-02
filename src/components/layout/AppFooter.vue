@@ -71,7 +71,7 @@ const scrollToTop = () => {
               <FIcon name="whatsapp" :size="20" />
               <span>+351 912 286 442</span>
             </a>
-            <a href="https://www.instagram.com/fellasbarbersalameda" target="_blank" rel="noopener noreferrer" class="footer__contact">
+            <a href="https://www.instagram.com/fellasbarber.pt" target="_blank" rel="noopener noreferrer" class="footer__contact">
               <FIcon name="instagram" :size="20" />
               <span>Instagram</span>
             </a>
@@ -94,7 +94,7 @@ const scrollToTop = () => {
               <FIcon name="whatsapp" :size="20" />
               <span>+351 910 452 767</span>
             </a>
-            <a href="https://www.instagram.com/fellasbarber2.pt?igsh=MW" target="_blank" rel="noopener noreferrer" class="footer__contact">
+            <a href="https://www.instagram.com/fellasbarber2.pt" target="_blank" rel="noopener noreferrer" class="footer__contact">
               <FIcon name="instagram" :size="20" />
               <span>Instagram</span>
             </a>
