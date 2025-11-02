@@ -156,7 +156,7 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('tagline') {
-    color: $brand-red;
+    color: $brand-red-dark;
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: $spacing-sm;
@@ -182,7 +182,7 @@ const handleNavClick = (href: string) => {
     text-decoration: none;
 
     &:hover {
-      background-color: $brand-red;
+      background-color: $brand-red-dark;
       color: $white;
       transform: translateY(-4px);
     }
@@ -208,7 +208,7 @@ const handleNavClick = (href: string) => {
     transition: color $transition-base;
 
     &:hover {
-      color: $brand-red;
+      color: $brand-red-dark;
     }
   }
 
@@ -257,7 +257,7 @@ const handleNavClick = (href: string) => {
     transition: color $transition-base;
 
     &:hover {
-      color: $brand-red;
+      color: $brand-red-dark;
     }
 
     svg {

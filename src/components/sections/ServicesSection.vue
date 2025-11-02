@@ -127,7 +127,7 @@ onMounted(() => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    color: $brand-red;
+    color: $brand-red-dark;
     text-transform: uppercase;
     margin-bottom: -$spacing-md;
   }
@@ -166,8 +166,8 @@ onMounted(() => {
 
   @include element('icon') {
     color: $white !important;
-    background-color: $brand-red;
-    border: 4px solid color.adjust($brand-red, $lightness: 10%);
+    background-color: $brand-red-dark;
+    border: 4px solid color.adjust($brand-red-dark, $lightness: 10%);
     border-radius: 50%;
     padding: 2px;
     flex-shrink: 0;

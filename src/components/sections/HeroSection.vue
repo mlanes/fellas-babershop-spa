@@ -157,7 +157,7 @@ onMounted(() => {
   }
 
   @include element('logo') {
-    color: $brand-red;
+    color: $brand-red-dark;
     height: auto;
 
     :deep(.f-logo__svg) {
@@ -212,7 +212,7 @@ onMounted(() => {
     transform: translateX(-50%);
     background: none;
     border: none;
-    color: $brand-red;
+    color: $brand-red-dark;
     cursor: pointer;
     padding: $spacing-sm;
     border-radius: $radius-full;

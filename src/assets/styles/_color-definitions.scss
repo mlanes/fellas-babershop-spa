@@ -79,6 +79,9 @@
 
   // Footer
   --footer-background: var(--primitive-black-red-tint);
+
+  // Header
+  --header-background-scrolled: var(--primitive-black-light);
 }
 
 @mixin light-definitions() {
@@ -130,7 +133,7 @@
   // Surfaces
   --surface-background: var(--primitive-gray-100);
   --surface-background-secondary: var(--primitive-gray-200);
-  --surface-border: var(--primitive-gray-100);
+  --surface-border: var(--primitive-gray-200);
   --surface-shadow: rgba(0, 0, 0, 0.1);
 
   // Hero Overlay (for video background)
@@ -147,4 +150,7 @@
 
   // Footer
   --footer-background: var(--primitive-gray-100);
+
+  // Header
+  --header-background-scrolled: var(--primitive-white);
 }

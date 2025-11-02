@@ -263,8 +263,8 @@ onMounted(() => {
     transition: all 0.3s ease;
 
     &:hover:not(:disabled) {
-      background: $brand-red;
-      border-color: $brand-red;
+      background: $brand-red-dark;
+      border-color: $brand-red-dark;
       color: $white;
       transform: scale(1.1);
     }
@@ -286,7 +286,7 @@ onMounted(() => {
   }
 
   @include element('pagination-current') {
-    color: $brand-red;
+    color: $brand-red-dark;
   }
 
   @include element('pagination-separator') {
@@ -363,7 +363,7 @@ onMounted(() => {
   @include element('card-price') {
     font-size: 18px;
     font-weight: 700;
-    color: $brand-red;
+    color: $brand-red-dark;
     margin-top: $spacing-sm;
     transform: translate3d(0, 0, 0);
     opacity: 1;

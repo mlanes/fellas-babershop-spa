@@ -277,12 +277,12 @@ onUnmounted(() => {
     bottom: 0;
     left: 50%;
     width: 6px;
-    background-color: $brand-red;
+    background-color: $brand-red-dark;
     transform: translateX(-50%);
-    box-shadow: 0 0 20px rgba($brand-red, 0.9),
-                0 0 40px rgba($brand-red, 0.7),
-                0 0 60px rgba($brand-red, 0.5),
-                0 0 80px rgba($brand-red, 0.3);
+    box-shadow: 0 0 20px rgba($brand-red-dark, 0.9),
+                0 0 40px rgba($brand-red-dark, 0.7),
+                0 0 60px rgba($brand-red-dark, 0.5),
+                0 0 80px rgba($brand-red-dark, 0.3);
   }
 
   @include element('handle-button') {
@@ -293,11 +293,11 @@ onUnmounted(() => {
     width: 64px;
     height: 64px;
     background: linear-gradient(135deg, $white 0%, $gray-7 100%);
-    border: 3px solid $brand-red;
+    border: 3px solid $brand-red-dark;
     border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba($brand-red, 0.2),
+    box-shadow: 0 0 0 4px rgba($brand-red-dark, 0.2),
                 0 4px 20px rgba($black, 0.3),
-                0 8px 40px rgba($brand-red, 0.4);
+                0 8px 40px rgba($brand-red-dark, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -306,9 +306,9 @@ onUnmounted(() => {
 
     &:hover {
       transform: translate(-50%, -50%) scale(1.15);
-      box-shadow: 0 0 0 4px rgba($brand-red, 0.3),
+      box-shadow: 0 0 0 4px rgba($brand-red-dark, 0.3),
                   0 6px 25px rgba($black, 0.4),
-                  0 12px 50px rgba($brand-red, 0.6);
+                  0 12px 50px rgba($brand-red-dark, 0.6);
     }
 
     &:active {
@@ -317,7 +317,7 @@ onUnmounted(() => {
   }
 
   @include element('handle-icon') {
-    color: $brand-red;
+    color: $brand-red-dark;
     filter: drop-shadow(0 2px 4px rgba($black, 0.2));
 
     &:first-child {

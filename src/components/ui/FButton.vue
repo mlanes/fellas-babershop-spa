@@ -72,7 +72,7 @@ defineEmits<{
 
   // Variants
   @include modifier('primary') {
-    background-color: $brand-red;
+    background-color: $brand-red-dark;
     color: $white;
 
     &:hover:not(:disabled) {
@@ -117,11 +117,11 @@ defineEmits<{
 
   @include modifier('outline') {
     background-color: transparent;
-    border: 2px solid $brand-red;
-    color: $brand-red;
+    border: 2px solid $brand-red-dark;
+    color: $brand-red-dark;
 
     &:hover:not(:disabled) {
-      background-color: $brand-red;
+      background-color: $brand-red-dark;
       color: $white;
       transform: translateY(-2px);
     }

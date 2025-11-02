@@ -165,7 +165,7 @@ const nextTestimonial = () => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    color: $brand-red;
+    color: $brand-red-dark;
     text-transform: uppercase;
   }
 
@@ -195,8 +195,8 @@ const nextTestimonial = () => {
     transition: all 0.3s ease;
 
     &:hover {
-      background: $brand-red;
-      border-color: $brand-red;
+      background: $brand-red-dark;
+      border-color: $brand-red-dark;
       color: $white;
       transform: scale(1.1);
     }
@@ -231,7 +231,7 @@ const nextTestimonial = () => {
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid $brand-red;
+    border: 2px solid $brand-red-dark;
     flex-shrink: 0;
   }
 
@@ -253,7 +253,7 @@ const nextTestimonial = () => {
   }
 
   @include element('quote-icon') {
-    color: $brand-red;
+    color: $brand-red-dark;
     margin-bottom: $spacing-xl;
   }
 

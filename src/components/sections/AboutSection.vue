@@ -83,7 +83,7 @@ onMounted(() => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    color: $brand-red;
+    color: $brand-red-dark;
     text-transform: uppercase;
     margin-bottom: $spacing-md;
   }
@@ -119,7 +119,7 @@ onMounted(() => {
       transform: translate(-50%, -50%);
       width: 350px;
       height: 350px;
-      background: radial-gradient(circle, rgba($brand-red, 0.8) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba($brand-red-dark, 0.8) 0%, transparent 70%);
       filter: blur(150px);
       z-index: -1;
 

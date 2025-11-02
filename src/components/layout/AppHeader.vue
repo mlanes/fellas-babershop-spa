@@ -167,7 +167,7 @@ onUnmounted(() => {
   transition: all $transition-base;
 
   &--scrolled {
-    background-color: color-mix(in srgb, var(--page-background) 85%, transparent);
+    background-color: color-mix(in srgb, var(--header-background-scrolled) 85%, transparent);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px var(--surface-shadow);
   }
@@ -221,13 +221,13 @@ onUnmounted(() => {
       left: 0;
       right: 0;
       height: 2px;
-      background-color: $brand-red;
+      background-color: $brand-red-dark;
       transform: scaleX(0);
       transition: transform $transition-base;
     }
 
     &:hover {
-      color: $brand-red;
+      color: $brand-red-dark;
 
       &::after {
         transform: scaleX(1);
@@ -235,7 +235,7 @@ onUnmounted(() => {
     }
 
     @include modifier('active') {
-      color: $brand-red;
+      color: $brand-red-dark;
 
       &::after {
         transform: scaleX(1);
@@ -269,8 +269,8 @@ onUnmounted(() => {
 
     &:hover {
       background-color: color-mix(in srgb, var(--text-color-primary) 10%, transparent);
-      border-color: $brand-red;
-      color: $brand-red;
+      border-color: $brand-red-dark;
+      color: $brand-red-dark;
     }
 
     @include modifier('mobile') {
@@ -302,7 +302,7 @@ onUnmounted(() => {
     transition: color $transition-base;
 
     &:hover {
-      color: $brand-red;
+      color: $brand-red-dark;
     }
 
     @include desktop {
@@ -346,11 +346,11 @@ onUnmounted(() => {
     transition: color $transition-base;
 
     &:hover {
-      color: $brand-red;
+      color: $brand-red-dark;
     }
 
     @include modifier('active') {
-      color: $brand-red;
+      color: $brand-red-dark;
     }
   }
 

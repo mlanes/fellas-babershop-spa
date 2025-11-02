@@ -80,7 +80,7 @@ onMounted(() => {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
-    color: $brand-red;
+    color: $brand-red-dark;
     text-transform: uppercase;
     margin-bottom: $spacing-sm;
   }
@@ -92,7 +92,7 @@ onMounted(() => {
   }
 
   @include element('heading-accent') {
-    color: $brand-red;
+    color: $brand-red-dark;
   }
 
   @include element('subtitle') {
