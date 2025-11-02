@@ -120,22 +120,28 @@ onMounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
+      width: 400px;
+      height: 400px;
       background: radial-gradient(circle, rgba($brand-red-dark, 1) 0%, transparent 70%);
-      filter: blur(250px);
+      -webkit-filter: blur(200px);
+      filter: blur(200px);
       z-index: -1;
+      // Force hardware acceleration for iOS
+      transform: translate(-50%, -50%) translateZ(0);
+      -webkit-transform: translate(-50%, -50%) translateZ(0);
 
       @include tablet {
-        width: 600px;
-        height: 600px;
-        filter: blur(300px);
+        width: 450px;
+        height: 450px;
+        -webkit-filter: blur(225px);
+        filter: blur(225px);
       }
 
       @include desktop {
-        width: 700px;
-        height: 700px;
-        filter: blur(350px);
+        width: 500px;
+        height: 500px;
+        -webkit-filter: blur(250px);
+        filter: blur(250px);
       }
     }
   }

@@ -41,7 +41,7 @@ onMounted(() => {
               :key="index"
               class="services__item"
             >
-              <FIcon name="checkmark" :size="24" class="services__icon" />
+              <FIcon name="check" :size="24" class="services__icon" />
               <span class="services__item-title">{{ service.name }}</span>
             </div>
           </div>
@@ -112,7 +112,7 @@ onMounted(() => {
     display: grid;
     gap: $spacing-4xl;
 
-    @include tablet {
+    @include desktop {
       grid-template-columns: 0.8fr 1.2fr;
       gap: $spacing-5xl;
       // align-items: center;
@@ -184,7 +184,7 @@ onMounted(() => {
 
     :deep(svg) {
       color: $white;
-      fill: currentColor;
+      fill: none;
     }
   }
 
@@ -229,19 +229,11 @@ onMounted(() => {
     }
 
     @include modifier('large') {
-      width: 100%;
-
-      @include tablet {
-        width: 60%;
-      }
+      width: 60%;
     }
 
     @include modifier('small') {
-      width: 100%;
-
-      @include tablet {
-        width: 37%;
-      }
+      width: 37%;
     }
 
     @include modifier('1') {

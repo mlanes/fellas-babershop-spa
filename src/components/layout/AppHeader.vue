@@ -22,12 +22,27 @@ const { t } = useLocale()
 
 const headerRef = ref<HTMLElement | null>(null)
 const isScrolled = ref(false)
+const isHeaderVisible = ref(true)
+let lastScrollY = 0
 
 /**
  * Handle scroll to update header background and active section
  */
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20
+  const currentScrollY = window.scrollY
+
+  isScrolled.value = currentScrollY > 20
+
+  // Show/hide header based on scroll direction
+  if (currentScrollY < lastScrollY) {
+    // Scrolling up - show header
+    isHeaderVisible.value = true
+  } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+    // Scrolling down - hide header (only after scrolling past 100px)
+    isHeaderVisible.value = false
+  }
+
+  lastScrollY = currentScrollY
 
   // Simple scroll spy - check which section is in view
   const sections = ['home', 'sobre', 'services', 'galeria', 'contactos']
@@ -73,7 +88,7 @@ onUnmounted(() => {
   <header
     ref="headerRef"
     class="header"
-    :class="{ 'header--scrolled': isScrolled, 'header--menu-open': isMobileMenuOpen }"
+    :class="{ 'header--scrolled': isScrolled, 'header--menu-open': isMobileMenuOpen, 'header--hidden': !isHeaderVisible }"
   >
     <div class="header__container container">
       <!-- Logo and Navigation grouped together -->
@@ -132,7 +147,7 @@ onUnmounted(() => {
           :aria-label="isMobileMenuOpen ? t('common.closeMenu') : t('common.openMenu')"
           @click="uiStore.toggleMobileMenu"
         >
-          <FIcon :name="isMobileMenuOpen ? 'close' : 'menu'" :size="24" />
+          <FIcon :name="isMobileMenuOpen ? 'x' : 'menu'" :size="24" />
         </button>
       </div>
     </div>
@@ -173,18 +188,37 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: color-mix(in srgb, var(--page-background) 30%, transparent);
-  backdrop-filter: blur(10px);
-  transition: all $transition-base;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  backdrop-filter: saturate(180%) blur(10px);
+  transition: transform 0.3s ease, background-color $transition-base, box-shadow $transition-base;
+  // Force hardware acceleration for iOS
+  transform: translateY(0) translateZ(0);
+  -webkit-transform: translateY(0) translateZ(0);
 
-  &--scrolled {
-    background-color: color-mix(in srgb, var(--header-background-scrolled) 85%, transparent);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px var(--surface-shadow);
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    background-color: color-mix(in srgb, var(--page-background) 30%, transparent);
   }
 
-  &--menu-open {
+  @include modifier('scrolled') {
+    background-color: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0 2px 10px var(--surface-shadow);
+
+    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+      background-color: color-mix(in srgb, var(--header-background-scrolled) 85%, transparent);
+    }
+  }
+
+  @include modifier('hidden') {
+    transform: translateY(-100%) translateZ(0);
+    -webkit-transform: translateY(-100%) translateZ(0);
+  }
+
+  @include modifier('menu-open') {
     background-color: var(--page-background);
+    -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 
@@ -374,11 +408,15 @@ onUnmounted(() => {
 			right: 0;
 			z-index: 999;
 			background-color: color-mix(in srgb, var(--page-background) 95%, transparent);
+			-webkit-backdrop-filter: blur(10px);
 			backdrop-filter: blur(10px);
 			padding: $spacing-2xl;
 			transition: all $transition-base;
 			height: calc(100vh - $header-height);
 			overflow-y: auto;
+			// Force hardware acceleration for iOS
+			transform: translateZ(0);
+			-webkit-transform: translateZ(0);
 
     @include desktop {
       display: none;

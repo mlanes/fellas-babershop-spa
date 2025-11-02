@@ -98,9 +98,10 @@ onMounted(() => {
               class="expanded-services__card"
             >
               <div class="expanded-services__card-content">
-                <h6 class="expanded-services__card-category">
-                  {{ service.duration }}
-                </h6>
+                <div class="expanded-services__card-category">
+                  <FIcon name="clock" :size="14" />
+                  <span>{{ service.duration }}</span>
+                </div>
                 <h3 class="expanded-services__card-title">
                   {{ service.name }}
                 </h3>
@@ -172,7 +173,7 @@ onMounted(() => {
     flex-direction: column;
     gap: $spacing-4xl;
 
-    @include desktop {
+    @include tablet {
       flex-direction: row;
       gap: $spacing-6xl;
       align-items: flex-start;
@@ -180,7 +181,7 @@ onMounted(() => {
   }
 
   @include element('sidebar') {
-    @include desktop {
+    @include tablet {
       flex: 0 1 35%;
       min-width: 0;
       position: sticky;
@@ -196,7 +197,7 @@ onMounted(() => {
     align-items: center;
     text-align: left;
 
-    @include desktop {
+    @include tablet {
       align-items: flex-start;
     }
   }
@@ -214,8 +215,9 @@ onMounted(() => {
   @include element('content') {
     flex: 1;
     min-width: 0;
+    overflow: hidden;
 
-    @include desktop {
+    @include tablet {
       flex: 1 1 auto;
     }
   }
@@ -235,7 +237,7 @@ onMounted(() => {
     @include modifier('desktop') {
       display: none;
 
-      @include desktop {
+      @include tablet {
         display: flex;
         justify-content: flex-start;
       }
@@ -245,7 +247,7 @@ onMounted(() => {
       display: flex;
       margin-top: $spacing-2xl;
 
-      @include desktop {
+      @include tablet {
         display: none;
       }
     }
@@ -324,25 +326,31 @@ onMounted(() => {
     border-bottom: 1px solid var(--surface-border);
     display: flex;
     flex-direction: row;
-    padding: $spacing-xl 0;
     gap: $spacing-lg;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     transition: border-color $transition-base;
+    overflow: visible;
 
-    &:hover {
-      .expanded-services__card-image {
-        &::before {
+    @include desktop {
+      &:hover {
+        .expanded-services__card-image {
+          width: 180px;
+          transform: translateX(0);
           opacity: 1;
+
+          &::before {
+            opacity: 1;
+          }
+
+          img {
+            transform: scale(1.08);
+          }
         }
 
-        img {
-          transform: scale(1.08);
+        .expanded-services__card-price {
+          transform: translate3d(5px, 0, 0);
         }
-      }
-
-      .expanded-services__card-price {
-        transform: translate3d(5px, 0, 0);
       }
     }
   }
@@ -352,15 +360,24 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     gap: $spacing-sm;
+    padding: $spacing-xl 0;
   }
 
   @include element('card-category') {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.5px;
     color: var(--text-color-secondary);
     margin: 0;
+
+    :deep(svg) {
+      flex-shrink: 0;
+      color: $brand-red-dark;
+    }
   }
 
   @include element('card-title') {
@@ -397,23 +414,25 @@ onMounted(() => {
   }
 
   @include element('card-image') {
-    width: 120px;
-    height: 100px;
+    width: 180px;
+    align-self: stretch;
     background: var(--surface-background);
-    border-radius: $radius-md;
     overflow: hidden;
     flex-shrink: 0;
     position: relative;
-    transition: background $transition-base;
+    transform: translateX(0);
+    opacity: 1;
 
     @include tablet {
-      width: 200px;
-      height: 140px;
+      width: 180px;
     }
 
     @include desktop {
-      width: 220px;
-      height: 150px;
+      width: 180px;
+      align-self: stretch;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+      transform: translateX(100%);
+      opacity: 0;
     }
 
     &::before {

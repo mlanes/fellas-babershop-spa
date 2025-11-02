@@ -9,11 +9,15 @@ import { useLocale } from '@/composables/useLocale'
 const sectionRef = ref<HTMLElement | null>(null)
 const { t } = useLocale()
 
-// Placeholder images - to be replaced with actual barbershop before/after images
+// Before and after images from Fellas Barbershop
 const beforeAfterPairs = [
   {
-    before: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&h=600&fit=crop',
-    after: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=600&fit=crop',
+    before: new URL('@/assets/img/before-after/fellas-barbers-haircut-after-1.jpg', import.meta.url).href,
+    after: new URL('@/assets/img/before-after/fellas-barbers-haircut-after-2.jpg', import.meta.url).href,
+  },
+  {
+    before: new URL('@/assets/img/before-after/fellas-barbers-haircut-before-3.jpg', import.meta.url).href,
+    after: new URL('@/assets/img/before-after/fellas-barbers-haircut-after-3.jpg', import.meta.url).href,
   },
 ]
 
@@ -30,7 +34,7 @@ onMounted(() => {
       <p class="before-after-section__label">{{ t('beforeAfter.label') }}</p>
 
       <h2 class="before-after-section__heading text-h2">
-        {{ t('beforeAfter.heading') }}
+        Antes <span class="before-after-section__heading-accent">&</span> Depois
       </h2>
 
       <p class="before-after-section__subtitle text-body-lg">
@@ -116,9 +120,17 @@ onMounted(() => {
     gap: $spacing-2xl;
     max-width: 800px;
     margin: 0 auto;
+    justify-items: center;
+
+    @include tablet {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-xl;
+      max-width: 100%;
+    }
 
     @include desktop {
-      max-width: 1000px;
+      gap: $spacing-2xl;
+      width: 70%;
     }
   }
 
@@ -126,6 +138,7 @@ onMounted(() => {
     animation: scale-in $transition-base forwards;
     opacity: 0;
     animation-delay: 0.2s;
+    width: 100%;
   }
 }
 </style>

@@ -206,7 +206,7 @@ onUnmounted(() => {
 .before-after-slider {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: $radius-lg;
   cursor: ew-resize;
@@ -248,9 +248,13 @@ onUnmounted(() => {
     font-size: 14px;
     font-weight: 700;
     border-radius: $radius-md;
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    // Force hardware acceleration for iOS
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 
     @include modifier('before') {
       left: $spacing-lg;

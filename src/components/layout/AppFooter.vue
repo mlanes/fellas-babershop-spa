@@ -77,11 +77,11 @@ const handleNavClick = (href: string) => {
               <span>{{ contactInfo.phone }}</span>
             </a>
             <a :href="`mailto:${contactInfo.email}`" class="footer__contact">
-              <FIcon name="email" :size="20" />
+              <FIcon name="mail" :size="20" />
               <span>{{ contactInfo.email }}</span>
             </a>
             <div class="footer__contact">
-              <FIcon name="location" :size="20" />
+              <FIcon name="map-pin" :size="20" />
               <span>
                 {{ contactInfo.address.street }}<br />
                 {{ contactInfo.address.postalCode }} {{ contactInfo.address.city }}

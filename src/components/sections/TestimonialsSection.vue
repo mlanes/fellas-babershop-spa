@@ -181,7 +181,7 @@ const nextTestimonial = () => {
 
   @include element('layout') {
     display: grid;
-    gap: $spacing-4xl;
+    gap: $spacing-lg;
     align-items: flex-start;
 
     @include desktop {
