@@ -43,10 +43,10 @@ onMounted(() => {
 
 <template>
   <section id="home" ref="heroRef" class="hero">
-    <!-- Background Video -->
+    <!-- Background Video - Desktop -->
     <video
       ref="videoRef"
-      class="hero__video"
+      class="hero__video hero__video--desktop"
       autoplay
       muted
       loop
@@ -56,6 +56,21 @@ onMounted(() => {
     >
       <source src="@/assets/videos/fellas-barbershop-header-video.webm" type="video/webm" />
       <source src="@/assets/videos/fellas-barbershop-header-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Background Video - Mobile -->
+    <video
+      class="hero__video hero__video--mobile"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+    >
+      <source src="@/assets/videos/fellas-barbershop-mobile-hero.webm" type="video/webm" />
+      <source src="@/assets/videos/fellas-barbershop-mobile-hero.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
@@ -110,6 +125,22 @@ onMounted(() => {
     height: 100%;
     object-fit: cover;
     z-index: 0;
+
+    @include modifier('desktop') {
+      display: none;
+
+      @include tablet {
+        display: block;
+      }
+    }
+
+    @include modifier('mobile') {
+      display: block;
+
+      @include tablet {
+        display: none;
+      }
+    }
   }
 
   @include element('overlay') {
@@ -208,7 +239,7 @@ onMounted(() => {
 
   @include element('scroll-indicator') {
     position: absolute;
-    bottom: $spacing-lg;
+    bottom: $spacing-5xl;
     left: 50%;
     transform: translateX(-50%);
     background: none;
@@ -236,7 +267,7 @@ onMounted(() => {
     }
 
     @include tablet {
-      bottom: $spacing-2xl;
+      bottom: $spacing-5xl;
       padding: $spacing-md;
     }
   }
