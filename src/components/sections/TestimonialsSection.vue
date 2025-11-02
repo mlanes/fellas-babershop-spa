@@ -198,12 +198,32 @@ const nextTestimonial = () => {
     color: var(--text-color-primary);
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: $gradient-brand-dark-red;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+    }
+
+    :deep(svg) {
+      position: relative;
+      z-index: 1;
+    }
 
     &:hover {
-      background: $gradient-brand-dark-red;
       border-color: transparent;
       color: $white;
       transform: scale(1.1);
+
+      &::before {
+        opacity: 1;
+      }
     }
 
     @include modifier('disabled') {
