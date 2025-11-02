@@ -1,12 +1,41 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import { services } from '@/data/services'
+import { useSmoothScroll } from '@/composables/useSmoothScroll'
 
 /**
  * ExpandedServicesSection - Detailed service catalog with pricing
  */
+const { scrollTo } = useSmoothScroll()
 const sectionRef = ref<HTMLElement | null>(null)
+const currentPage = ref(1)
+const itemsPerPage = 10
+
+const totalPages = computed(() => Math.ceil(services.length / itemsPerPage))
+
+const paginatedServices = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return services.slice(start, end)
+})
+
+const canGoPrev = computed(() => currentPage.value > 1)
+const canGoNext = computed(() => currentPage.value < totalPages.value)
+
+const nextPage = () => {
+  if (canGoNext.value) {
+    currentPage.value++
+    scrollTo('#expanded-services')
+  }
+}
+
+const prevPage = () => {
+  if (canGoPrev.value) {
+    currentPage.value--
+    scrollTo('#expanded-services')
+  }
+}
 
 onMounted(() => {
   if (sectionRef.value) {
@@ -19,39 +48,94 @@ onMounted(() => {
   <section ref="sectionRef" id="expanded-services" class="expanded-services">
     <div class="expanded-services__container container">
       <div class="expanded-services__sidebar">
-        <h2 class="expanded-services__heading text-h2">
-          Todos os Serviços
-        </h2>
+        <div class="expanded-services__sidebar-content">
+          <h2 class="expanded-services__heading text-h2">
+            Todos os Serviços
+          </h2>
+          <p class="expanded-services__subtitle text-body-lg">
+            Serviços profissionais de barbeiro com qualidade premium
+          </p>
 
-        <p class="expanded-services__subtitle text-body-lg">
-          Serviços profissionais de barbeiro com qualidade premium
-        </p>
+          <div class="expanded-services__pagination expanded-services__pagination--desktop">
+            <button
+              class="expanded-services__pagination-btn"
+              :class="{ 'expanded-services__pagination-btn--disabled': !canGoPrev }"
+              :disabled="!canGoPrev"
+              @click="prevPage"
+            >
+              <FIcon name="chevron-left" :size="24" />
+            </button>
+
+            <div class="expanded-services__pagination-info">
+              <span class="expanded-services__pagination-current">{{ currentPage }}</span>
+              <span class="expanded-services__pagination-separator">/</span>
+              <span class="expanded-services__pagination-total">{{ totalPages }}</span>
+            </div>
+
+            <button
+              class="expanded-services__pagination-btn"
+              :class="{ 'expanded-services__pagination-btn--disabled': !canGoNext }"
+              :disabled="!canGoNext"
+              @click="nextPage"
+            >
+              <FIcon name="chevron-right" :size="24" />
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="expanded-services__grid">
-        <div
-          v-for="(service, index) in services"
-          :key="index"
-          class="expanded-services__card"
-        >
-          <div class="expanded-services__card-content">
-            <h6 class="expanded-services__card-category">
-              {{ service.duration }}
-            </h6>
-            <h3 class="expanded-services__card-title">
-              {{ service.name }}
-            </h3>
-            <p class="expanded-services__card-description">
-              {{ service.description }}
-            </p>
-            <div class="expanded-services__card-price">
-              {{ service.price }}
+      <div class="expanded-services__content">
+        <div class="expanded-services__grid">
+          <div
+            v-for="(service, index) in paginatedServices"
+            :key="index"
+            class="expanded-services__card"
+          >
+            <div class="expanded-services__card-content">
+              <h6 class="expanded-services__card-category">
+                {{ service.duration }}
+              </h6>
+              <h3 class="expanded-services__card-title">
+                {{ service.name }}
+              </h3>
+              <p class="expanded-services__card-description">
+                {{ service.description }}
+              </p>
+              <div class="expanded-services__card-price">
+                {{ service.price }}
+              </div>
+            </div>
+
+            <div class="expanded-services__card-image">
+              <!-- Placeholder for service image -->
             </div>
           </div>
+        </div>
 
-          <div class="expanded-services__card-image">
-            <!-- Placeholder for service image -->
+        <div class="expanded-services__pagination expanded-services__pagination--mobile">
+          <button
+            class="expanded-services__pagination-btn"
+            :class="{ 'expanded-services__pagination-btn--disabled': !canGoPrev }"
+            :disabled="!canGoPrev"
+            @click="prevPage"
+          >
+            <FIcon name="chevron-left" :size="24" />
+          </button>
+
+          <div class="expanded-services__pagination-info">
+            <span class="expanded-services__pagination-current">{{ currentPage }}</span>
+            <span class="expanded-services__pagination-separator">/</span>
+            <span class="expanded-services__pagination-total">{{ totalPages }}</span>
           </div>
+
+          <button
+            class="expanded-services__pagination-btn"
+            :class="{ 'expanded-services__pagination-btn--disabled': !canGoNext }"
+            :disabled="!canGoNext"
+            @click="nextPage"
+          >
+            <FIcon name="chevron-right" :size="24" />
+          </button>
         </div>
       </div>
     </div>
@@ -91,16 +175,29 @@ onMounted(() => {
 
   @include element('sidebar') {
     @include desktop {
-      flex: 0 0 35%;
+      flex: 0 1 35%;
+      min-width: 0;
       position: sticky;
       top: calc($header-height + $spacing-4xl);
       align-self: flex-start;
     }
   }
 
+  @include element('sidebar-content') {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    align-items: center;
+    text-align: left;
+
+    @include desktop {
+      align-items: flex-start;
+    }
+  }
+
   @include element('heading') {
     color: $white;
-    margin-bottom: $spacing-md;
+    margin-bottom: 0;
   }
 
   @include element('subtitle') {
@@ -108,29 +205,102 @@ onMounted(() => {
     margin-bottom: 0;
   }
 
+  @include element('content') {
+    flex: 1;
+    min-width: 0;
+
+    @include desktop {
+      flex: 1 1 auto;
+    }
+  }
+
   @include element('grid') {
     display: flex;
     flex-direction: column;
-    flex: 1;
+  }
 
-    @include desktop {
-      flex: 0 0 65%;
+  @include element('pagination') {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-lg;
+    margin-top: $spacing-2xl;
+
+    @include modifier('desktop') {
+      display: none;
+
+      @include desktop {
+        display: flex;
+        justify-content: flex-start;
+      }
     }
+
+    @include modifier('mobile') {
+      display: flex;
+      margin-top: $spacing-2xl;
+
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+
+  @include element('pagination-btn') {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: $gray-2;
+    border: 1px solid $gray-3;
+    border-radius: 50%;
+    color: $white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background: $brand-red;
+      border-color: $brand-red;
+      transform: scale(1.1);
+    }
+
+    @include modifier('disabled') {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  @include element('pagination-info') {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: 18px;
+    font-weight: 600;
+    color: $white;
+  }
+
+  @include element('pagination-current') {
+    color: $brand-red;
+  }
+
+  @include element('pagination-separator') {
+    color: $gray-5;
+  }
+
+  @include element('pagination-total') {
+    color: $gray-5;
   }
 
   @include element('card') {
     background: transparent;
     border-bottom: 1px solid $gray-3;
     display: flex;
-    flex-direction: column;
-    padding: $spacing-3xl 0;
-    gap: $spacing-2xl;
-
-    @include tablet {
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
+    flex-direction: row;
+    padding: $spacing-xl 0;
+    gap: $spacing-lg;
+    align-items: center;
+    justify-content: space-between;
 
     &:hover {
       .expanded-services__card-image {
@@ -153,7 +323,7 @@ onMounted(() => {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: $spacing-sm;
   }
 
   @include element('card-category') {
@@ -168,19 +338,19 @@ onMounted(() => {
   @include element('card-title') {
     color: $white;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1.3;
     margin: 0;
 
     @include desktop {
-      font-size: 28px;
+      font-size: 22px;
     }
   }
 
   @include element('card-description') {
     color: $gray-6;
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.5;
     margin: 0;
   }
 
@@ -199,8 +369,8 @@ onMounted(() => {
   }
 
   @include element('card-image') {
-    width: 100%;
-    height: 200px;
+    width: 120px;
+    height: 100px;
     background: $gradient-dark-1;
     border-radius: $radius-md;
     overflow: hidden;
@@ -208,13 +378,13 @@ onMounted(() => {
     position: relative;
 
     @include tablet {
-      width: 240px;
-      height: 180px;
+      width: 200px;
+      height: 140px;
     }
 
     @include desktop {
-      width: 280px;
-      height: 200px;
+      width: 220px;
+      height: 150px;
     }
 
     &::before {
