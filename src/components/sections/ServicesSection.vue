@@ -114,7 +114,7 @@ onMounted(() => {
     @include tablet {
       grid-template-columns: 0.8fr 1.2fr;
       gap: $spacing-5xl;
-      align-items: center;
+      // align-items: center;
     }
   }
 

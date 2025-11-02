@@ -22,7 +22,7 @@ onMounted(() => {
         <div class="about__text">
           <p class="about__subtitle">SOBRE</p>
 
-          <h2 class="about__heading text-h2">Fellas Barbershop</h2>
+          <h2 class="about__heading text-h2">Fellas Barbers</h2>
 
           <p class="about__description text-body-lg">
             A nossa equipa é formada por verdadeiros mestres na arte da transformação, prontos para
@@ -125,8 +125,6 @@ onMounted(() => {
       z-index: -1;
 
       @include tablet {
-        width: 400px;
-        height: 400px;
         filter: blur(180px);
       }
 
