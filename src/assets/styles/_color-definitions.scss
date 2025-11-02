@@ -1,0 +1,150 @@
+@use 'primitive-colors';
+
+/*
+   ============================================================
+   ⚠️ Color Definitions ⚠️
+   ============================================================
+   This file contains the variables for the application's color themes.
+   These variables are intended to be used all across the app. Developers
+   must use these ones, not the primitive ones.
+
+   Keeping the theme variables scoped to their intended purpose ensures consistency
+   and maintainability of the application's design system.
+   ============================================================
+*/
+
+@mixin dark-definitions() {
+  // Contrasts
+  --full-contrast: var(--primitive-full-white);
+  --primary-contrast: var(--primitive-gray-300);
+  --secondary-contrast: var(--primitive-gray-400);
+  --tertiary-contrast: var(--primitive-gray-500);
+  --quaternary-contrast: var(--primitive-gray-600);
+  --quinary-contrast: var(--primitive-gray-700);
+  --senary-contrast: var(--primitive-gray-800);
+  --septenary-contrast: var(--primitive-gray-900);
+  --octonary-contrast: var(--primitive-black);
+
+  // Brand
+  --brand-color-primary: var(--primitive-primary);
+  --brand-color-secondary: var(--primitive-primary-light);
+  --brand-color-tertiary: var(--primitive-primary-dark);
+
+  // General
+  --page-color: var(--full-contrast);
+  --page-background: var(--primitive-black-dark);
+
+  // Texts
+  --text-color-primary: var(--full-contrast);
+  --text-color-primary-hover: var(--primary-contrast);
+  --text-color-secondary: var(--primary-contrast);
+  --text-color-secondary-hover: var(--full-contrast);
+  --text-color-tertiary: var(--secondary-contrast);
+
+  // Status
+  --status-color-success: var(--primitive-green);
+  --status-color-error: var(--primitive-red);
+
+  // Links
+  --links-color: var(--brand-color-secondary);
+  --links-color-hover: var(--brand-color-tertiary);
+  --links-color-active: var(--brand-color-primary);
+
+  // Buttons
+  --buttons-background: var(--primary-gradient);
+  --buttons-background-hover: var(--secondary-gradient);
+  --buttons-color: var(--full-contrast);
+
+  // Icons
+  --icons-color: var(--quaternary-contrast);
+  --icons-color-hover: var(--full-contrast);
+
+  // Surfaces
+  --surface-background: var(--primitive-black-red-tint);
+  --surface-background-secondary: var(--primitive-gray-900);
+  --surface-border: var(--primitive-gray-800);
+  --surface-shadow: rgba(0, 0, 0, 0.3);
+
+  // Hero Overlay (for video background)
+  --hero-overlay-top: rgba(10, 9, 9, 0.4);
+  --hero-overlay-bottom: rgba(10, 9, 9, 0.6);
+
+  // Panels
+  --panels-background: var(--primitive-gray-900);
+  --panels-color: var(--full-contrast);
+
+  // Cards
+  --card-background-hover: var(--primitive-black-light);
+  --card-link-background-hover: var(--primary-gradient);
+
+  // Footer
+  --footer-background: var(--primitive-black-red-tint);
+}
+
+@mixin light-definitions() {
+  // Contrasts
+  --full-contrast: var(--primitive-full-black);
+  --primary-contrast: var(--primitive-gray-900);
+  --secondary-contrast: var(--primitive-gray-800);
+  --tertiary-contrast: var(--primitive-gray-700);
+  --quaternary-contrast: var(--primitive-gray-600);
+  --quinary-contrast: var(--primitive-gray-500);
+  --senary-contrast: var(--primitive-gray-400);
+  --septenary-contrast: var(--primitive-gray-300);
+  --octonary-contrast: var(--primitive-gray-200);
+
+  // Brand
+  --brand-color-primary: var(--primitive-primary);
+  --brand-color-secondary: var(--primitive-primary);
+  --brand-color-tertiary: var(--primitive-primary-dark);
+
+  // General
+  --page-color: var(--primary-contrast);
+  --page-background: var(--primitive-white);
+
+  // Texts
+  --text-color-primary: var(--primary-contrast);
+  --text-color-primary-hover: var(--secondary-contrast);
+  --text-color-secondary: var(--quaternary-contrast);
+  --text-color-secondary-hover: var(--primary-contrast);
+  --text-color-tertiary: var(--quinary-contrast);
+
+  // Status
+  --status-color-success: var(--primitive-green);
+  --status-color-error: var(--primitive-red);
+
+  // Links
+  --links-color: var(--brand-color-secondary);
+  --links-color-hover: var(--brand-color-tertiary);
+  --links-color-active: var(--brand-color-primary);
+
+  // Buttons
+  --buttons-background: var(--primary-gradient);
+  --buttons-background-hover: var(--secondary-gradient);
+  --buttons-color: var(--full-contrast);
+
+  // Icons
+  --icons-color: var(--quaternary-contrast);
+  --icons-color-hover: var(--full-contrast);
+
+  // Surfaces
+  --surface-background: var(--primitive-gray-100);
+  --surface-background-secondary: var(--primitive-gray-200);
+  --surface-border: var(--primitive-gray-100);
+  --surface-shadow: rgba(0, 0, 0, 0.1);
+
+  // Hero Overlay (for video background)
+  --hero-overlay-top: rgba(255, 255, 255, 0.4);
+  --hero-overlay-bottom: rgba(255, 255, 255, 0.6);
+
+  // Panels
+  --panels-background: var(--octonary-contrast);
+  --panels-color: var(--full-contrast);
+
+  // Cards
+  --card-background-hover: var(--primitive-white-light);
+  --card-link-background-hover: var(--primary-gradient);
+
+  // Footer
+  --footer-background: var(--primitive-gray-100);
+}
