@@ -317,7 +317,7 @@ onUnmounted(() => {
   position: relative;
   padding: $spacing-6xl 0;
   background-color: var(--section-background);
-  overflow-x: clip;
+  overflow: hidden;
 
   // Bottom blur (centered)
   &::after {
