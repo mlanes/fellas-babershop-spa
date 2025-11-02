@@ -16,7 +16,6 @@ A modern, responsive single-page application for Fellas Barbers - a premium barb
 - [Testing](#testing)
 - [Building for Production](#building-for-production)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
