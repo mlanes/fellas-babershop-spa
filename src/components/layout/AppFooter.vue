@@ -33,19 +33,6 @@ const handleNavClick = (href: string) => {
           <p class="footer__description text-body-sm">
             Experiência profissional em cortes de cabelo e barba. Qualidade e estilo desde sempre.
           </p>
-
-          <!-- Social Media -->
-          <div class="footer__social">
-            <a
-              :href="contactInfo.socialMedia.instagram"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="footer__social-link"
-              aria-label="Instagram"
-            >
-              <FIcon name="instagram" :size="24" />
-            </a>
-          </div>
         </div>
 
         <!-- Links Úteis -->
@@ -107,6 +94,19 @@ const handleNavClick = (href: string) => {
         <p class="footer__copyright text-body-sm">
           © {{ currentYear }} Fellas Barbershop. Todos os direitos reservados.
         </p>
+
+        <!-- Social Media -->
+        <div class="footer__bottom-social">
+          <a
+            :href="contactInfo.socialMedia.instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__social-link"
+            aria-label="Instagram"
+          >
+            <FIcon name="instagram" :size="24" />
+          </a>
+        </div>
       </div>
     </div>
   </footer>
@@ -164,11 +164,6 @@ const handleNavClick = (href: string) => {
     color: $gray-6;
     line-height: 1.6;
     margin-bottom: $spacing-md;
-  }
-
-  @include element('social') {
-    display: flex;
-    gap: $spacing-md;
   }
 
   @include element('social-link') {
@@ -266,11 +261,18 @@ const handleNavClick = (href: string) => {
   @include element('bottom') {
     padding-top: $spacing-2xl;
     border-top: 1px solid rgba($white, 0.1);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   @include element('copyright') {
     color: $gray-5;
+  }
+
+  @include element('bottom-social') {
+    display: flex;
+    gap: $spacing-md;
   }
 }
 </style>
