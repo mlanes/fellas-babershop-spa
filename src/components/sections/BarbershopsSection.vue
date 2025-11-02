@@ -11,6 +11,8 @@ interface Barbershop {
   address: string
   phone?: string
   whatsapp?: string
+  instagram?: string
+  facebook?: string
   scheduleWeekday: string
   scheduleWeekend: string
   scheduleSunday: string
@@ -26,11 +28,13 @@ const barbershops = ref<Barbershop[]>([
     address: 'Alameda Dom Afonso Henriques, 47A - 1000-123 Alameda - Lisboa/LI - Portugal',
     phone: '+351 215 860 238',
     whatsapp: '+351 912 286 442',
+    instagram: 'https://www.instagram.com/fellasbarbersalameda',
+    facebook: 'https://www.facebook.com/FellasBarberAlameda',
     scheduleWeekday: 'Seg - Sex: 09:00 - 19:00',
     scheduleWeekend: 'Sábado e Feriados: 09:00 - 17:00',
     scheduleSunday: 'Domingo: Fechado',
     mapsUrl: 'https://maps.app.goo.gl/D83DuiVBsqQ4mith6',
-    bookingUrl: '#booking',
+    bookingUrl: 'https://sites.appbarber.com.br/fellasbarbersho-auei',
     images: [
       new URL('@/assets/img/barbershops/alameda/fellas-barbers-alameda-interior-1.png', import.meta.url).href,
       new URL('@/assets/img/barbershops/alameda/fellas-barbers-alameda-interior-2.png', import.meta.url).href,
@@ -43,11 +47,13 @@ const barbershops = ref<Barbershop[]>([
     address: 'Campo Grande, 296 B - 1700-097 Alvalade - Lisboa/LI - Portugal',
     phone: '+351 215 904 241',
     whatsapp: '+351 910 452 767',
+    instagram: 'https://www.instagram.com/fellasbarber2.pt?igsh=MW',
+    facebook: 'https://www.facebook.com/people/Fellas-Barber-Premium-II/61562815660848/?rdid=nEF4vgUgQpGM7Q6g&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Eky6MhsaA%2F%3Fmibexti',
     scheduleWeekday: 'Seg - Sex: 10:00 - 20:00',
     scheduleWeekend: 'Sábado e Feriados: 10:00 - 18:00',
     scheduleSunday: 'Domingo: Fechado',
     mapsUrl: 'https://maps.app.goo.gl/ykdUubmgE2FxJQph9',
-    bookingUrl: '#booking',
+    bookingUrl: 'https://sites.appbarber.com.br/fellasbarberpre-81lr',
     images: [
       new URL('@/assets/img/barbershops/campo-grande/fellas-barbers-campo-grande-interior-1.png', import.meta.url).href,
       new URL('@/assets/img/barbershops/campo-grande/fellas-barbers-campo-grande-interior-2.png', import.meta.url).href,
@@ -145,13 +151,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="barbershops-section">
+  <section id="barbershops" class="barbershops-section">
     <div class="container">
       <!-- Section Header -->
       <div class="barbershops-section__header">
         <span class="barbershops-section__label">{{ t('barbershops.label') }}</span>
-        <h2 class="barbershops-section__title">{{ t('barbershops.title') }}</h2>
-        <p class="barbershops-section__subtitle">{{ t('barbershops.subtitle') }}</p>
+        <h2 class="barbershops-section__title text-h2">{{ t('barbershops.title') }}</h2>
+        <p class="barbershops-section__subtitle text-body-lg">{{ t('barbershops.subtitle') }}</p>
       </div>
 
       <!-- Barbershop Cards -->
@@ -173,6 +179,7 @@ onUnmounted(() => {
                 :src="image"
                 :alt="`${shop.name} - Interior ${index + 1}`"
                 class="barbershop-card__image"
+                loading="lazy"
               />
             </div>
 
@@ -182,14 +189,14 @@ onUnmounted(() => {
               @click="prevImage(shop.id, shop.images.length)"
               aria-label="Previous image"
             >
-              ‹
+              <FIcon name="chevron-left" :size="20" />
             </button>
             <button
               class="barbershop-card__nav barbershop-card__nav--next"
               @click="nextImage(shop.id, shop.images.length)"
               aria-label="Next image"
             >
-              ›
+              <FIcon name="chevron-right" :size="20" />
             </button>
 
             <!-- Dots Indicator -->
@@ -235,30 +242,44 @@ onUnmounted(() => {
             </div>
 
             <!-- Contact Buttons -->
-            <div v-if="shop.phone || shop.whatsapp" class="barbershop-card__contacts">
+            <div v-if="shop.phone || shop.whatsapp || shop.instagram || shop.facebook" class="barbershop-card__contacts">
               <a
                 v-if="shop.phone"
                 :href="`tel:${shop.phone}`"
-                class="barbershop-card__contact-button"
+                class="barbershop-card__contact-icon-button"
                 :aria-label="`Call ${shop.phone}`"
               >
-                <span class="barbershop-card__contact-number">{{ shop.phone.replace('+351 ', '') }}</span>
-                <span class="barbershop-card__contact-icon">
-                  <FIcon name="phone" :size="20" />
-                </span>
+                <FIcon name="phone" :size="20" />
               </a>
               <a
                 v-if="shop.whatsapp"
                 :href="`https://wa.me/${shop.whatsapp.replace(/\s/g, '')}`"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="barbershop-card__contact-button barbershop-card__contact-button--whatsapp"
+                class="barbershop-card__contact-icon-button barbershop-card__contact-icon-button--whatsapp"
                 :aria-label="`WhatsApp ${shop.whatsapp}`"
               >
-                <span class="barbershop-card__contact-icon">
-                  <FIcon name="whatsapp" :size="20" />
-                </span>
-                <span class="barbershop-card__contact-number">{{ shop.whatsapp.replace('+351 ', '') }}</span>
+                <FIcon name="whatsapp" :size="20" />
+              </a>
+              <a
+                v-if="shop.instagram"
+                :href="shop.instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="barbershop-card__contact-icon-button barbershop-card__contact-icon-button--instagram"
+                :aria-label="`Instagram ${shop.name}`"
+              >
+                <FIcon name="instagram" :size="20" />
+              </a>
+              <a
+                v-if="shop.facebook"
+                :href="shop.facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="barbershop-card__contact-icon-button barbershop-card__contact-icon-button--facebook"
+                :aria-label="`Facebook ${shop.name}`"
+              >
+                <FIcon name="facebook" :size="20" />
               </a>
             </div>
           </div>
@@ -293,8 +314,43 @@ onUnmounted(() => {
 @use '@/assets/styles/mixins' as *;
 
 .barbershops-section {
+  position: relative;
   padding: $spacing-6xl 0;
   background-color: var(--section-background);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('@/assets/img/bg-compostion.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
 
   &__header {
     text-align: center;
@@ -302,45 +358,56 @@ onUnmounted(() => {
   }
 
   &__label {
-    display: inline-block;
-    padding: $spacing-xs $spacing-md;
-    background: $gradient-brand-dark-red;
-    color: $white;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: $radius-sm;
-    margin-bottom: $spacing-lg;
-  }
-
-  &__title {
-    font-size: 3rem;
+    text-align: center;
+    font-size: 13px;
     font-weight: 700;
-    margin-bottom: $spacing-md;
-    color: var(--page-color);
+    letter-spacing: 2.5px;
+    background: $gradient-brand-light-red;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    margin-bottom: $spacing-sm;
 
-    @media (max-width: $breakpoint-mobile) {
-      font-size: 2rem;
+    @at-root [data-theme='dark'] & {
+      background: $gradient-brand-dark-red;
+      background-clip: text;
+      -webkit-background-clip: text;
     }
   }
 
+  &__title {
+    text-align: center;
+    color: var(--text-color-primary);
+    margin-bottom: $spacing-md;
+  }
+
   &__subtitle {
-    font-size: 1.125rem;
-    color: var(--text-muted);
+    text-align: center;
+    color: var(--text-color-secondary);
+    margin-bottom: $spacing-4xl;
     max-width: 600px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include tablet {
+      margin-bottom: $spacing-5xl;
+    }
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-    gap: 48px;
-    max-width: 1400px;
+    gap: $spacing-lg;
     margin: 0 auto;
+    width: 100%;
 
-    @media (max-width: $breakpoint-mobile) {
-      gap: $spacing-lg;
+    @include tablet {
+      gap: 48px;
+    }
+
+    @include desktop {
+      width: 70%;
     }
   }
 }
@@ -361,9 +428,10 @@ onUnmounted(() => {
   &__carousel {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 280px;
     overflow: hidden;
     background: $gray-1;
+    border-radius: $radius-lg $radius-lg 0 0;
   }
 
   &__images {
@@ -385,30 +453,31 @@ onUnmounted(() => {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba($black, 0.5);
+    background: rgba($black, 0.6);
+    backdrop-filter: blur(4px);
     color: $white;
     border: none;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background $transition-fast;
+    transition: all $transition-fast;
     z-index: 10;
 
     &:hover {
-      background: rgba($brand-red-dark, 0.9);
+      background: rgba($brand-red-dark, 0.95);
+      transform: translateY(-50%) scale(1.1);
     }
 
     &--prev {
-      left: $spacing-md;
+      left: $spacing-sm;
     }
 
     &--next {
-      right: $spacing-md;
+      right: $spacing-sm;
     }
   }
 
@@ -443,33 +512,44 @@ onUnmounted(() => {
   }
 
   &__content {
-    padding: $spacing-2xl $spacing-2xl $spacing-lg;
+    padding: $spacing-xl $spacing-xl $spacing-md;
   }
 
   &__name {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--page-color);
-    margin-bottom: $spacing-lg;
+    margin-bottom: $spacing-md;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    &::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: $gradient-brand-dark-red;
+      border-radius: 2px;
+    }
   }
 
   &__info,
   &__schedule {
     display: flex;
-    gap: $spacing-md;
-    margin-bottom: $spacing-lg;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
   }
 
   &__icon {
     color: $brand-red-dark;
     flex-shrink: 0;
+    margin-top: 2px;
   }
 
   &__address {
     color: var(--text-muted);
-    line-height: 1.6;
-    min-height: 52px;
-    font-size: 18px;
+    line-height: 1.5;
+    font-size: 0.875rem;
   }
 
   &__contacts {
@@ -477,39 +557,43 @@ onUnmounted(() => {
     gap: $spacing-md;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: $spacing-lg;
   }
 
   &__schedule-times {
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: $spacing-xs;
     flex: 1;
   }
 
   &__schedule-item {
     display: flex;
     justify-content: space-between;
-    gap: $spacing-lg;
-    padding-bottom: $spacing-sm;
-    border-bottom: 1px solid var(--surface-border);
-    transition: border-color $transition-base;
+    gap: $spacing-md;
+    padding: $spacing-xs 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--surface-border);
+    }
   }
 
   &__schedule-day {
     color: var(--text-muted);
-    font-size: 18px;
+    font-size: 0.8125rem;
+    font-weight: 500;
   }
 
   &__schedule-time {
     color: var(--page-color);
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 0.8125rem;
+    font-weight: 700;
   }
 
   &__footer {
     display: flex;
     gap: $spacing-md;
-    padding: $spacing-xl $spacing-2xl;
+    padding: $spacing-md $spacing-xl;
     border-top: 1px solid var(--border-color);
     background: var(--section-background);
 
@@ -518,64 +602,51 @@ onUnmounted(() => {
     }
   }
 
-  &__contact-button {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    border: 2px solid $brand-red-dark;
-    border-radius: 22px;
-    overflow: hidden;
-    transition: all $transition-base;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba($brand-red-dark, 0.2);
-    }
-
-    &--whatsapp {
-      border-color: #25D366;
-
-      &:hover {
-        box-shadow: 0 4px 8px rgba(#25D366, 0.2);
-      }
-
-      .barbershop-card__contact-icon {
-        background: #25D366;
-        border-color: #25D366;
-      }
-
-      .barbershop-card__contact-number {
-        color: #25D366;
-        background: rgba(#25D366, 0.1);
-      }
-    }
-  }
-
-  &__contact-icon {
+  &__contact-icon-button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
+    text-decoration: none;
+    border: none;
+    border-radius: 50%;
     background: $brand-red-dark;
     color: $white;
-    flex-shrink: 0;
+    transition: all $transition-base;
+
+    &:hover {
+      transform: translateY(-2px) scale(1.1);
+      box-shadow: 0 4px 12px rgba($brand-red-dark, 0.3);
+    }
+
+    @include modifier('whatsapp') {
+      background: #25D366;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(#25D366, 0.3);
+      }
+    }
+
+    @include modifier('instagram') {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(#dc2743, 0.4);
+      }
+    }
+
+    @include modifier('facebook') {
+      background: #1877F2;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(#1877F2, 0.4);
+      }
+    }
 
     svg {
       flex-shrink: 0;
     }
-  }
-
-  &__contact-number {
-    padding: 0 $spacing-md;
-    color: $brand-red-dark;
-    background: rgba($brand-red-dark, 0.1);
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-    height: 44px;
-    display: flex;
-    align-items: center;
   }
 
   &__button {
@@ -583,31 +654,40 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $spacing-sm;
+    gap: $spacing-xs;
     padding: $spacing-md $spacing-lg;
     border-radius: $radius-md;
     font-weight: 600;
+    font-size: 0.875rem;
     text-decoration: none;
     transition: all $transition-base;
     cursor: pointer;
 
     &--primary {
       position: relative;
-      background: $gradient-brand-dark-red;
+      background: $gradient-brand-light-red;
       color: $white;
       border: none;
       overflow: hidden;
       z-index: 1;
+
+      @at-root [data-theme='dark'] & {
+        background: $gradient-brand-dark-red;
+      }
 
       // Inverted gradient layer (hidden by default)
       &::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(90deg, #8b0000 0%, #e63946 100%); // Inverted dark gradient
+        background: linear-gradient(90deg, #c41e3a 0%, #e63946 100%); // Inverted light gradient
         opacity: 0;
         transition: opacity $transition-base;
         z-index: -1;
+
+        @at-root [data-theme='dark'] & {
+          background: linear-gradient(90deg, #8b0000 0%, #e63946 100%); // Inverted dark gradient
+        }
       }
 
       &:hover {
@@ -626,7 +706,7 @@ onUnmounted(() => {
 
     &--secondary {
       background: transparent;
-      color: var(--page-color);
+      color: $brand-red-dark;
       border: 2px solid $brand-red-dark;
 
       &:hover {

@@ -53,40 +53,49 @@ const handleNavClick = (href: string) => {
           </nav>
         </div>
 
-        <!-- Horário -->
+        <!-- Alameda Contact -->
         <div class="footer__column">
-          <h3 class="footer__heading text-h6">{{ t('footer.schedule') }}</h3>
-          <div class="footer__hours">
-            <div
-              v-for="(schedule, index) in contactInfo.businessHours"
-              :key="index"
-              class="footer__hours-item"
-            >
-              <span class="footer__hours-day">{{ schedule.day }}</span>
-              <span class="footer__hours-time">{{ schedule.hours }}</span>
-            </div>
+          <h3 class="footer__heading text-h6">Alameda</h3>
+          <div class="footer__contacts">
+            <a href="tel:+351215860238" class="footer__contact">
+              <FIcon name="phone" :size="20" />
+              <span>+351 215 860 238</span>
+            </a>
+            <a href="https://wa.me/351912286442" target="_blank" rel="noopener noreferrer" class="footer__contact">
+              <FIcon name="whatsapp" :size="20" />
+              <span>+351 912 286 442</span>
+            </a>
+            <a href="https://www.instagram.com/fellasbarbersalameda" target="_blank" rel="noopener noreferrer" class="footer__contact">
+              <FIcon name="instagram" :size="20" />
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/FellasBarberAlameda" target="_blank" rel="noopener noreferrer" class="footer__contact">
+              <FIcon name="facebook" :size="20" />
+              <span>Facebook</span>
+            </a>
           </div>
         </div>
 
-        <!-- Contacto -->
+        <!-- Campo Grande Contact -->
         <div class="footer__column">
-          <h3 class="footer__heading text-h6">{{ t('footer.contact') }}</h3>
+          <h3 class="footer__heading text-h6">Campo Grande</h3>
           <div class="footer__contacts">
-            <a :href="`tel:${contactInfo.phone}`" class="footer__contact">
+            <a href="tel:+351215904241" class="footer__contact">
               <FIcon name="phone" :size="20" />
-              <span>{{ contactInfo.phone }}</span>
+              <span>+351 215 904 241</span>
             </a>
-            <a :href="`mailto:${contactInfo.email}`" class="footer__contact">
-              <FIcon name="mail" :size="20" />
-              <span>{{ contactInfo.email }}</span>
+            <a href="https://wa.me/351910452767" target="_blank" rel="noopener noreferrer" class="footer__contact">
+              <FIcon name="whatsapp" :size="20" />
+              <span>+351 910 452 767</span>
             </a>
-            <div class="footer__contact">
-              <FIcon name="map-pin" :size="20" />
-              <span>
-                {{ contactInfo.address.street }}<br />
-                {{ contactInfo.address.postalCode }} {{ contactInfo.address.city }}
-              </span>
-            </div>
+            <a href="https://www.instagram.com/fellasbarber2.pt?igsh=MW" target="_blank" rel="noopener noreferrer" class="footer__contact">
+              <FIcon name="instagram" :size="20" />
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/people/Fellas-Barber-Premium-II/61562815660848/?rdid=nEF4vgUgQpGM7Q6g&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Eky6MhsaA%2F%3Fmibexti" target="_blank" rel="noopener noreferrer" class="footer__contact">
+              <FIcon name="facebook" :size="20" />
+              <span>Facebook</span>
+            </a>
           </div>
         </div>
       </div>
@@ -220,6 +229,7 @@ const handleNavClick = (href: string) => {
     color: var(--text-color-secondary);
     text-decoration: none;
     font-size: 14px;
+    text-transform: uppercase;
     transition: color $transition-base;
 
     &:hover {

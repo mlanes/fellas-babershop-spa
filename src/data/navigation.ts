@@ -11,7 +11,7 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     label: 'nav.about',
-    href: '#sobre',
+    href: '#about',
   },
   {
     label: 'nav.services',
@@ -19,10 +19,10 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     label: 'nav.gallery',
-    href: '#galeria',
+    href: '#gallery',
   },
   {
-    label: 'nav.contacts',
-    href: '#contactos',
+    label: 'nav.barbershops',
+    href: '#barbershops',
   },
 ]

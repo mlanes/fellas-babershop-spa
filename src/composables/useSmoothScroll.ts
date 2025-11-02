@@ -6,6 +6,9 @@ export function useSmoothScroll() {
 		const element = document.querySelector(target)
 		if (!element) return
 
+		// Emit custom event to notify that programmatic scroll is starting
+		window.dispatchEvent(new CustomEvent('programmatic-scroll-start'))
+
 		const top = element.getBoundingClientRect().top + window.pageYOffset - offset
 		window.scrollTo({ top, behavior: 'smooth' })
 	}

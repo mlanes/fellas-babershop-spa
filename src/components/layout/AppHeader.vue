@@ -24,6 +24,20 @@ const headerRef = ref<HTMLElement | null>(null)
 const isScrolled = ref(false)
 const isHeaderVisible = ref(true)
 let lastScrollY = 0
+let isProgrammaticScroll = false
+
+/**
+ * Handle programmatic scroll event
+ */
+const handleProgrammaticScroll = () => {
+  isProgrammaticScroll = true
+  isHeaderVisible.value = false
+
+  // Reset after scroll animation completes (smooth scroll takes ~500-1000ms)
+  setTimeout(() => {
+    isProgrammaticScroll = false
+  }, 1000)
+}
 
 /**
  * Handle scroll to update header background and active section
@@ -33,19 +47,22 @@ const handleScroll = () => {
 
   isScrolled.value = currentScrollY > 20
 
-  // Show/hide header based on scroll direction
-  if (currentScrollY < lastScrollY) {
-    // Scrolling up - show header
-    isHeaderVisible.value = true
-  } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-    // Scrolling down - hide header (only after scrolling past 100px)
-    isHeaderVisible.value = false
+  // Don't show/hide header during programmatic scroll
+  if (!isProgrammaticScroll) {
+    // Show/hide header based on scroll direction
+    if (currentScrollY < lastScrollY) {
+      // Scrolling up - show header
+      isHeaderVisible.value = true
+    } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down - hide header (only after scrolling past 100px)
+      isHeaderVisible.value = false
+    }
   }
 
   lastScrollY = currentScrollY
 
   // Simple scroll spy - check which section is in view
-  const sections = ['home', 'sobre', 'services', 'galeria', 'contactos']
+  const sections = ['home', 'about', 'services', 'gallery', 'barbershops']
   for (const sectionId of sections) {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -70,17 +87,19 @@ const handleNavClick = (href: string) => {
  * Handle booking button click
  */
 const handleBookingClick = () => {
-  // TODO: Implement booking functionality
-  console.log('Booking clicked')
+  scrollTo('#barbershops')
+  uiStore.closeMobileMenu()
 }
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  window.addEventListener('programmatic-scroll-start', handleProgrammaticScroll)
   handleScroll()
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('programmatic-scroll-start', handleProgrammaticScroll)
 })
 </script>
 
@@ -126,6 +145,7 @@ onUnmounted(() => {
         </button>
 
         <FButton variant="primary" size="md" @click="handleBookingClick">
+          <FIcon name="calendar" :size="18" />
           {{ t('common.book') }}
         </FButton>
       </div>
@@ -170,6 +190,7 @@ onUnmounted(() => {
 
         <div class="header__mobile-actions">
           <FButton variant="primary" size="md" full-width @click="handleBookingClick">
+            <FIcon name="calendar" :size="18" />
             {{ t('common.book') }}
           </FButton>
         </div>

@@ -18,7 +18,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section id="sobre" ref="sectionRef" class="about">
+  <section id="about" ref="sectionRef" class="about">
     <div class="about__container container">
       <div class="about__content">
         <div class="about__text">

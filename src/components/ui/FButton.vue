@@ -55,6 +55,7 @@ defineEmits<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: $spacing-sm;
   font-family: $font-primary;
   font-weight: 600;
   text-align: center;
