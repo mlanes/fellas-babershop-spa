@@ -186,6 +186,7 @@ onMounted(() => {
   @include element('tagline') {
     color: $white;
     font-weight: 600;
+    letter-spacing: 0.1em;
     opacity: 0;
     animation: slide-up $transition-base forwards;
     animation-delay: 0.6s;
