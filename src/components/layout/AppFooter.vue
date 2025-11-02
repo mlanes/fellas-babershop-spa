@@ -117,9 +117,10 @@ const handleNavClick = (href: string) => {
 @use '@/assets/styles/mixins' as *;
 
 .footer {
-  background-color: $gray-2;
-  color: $white;
+  background-color: var(--theme-surface);
+  color: var(--theme-text-primary);
   padding: $spacing-5xl 0 $spacing-2xl;
+  transition: background-color $transition-base, color $transition-base;
 
   @include element('container') {
     @include container;
@@ -149,8 +150,9 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('logo') {
-    color: $white;
+    color: var(--theme-text-primary);
     margin-bottom: $spacing-sm;
+    transition: color $transition-base;
   }
 
   @include element('tagline') {
@@ -161,9 +163,10 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('description') {
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     line-height: 1.6;
     margin-bottom: $spacing-md;
+    transition: color $transition-base;
   }
 
   @include element('social-link') {
@@ -173,21 +176,23 @@ const handleNavClick = (href: string) => {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: rgba($white, 0.1);
-    color: $white;
+    background-color: color-mix(in srgb, var(--theme-text-primary) 10%, transparent);
+    color: var(--theme-text-primary);
     transition: all $transition-base;
     text-decoration: none;
 
     &:hover {
       background-color: $brand-red;
+      color: $white;
       transform: translateY(-4px);
     }
   }
 
   @include element('heading') {
-    color: $white;
+    color: var(--theme-text-primary);
     font-weight: 700;
     margin-bottom: $spacing-md;
+    transition: color $transition-base;
   }
 
   @include element('links') {
@@ -197,7 +202,7 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('link') {
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     text-decoration: none;
     font-size: 14px;
     transition: color $transition-base;
@@ -218,18 +223,21 @@ const handleNavClick = (href: string) => {
     justify-content: space-between;
     gap: $spacing-lg;
     padding-bottom: $spacing-sm;
-    border-bottom: 1px solid rgba($white, 0.1);
+    border-bottom: 1px solid var(--theme-border);
+    transition: border-color $transition-base;
   }
 
   @include element('hours-day') {
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     font-size: 14px;
+    transition: color $transition-base;
   }
 
   @include element('hours-time') {
-    color: $white;
+    color: var(--theme-text-primary);
     font-size: 14px;
     font-weight: 600;
+    transition: color $transition-base;
   }
 
   @include element('contacts') {
@@ -242,7 +250,7 @@ const handleNavClick = (href: string) => {
     display: flex;
     align-items: flex-start;
     gap: $spacing-md;
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     text-decoration: none;
     font-size: 14px;
     line-height: 1.6;
@@ -260,14 +268,16 @@ const handleNavClick = (href: string) => {
 
   @include element('bottom') {
     padding-top: $spacing-2xl;
-    border-top: 1px solid rgba($white, 0.1);
+    border-top: 1px solid var(--theme-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: border-color $transition-base;
   }
 
   @include element('copyright') {
-    color: $gray-5;
+    color: var(--theme-text-tertiary);
+    transition: color $transition-base;
   }
 
   @include element('bottom-social') {
