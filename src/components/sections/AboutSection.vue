@@ -2,11 +2,13 @@
 import { ref, onMounted } from 'vue'
 import FButton from '@/components/ui/FButton.vue'
 import FellasAuthenticBadge from '@/assets/img/fellas-authentic.svg?component'
+import { useLocale } from '@/composables/useLocale'
 
 /**
  * AboutSection - About Fellas Barbershop with crown badge
  */
 const sectionRef = ref<HTMLElement | null>(null)
+const { t } = useLocale()
 
 onMounted(() => {
   if (sectionRef.value) {
@@ -20,17 +22,15 @@ onMounted(() => {
     <div class="about__container container">
       <div class="about__content">
         <div class="about__text">
-          <p class="about__subtitle">SOBRE</p>
+          <p class="about__subtitle">{{ t('about.subtitle') }}</p>
 
-          <h2 class="about__heading text-h2">Fellas Barbers</h2>
+          <h2 class="about__heading text-h2">{{ t('about.heading') }}</h2>
 
           <p class="about__description text-body-lg">
-            A nossa equipa é formada por verdadeiros mestres na arte da transformação, prontos para
-            criar um visual único que celebra a tua individualidade. Acreditamos que cada cliente
-            deve expressar a sua essência autêntica.
+            {{ t('about.description') }}
           </p>
 
-          <FButton variant="gradient" size="md">SABER MAIS</FButton>
+          <FButton variant="gradient" size="md">{{ t('about.learnMore') }}</FButton>
         </div>
 
         <div class="about__badge">

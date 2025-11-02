@@ -3,11 +3,13 @@ import { ref, onMounted, computed } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import { services } from '@/data/services'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
+import { useLocale } from '@/composables/useLocale'
 
 /**
  * ExpandedServicesSection - Detailed service catalog with pricing
  */
 const { scrollTo } = useSmoothScroll()
+const { t } = useLocale()
 const sectionRef = ref<HTMLElement | null>(null)
 const currentPage = ref(1)
 const itemsPerPage = 10
@@ -53,10 +55,10 @@ onMounted(() => {
       <div class="expanded-services__sidebar">
         <div class="expanded-services__sidebar-content">
           <h2 class="expanded-services__heading text-h2">
-            Todos os Serviços
+            {{ t('services.allServices') }}
           </h2>
           <p class="expanded-services__subtitle text-body-lg">
-            Serviços profissionais de barbeiro com qualidade premium
+            {{ t('services.allServicesSubtitle') }}
           </p>
 
           <div class="expanded-services__pagination expanded-services__pagination--desktop">

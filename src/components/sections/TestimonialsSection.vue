@@ -3,11 +3,13 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import QuoteIcon from '@/assets/icons/quote.svg?component'
 import { testimonials } from '@/data/testimonials'
+import { useLocale } from '@/composables/useLocale'
 
 /**
  * TestimonialsSection - Customer testimonials and reviews
  */
 const sectionRef = ref<HTMLElement | null>(null)
+const { t } = useLocale()
 const selectedTestimonial = ref(0)
 let autoRotateInterval: ReturnType<typeof setInterval> | null = null
 
@@ -57,10 +59,10 @@ const nextTestimonial = () => {
       <div class="testimonials__layout">
         <!-- Left Side: Title, Heading and Navigation -->
         <div class="testimonials__left">
-          <p class="testimonials__subtitle">DEPOIMENTOS</p>
+          <p class="testimonials__subtitle">{{ t('testimonials.subtitle') }}</p>
 
           <h2 class="testimonials__heading text-h2">
-            O que estão dizendo sobre a Fellas
+            {{ t('testimonials.heading') }}
           </h2>
 
           <div class="testimonials__navigation">

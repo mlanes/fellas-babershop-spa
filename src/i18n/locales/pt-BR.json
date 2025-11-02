@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "gallery": "Galeria",
+    "contacts": "Contatos"
+  },
+  "hero": {
+    "title": "FELLAS BARBERS",
+    "premium": "PREMIUM",
+    "tagline": "SUA BARBEARIA DE CONFIANÇA",
+    "description": "Cuidados pessoais de excelência. Combine tradição e inovação em um ambiente acolhedor, com barbeiros especializados em estilo e confiança.",
+    "seeMore": "Ver Mais"
+  },
+  "about": {
+    "subtitle": "SOBRE",
+    "heading": "Fellas Barbers",
+    "description": "Nossa equipe é formada por verdadeiros mestres na arte da transformação, prontos para criar um visual único que celebra sua individualidade. Acreditamos que cada cliente deve expressar sua essência autêntica.",
+    "learnMore": "SAIBA MAIS"
+  },
+  "services": {
+    "subtitle": "NOSSOS",
+    "heading": "Serviços Populares",
+    "viewPricing": "VER PREÇOS",
+    "allServices": "Todos os Serviços",
+    "allServicesSubtitle": "Serviços profissionais de barbeiro com qualidade premium"
+  },
+  "testimonials": {
+    "subtitle": "DEPOIMENTOS",
+    "heading": "O que estão dizendo sobre a Fellas"
+  },
+  "beforeAfter": {
+    "label": "CONFIRA ESTE",
+    "heading": "Antes & Depois",
+    "subtitle": "Arraste a barra para algum dos lados",
+    "before": "Antes",
+    "after": "Depois"
+  },
+  "footer": {
+    "tagline": "SUA BARBEARIA DE CONFIANÇA",
+    "description": "Experiência profissional em cortes de cabelo e barba. Qualidade e estilo desde sempre.",
+    "usefulLinks": "Links Úteis",
+    "schedule": "Horário",
+    "contact": "Contato",
+    "copyright": "Fellas Barbershop. Todos os direitos reservados."
+  },
+  "common": {
+    "book": "AGENDAR",
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Escuro",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
+  }
+}

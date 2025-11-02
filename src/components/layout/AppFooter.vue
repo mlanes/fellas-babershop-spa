@@ -5,11 +5,13 @@ import FIcon from '@/components/ui/FIcon.vue'
 import { contactInfo } from '@/data/contact'
 import { navigationItems } from '@/data/navigation'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
+import { useLocale } from '@/composables/useLocale'
 
 /**
  * AppFooter - Main footer with contact information and links
  */
 const { scrollTo } = useSmoothScroll()
+const { t } = useLocale()
 const currentYear = ref(new Date().getFullYear())
 
 /**
@@ -28,16 +30,16 @@ const handleNavClick = (href: string) => {
         <div class="footer__column">
           <FLogoFooter size="md" class="footer__logo" />
           <p class="footer__tagline text-body">
-            A SUA BARBEARIA DE CONFIANÇA
+            {{ t('footer.tagline') }}
           </p>
           <p class="footer__description text-body-sm">
-            Experiência profissional em cortes de cabelo e barba. Qualidade e estilo desde sempre.
+            {{ t('footer.description') }}
           </p>
         </div>
 
         <!-- Links Úteis -->
         <div class="footer__column">
-          <h3 class="footer__heading text-h6">Links Úteis</h3>
+          <h3 class="footer__heading text-h6">{{ t('footer.usefulLinks') }}</h3>
           <nav class="footer__links">
             <a
               v-for="item in navigationItems"
@@ -46,14 +48,14 @@ const handleNavClick = (href: string) => {
               class="footer__link"
               @click.prevent="handleNavClick(item.href)"
             >
-              {{ item.label }}
+              {{ t(item.label) }}
             </a>
           </nav>
         </div>
 
         <!-- Horário -->
         <div class="footer__column">
-          <h3 class="footer__heading text-h6">Horário</h3>
+          <h3 class="footer__heading text-h6">{{ t('footer.schedule') }}</h3>
           <div class="footer__hours">
             <div
               v-for="(schedule, index) in contactInfo.businessHours"
@@ -68,7 +70,7 @@ const handleNavClick = (href: string) => {
 
         <!-- Contacto -->
         <div class="footer__column">
-          <h3 class="footer__heading text-h6">Contacto</h3>
+          <h3 class="footer__heading text-h6">{{ t('footer.contact') }}</h3>
           <div class="footer__contacts">
             <a :href="`tel:${contactInfo.phone}`" class="footer__contact">
               <FIcon name="phone" :size="20" />
@@ -92,7 +94,7 @@ const handleNavClick = (href: string) => {
       <!-- Bottom Bar -->
       <div class="footer__bottom">
         <p class="footer__copyright text-body-sm">
-          © {{ currentYear }} Fellas Barbershop. Todos os direitos reservados.
+          © {{ currentYear }} {{ t('footer.copyright') }}
         </p>
 
         <!-- Social Media -->

@@ -2,26 +2,27 @@ import type { NavigationItem } from '@/types/navigation'
 
 /**
  * Main navigation menu items
+ * Labels are i18n keys that will be translated
  */
 export const navigationItems: NavigationItem[] = [
   {
-    label: 'HOME',
+    label: 'nav.home',
     href: '#home',
   },
   {
-    label: 'SOBRE',
+    label: 'nav.about',
     href: '#sobre',
   },
   {
-    label: 'SERVIÇOS',
+    label: 'nav.services',
     href: '#services',
   },
   {
-    label: 'GALERIA',
+    label: 'nav.gallery',
     href: '#galeria',
   },
   {
-    label: 'CONTACTOS',
+    label: 'nav.contacts',
     href: '#contactos',
   },
 ]

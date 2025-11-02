@@ -3,12 +3,14 @@ import { ref, onMounted } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import FButton from '@/components/ui/FButton.vue'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
+import { useLocale } from '@/composables/useLocale'
 import { services } from '@/data/services'
 
 /**
  * ServicesSection - Popular services overview with images and call-to-action
  */
 const { scrollTo } = useSmoothScroll()
+const { t } = useLocale()
 const sectionRef = ref<HTMLElement | null>(null)
 
 const handleViewServices = () => {
@@ -27,10 +29,10 @@ onMounted(() => {
     <div class="services__container container">
       <div class="services__content">
         <div class="services__left">
-          <p class="services__subtitle">NOSSOS</p>
+          <p class="services__subtitle">{{ t('services.subtitle') }}</p>
 
           <h2 class="services__heading text-h2">
-            Serviços<br>Populares
+            {{ t('services.heading') }}
           </h2>
 
           <div class="services__list">
@@ -50,7 +52,7 @@ onMounted(() => {
             class="services__button"
             @click="handleViewServices"
           >
-            VER PREÇÁRIO
+            {{ t('services.viewPricing') }}
           </FButton>
         </div>
 

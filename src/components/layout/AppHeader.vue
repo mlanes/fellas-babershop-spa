@@ -4,10 +4,12 @@ import { storeToRefs } from 'pinia'
 import FLogo from '@/components/ui/FLogo.vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import FButton from '@/components/ui/FButton.vue'
+import FLanguageSelector from '@/components/ui/FLanguageSelector.vue'
 import { navigationItems } from '@/data/navigation'
 import { useUIStore } from '@/stores/ui'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import { useTheme } from '@/composables/useTheme'
+import { useLocale } from '@/composables/useLocale'
 
 /**
  * AppHeader - Main navigation header
@@ -16,6 +18,7 @@ const uiStore = useUIStore()
 const { isMobileMenuOpen, activeSection } = storeToRefs(uiStore)
 const { scrollTo } = useSmoothScroll()
 const { isDark, toggleTheme } = useTheme()
+const { t } = useLocale()
 
 const headerRef = ref<HTMLElement | null>(null)
 const isScrolled = ref(false)
@@ -73,48 +76,64 @@ onUnmounted(() => {
     :class="{ 'header--scrolled': isScrolled, 'header--menu-open': isMobileMenuOpen }"
   >
     <div class="header__container container">
-      <!-- Logo -->
-      <a href="#home" class="header__logo" @click.prevent="handleNavClick('#home')">
-        <FLogo size="md" />
-      </a>
-
-      <!-- Desktop Navigation -->
-      <nav class="header__nav">
-        <a
-          v-for="item in navigationItems"
-          :key="item.href"
-          :href="item.href"
-          class="header__nav-link"
-          :class="{ 'header__nav-link--active': activeSection === item.href.slice(1) }"
-          @click.prevent="handleNavClick(item.href)"
-        >
-          {{ item.label }}
+      <!-- Logo and Navigation grouped together -->
+      <div class="header__left">
+        <a href="#home" class="header__logo" @click.prevent="handleNavClick('#home')">
+          <FLogo size="md" />
         </a>
-      </nav>
+
+        <!-- Desktop Navigation -->
+        <nav class="header__nav">
+          <a
+            v-for="item in navigationItems"
+            :key="item.href"
+            :href="item.href"
+            class="header__nav-link"
+            :class="{ 'header__nav-link--active': activeSection === item.href.slice(1) }"
+            @click.prevent="handleNavClick(item.href)"
+          >
+            {{ t(item.label) }}
+          </a>
+        </nav>
+      </div>
 
       <!-- Booking Button (Desktop) -->
       <div class="header__actions">
+        <FLanguageSelector />
+
         <button
           class="header__theme-toggle"
-          :aria-label="isDark ? 'Mudar para modo claro' : 'Mudar para modo escuro'"
+          :aria-label="isDark ? t('common.lightMode') : t('common.darkMode')"
           @click="toggleTheme"
         >
           <FIcon :name="isDark ? 'sun' : 'moon'" :size="20" />
         </button>
 
         <FButton variant="gradient" size="md" @click="handleBookingClick">
-          AGENDAR
+          {{ t('common.book') }}
         </FButton>
       </div>
 
-      <!-- Mobile Menu Toggle -->
-      <button
-        class="header__mobile-toggle"
-        :aria-label="isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu'"
-        @click="uiStore.toggleMobileMenu"
-      >
-        <FIcon :name="isMobileMenuOpen ? 'close' : 'menu'" :size="24" />
-      </button>
+      <!-- Mobile Actions (Language, Theme, Menu) -->
+      <div class="header__mobile-actions-bar">
+        <FLanguageSelector />
+
+        <button
+          class="header__theme-toggle header__theme-toggle--mobile-bar"
+          :aria-label="isDark ? t('common.lightMode') : t('common.darkMode')"
+          @click="toggleTheme"
+        >
+          <FIcon :name="isDark ? 'sun' : 'moon'" :size="20" />
+        </button>
+
+        <button
+          class="header__mobile-toggle"
+          :aria-label="isMobileMenuOpen ? t('common.closeMenu') : t('common.openMenu')"
+          @click="uiStore.toggleMobileMenu"
+        >
+          <FIcon :name="isMobileMenuOpen ? 'close' : 'menu'" :size="24" />
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Menu -->
@@ -129,22 +148,13 @@ onUnmounted(() => {
             :class="{ 'header__mobile-nav-link--active': activeSection === item.href.slice(1) }"
             @click.prevent="handleNavClick(item.href)"
           >
-            {{ item.label }}
+            {{ t(item.label) }}
           </a>
         </nav>
 
         <div class="header__mobile-actions">
-          <button
-            class="header__theme-toggle header__theme-toggle--mobile"
-            :aria-label="isDark ? 'Mudar para modo claro' : 'Mudar para modo escuro'"
-            @click="toggleTheme"
-          >
-            <FIcon :name="isDark ? 'sun' : 'moon'" :size="20" />
-            <span>{{ isDark ? 'Modo Claro' : 'Modo Escuro' }}</span>
-          </button>
-
           <FButton variant="gradient" size="md" full-width @click="handleBookingClick">
-            AGENDAR
+            {{ t('common.book') }}
           </FButton>
         </div>
       </div>
@@ -186,6 +196,12 @@ onUnmounted(() => {
     padding-bottom: $spacing-lg;
   }
 
+  @include element('left') {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2xl;
+  }
+
   @include element('logo') {
     color: var(--text-color-primary);
     text-decoration: none;
@@ -202,6 +218,7 @@ onUnmounted(() => {
 
     @include desktop {
       display: flex;
+      align-items: center;
     }
   }
 
@@ -211,6 +228,7 @@ onUnmounted(() => {
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 1px;
+    text-transform: uppercase;
     transition: color $transition-base;
     position: relative;
 
@@ -253,6 +271,16 @@ onUnmounted(() => {
     }
   }
 
+  @include element('mobile-actions-bar') {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
   @include element('theme-toggle') {
     display: flex;
     align-items: center;
@@ -286,6 +314,10 @@ onUnmounted(() => {
         font-weight: 600;
         letter-spacing: 0.5px;
       }
+    }
+
+    @include modifier('mobile-bar') {
+      // Keep the circular button style for mobile bar
     }
   }
 
@@ -341,6 +373,7 @@ onUnmounted(() => {
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 1px;
+    text-transform: uppercase;
     padding: $spacing-md 0;
     border-bottom: 1px solid var(--surface-border);
     transition: color $transition-base;

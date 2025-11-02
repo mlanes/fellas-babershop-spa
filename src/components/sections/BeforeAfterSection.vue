@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider.vue'
+import { useLocale } from '@/composables/useLocale'
 
 /**
  * BeforeAfterSection - Before and After image comparison section
  */
 const sectionRef = ref<HTMLElement | null>(null)
+const { t } = useLocale()
 
 // Placeholder images - to be replaced with actual barbershop before/after images
 const beforeAfterPairs = [
@@ -25,14 +27,14 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" id="antes-depois" class="before-after-section">
     <div class="before-after-section__container container">
-      <p class="before-after-section__label">CONFIRA ESTE</p>
+      <p class="before-after-section__label">{{ t('beforeAfter.label') }}</p>
 
       <h2 class="before-after-section__heading text-h2">
-        Antes <span class="before-after-section__heading-accent">&</span> Depois
+        {{ t('beforeAfter.heading') }}
       </h2>
 
       <p class="before-after-section__subtitle text-body-lg">
-        Arraste a barra para algum dos lados
+        {{ t('beforeAfter.subtitle') }}
       </p>
 
       <div class="before-after-section__grid">
@@ -44,8 +46,8 @@ onMounted(() => {
           <BeforeAfterSlider
             :before-image="pair.before"
             :after-image="pair.after"
-            before-label="Antes"
-            after-label="Depois"
+            :before-label="t('beforeAfter.before')"
+            :after-label="t('beforeAfter.after')"
             :initial-position="50"
           />
         </div>

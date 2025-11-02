@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "gallery": "Gallery",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title": "FELLAS BARBERS",
+    "premium": "PREMIUM",
+    "tagline": "YOUR TRUSTED BARBERSHOP",
+    "description": "Excellent personal care. Combining tradition and innovation in a welcoming environment, with barbers specialized in style and confidence.",
+    "seeMore": "See More"
+  },
+  "about": {
+    "subtitle": "ABOUT",
+    "heading": "Fellas Barbers",
+    "description": "Our team is made up of true masters in the art of transformation, ready to create a unique look that celebrates your individuality. We believe that every client should express their authentic essence.",
+    "learnMore": "LEARN MORE"
+  },
+  "services": {
+    "subtitle": "OUR",
+    "heading": "Popular Services",
+    "viewPricing": "VIEW PRICING",
+    "allServices": "All Services",
+    "allServicesSubtitle": "Professional barber services with premium quality"
+  },
+  "testimonials": {
+    "subtitle": "TESTIMONIALS",
+    "heading": "What they're saying about Fellas"
+  },
+  "beforeAfter": {
+    "label": "CHECK THIS OUT",
+    "heading": "Before & After",
+    "subtitle": "Drag the bar to either side",
+    "before": "Before",
+    "after": "After"
+  },
+  "footer": {
+    "tagline": "YOUR TRUSTED BARBERSHOP",
+    "description": "Professional experience in haircuts and beard grooming. Quality and style since always.",
+    "usefulLinks": "Useful Links",
+    "schedule": "Schedule",
+    "contact": "Contact",
+    "copyright": "Fellas Barbershop. All rights reserved."
+  },
+  "common": {
+    "book": "BOOK NOW",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  }
+}

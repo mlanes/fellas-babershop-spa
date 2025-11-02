@@ -3,11 +3,13 @@ import { onMounted, ref } from 'vue'
 import FLogo from '@/components/ui/FLogo.vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
+import { useLocale } from '@/composables/useLocale'
 
 /**
  * HeroSection - Full-screen hero section with brand identity and scroll indicator
  */
 const { scrollTo } = useSmoothScroll()
+const { t } = useLocale()
 const heroRef = ref<HTMLElement | null>(null)
 const videoRef = ref<HTMLVideoElement | null>(null)
 
@@ -64,23 +66,22 @@ onMounted(() => {
       <div class="hero__content">
         <FLogo size="lg" class="hero__logo" />
 
-        <h1 class="hero__title text-h1">FELLAS BARBERS <span class="hero__title hero__title--premium">PREMIUM</span></h1>
+        <h1 class="hero__title text-h1">{{ t('hero.title') }} <span class="hero__title hero__title--premium">{{ t('hero.premium') }}</span></h1>
 
-        <p class="hero__tagline text-h5">A SUA BARBEARIA DE CONFIANÇA</p>
+        <p class="hero__tagline text-h5">{{ t('hero.tagline') }}</p>
 
         <p class="hero__description text-body-lg">
-          Cuidados pessoais de excelência. Combine tradição e inovação em um ambiente acolhedor, com
-          barbeiros especializados em estilo e confiança.
+          {{ t('hero.description') }}
         </p>
       </div>
 
       <button
         class="hero__scroll-indicator"
-        aria-label="Scroll to services section"
+        :aria-label="t('hero.seeMore')"
         @click="handleScrollClick"
       >
         <FIcon name="see-more" :size="28" />
-        <span class="hero__scroll-text">Ver Mais</span>
+        <span class="hero__scroll-text">{{ t('hero.seeMore') }}</span>
       </button>
     </div>
   </section>
