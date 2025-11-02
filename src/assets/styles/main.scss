@@ -26,7 +26,6 @@ body {
   background-color: var(--page-background);
   color: var(--page-color);
   overflow-x: hidden;
-  transition: background-color variables.$transition-base, color variables.$transition-base;
 }
 
 // Remove default list styles
