@@ -131,7 +131,7 @@ const nextTestimonial = () => {
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
-  color: var(--theme-text-primary);
+  color: var(--text-color-primary);
   opacity: 0;
   transition: opacity $transition-slow;
 
@@ -170,7 +170,7 @@ const nextTestimonial = () => {
   }
 
   @include element('heading') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     margin-bottom: $spacing-lg;
     line-height: 1.2;
   }
@@ -187,10 +187,10 @@ const nextTestimonial = () => {
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: var(--theme-surface);
-    border: 1px solid var(--theme-border);
+    background: var(--surface-background);
+    border: 1px solid var(--surface-border);
     border-radius: 50%;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     cursor: pointer;
     transition: all 0.3s ease;
 
@@ -209,7 +209,7 @@ const nextTestimonial = () => {
   }
 
   @include element('featured') {
-    background: var(--theme-surface);
+    background: var(--surface-background);
     border-radius: $radius-lg;
     padding: $spacing-3xl;
     position: relative;
@@ -244,12 +244,12 @@ const nextTestimonial = () => {
   @include element('featured-name') {
     font-size: 16px;
     font-weight: 600;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
   }
 
   @include element('featured-date') {
     font-size: 13px;
-    color: var(--theme-text-tertiary);
+    color: var(--text-color-tertiary);
   }
 
   @include element('quote-icon') {
@@ -258,7 +258,7 @@ const nextTestimonial = () => {
   }
 
   @include element('comment') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     font-size: 15px;
     line-height: 1.8;
     margin-bottom: $spacing-2xl;
@@ -275,7 +275,7 @@ const nextTestimonial = () => {
   }
 
   @include element('star') {
-    color: var(--theme-text-tertiary) !important;
+    color: var(--text-color-tertiary) !important;
 
     @include modifier('filled') {
       color: #ffc107 !important;

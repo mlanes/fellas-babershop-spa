@@ -117,8 +117,8 @@ const handleNavClick = (href: string) => {
 @use '@/assets/styles/mixins' as *;
 
 .footer {
-  background-color: var(--theme-surface);
-  color: var(--theme-text-primary);
+  background-color: var(--footer-background);
+  color: var(--text-color-primary);
   padding: $spacing-5xl 0 $spacing-2xl;
   transition: background-color $transition-base, color $transition-base;
 
@@ -150,7 +150,7 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('logo') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     margin-bottom: $spacing-sm;
     transition: color $transition-base;
   }
@@ -163,7 +163,7 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('description') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     line-height: 1.6;
     margin-bottom: $spacing-md;
     transition: color $transition-base;
@@ -176,8 +176,8 @@ const handleNavClick = (href: string) => {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: color-mix(in srgb, var(--theme-text-primary) 10%, transparent);
-    color: var(--theme-text-primary);
+    background-color: color-mix(in srgb, var(--text-color-primary) 10%, transparent);
+    color: var(--text-color-primary);
     transition: all $transition-base;
     text-decoration: none;
 
@@ -189,7 +189,7 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('heading') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     font-weight: 700;
     margin-bottom: $spacing-md;
     transition: color $transition-base;
@@ -202,7 +202,7 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('link') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     text-decoration: none;
     font-size: 14px;
     transition: color $transition-base;
@@ -223,18 +223,18 @@ const handleNavClick = (href: string) => {
     justify-content: space-between;
     gap: $spacing-lg;
     padding-bottom: $spacing-sm;
-    border-bottom: 1px solid var(--theme-border);
+    border-bottom: 1px solid var(--surface-border);
     transition: border-color $transition-base;
   }
 
   @include element('hours-day') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     font-size: 14px;
     transition: color $transition-base;
   }
 
   @include element('hours-time') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     font-size: 14px;
     font-weight: 600;
     transition: color $transition-base;
@@ -250,7 +250,7 @@ const handleNavClick = (href: string) => {
     display: flex;
     align-items: flex-start;
     gap: $spacing-md;
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     text-decoration: none;
     font-size: 14px;
     line-height: 1.6;
@@ -268,7 +268,7 @@ const handleNavClick = (href: string) => {
 
   @include element('bottom') {
     padding-top: $spacing-2xl;
-    border-top: 1px solid var(--theme-border);
+    border-top: 1px solid var(--surface-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -276,7 +276,7 @@ const handleNavClick = (href: string) => {
   }
 
   @include element('copyright') {
-    color: var(--theme-text-tertiary);
+    color: var(--text-color-tertiary);
     transition: color $transition-base;
   }
 

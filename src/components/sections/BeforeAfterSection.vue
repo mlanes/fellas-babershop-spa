@@ -63,7 +63,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
-  color: var(--theme-text-primary);
+  color: var(--text-color-primary);
   opacity: 0;
   transition: opacity $transition-slow;
 
@@ -87,7 +87,7 @@ onMounted(() => {
 
   @include element('heading') {
     text-align: center;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     margin-bottom: $spacing-md;
   }
 
@@ -97,7 +97,7 @@ onMounted(() => {
 
   @include element('subtitle') {
     text-align: center;
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     margin-bottom: $spacing-4xl;
 
     @include tablet {

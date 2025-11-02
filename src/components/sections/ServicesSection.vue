@@ -133,7 +133,7 @@ onMounted(() => {
   }
 
   @include element('heading') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     line-height: 1.2;
     margin-bottom: $spacing-lg;
     transition: color $transition-base;
@@ -184,7 +184,7 @@ onMounted(() => {
   }
 
   @include element('item-title') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     font-size: 15px;
     font-weight: 400;
     transition: color $transition-base;
@@ -209,12 +209,12 @@ onMounted(() => {
 
   @include element('image-placeholder') {
     aspect-ratio: 6 / 3;
-    background: var(--theme-surface);
+    background: var(--surface-background);
     border-radius: $radius-md;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     overflow: hidden;
     transition: background $transition-base, color $transition-base;
     animation: float 8s ease-in-out infinite;

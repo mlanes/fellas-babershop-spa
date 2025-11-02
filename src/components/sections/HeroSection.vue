@@ -96,8 +96,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--theme-background);
-  color: var(--theme-text-primary);
+  background: var(--page-background);
+  color: var(--text-color-primary);
   overflow: hidden;
   transition: background-color $transition-base, color $transition-base;
 
@@ -119,8 +119,8 @@ onMounted(() => {
     height: 100%;
     background: linear-gradient(
       180deg,
-      var(--theme-overlay-top) 0%,
-      var(--theme-overlay-bottom) 100%
+      var(--hero-overlay-top) 0%,
+      var(--hero-overlay-bottom) 100%
     );
     z-index: 1;
     transition: background $transition-base;
@@ -178,16 +178,16 @@ onMounted(() => {
     opacity: 0;
 
     @include modifier('premium') {
-      color: var(--theme-text-primary);
+      color: var(--text-color-primary);
       background: none;
-      -webkit-text-fill-color: var(--theme-text-primary);
+      -webkit-text-fill-color: var(--text-color-primary);
       letter-spacing: 0.2em;
       transition: color $transition-base, background $transition-base, -webkit-text-fill-color $transition-base;
     }
   }
 
   @include element('tagline') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     font-weight: 600;
     letter-spacing: 0.1em;
     opacity: 0;
@@ -197,7 +197,7 @@ onMounted(() => {
   }
 
   @include element('description') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     max-width: 600px;
     opacity: 0;
     animation: slide-up $transition-base forwards;
@@ -245,7 +245,7 @@ onMounted(() => {
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     transition: color $transition-base;
 
     @include tablet {

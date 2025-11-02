@@ -162,18 +162,18 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: color-mix(in srgb, var(--theme-background) 30%, transparent);
+  background-color: color-mix(in srgb, var(--page-background) 30%, transparent);
   backdrop-filter: blur(10px);
   transition: all $transition-base;
 
   &--scrolled {
-    background-color: color-mix(in srgb, var(--theme-background) 85%, transparent);
+    background-color: color-mix(in srgb, var(--page-background) 85%, transparent);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px var(--theme-shadow);
+    box-shadow: 0 2px 10px var(--surface-shadow);
   }
 
   &--menu-open {
-    background-color: var(--theme-background);
+    background-color: var(--page-background);
     backdrop-filter: none;
   }
 
@@ -187,7 +187,7 @@ onUnmounted(() => {
   }
 
   @include element('logo') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     text-decoration: none;
     transition: opacity $transition-base;
 
@@ -206,7 +206,7 @@ onUnmounted(() => {
   }
 
   @include element('nav-link') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
@@ -261,14 +261,14 @@ onUnmounted(() => {
     width: 40px;
     height: 40px;
     background: none;
-    border: 1px solid var(--theme-border);
+    border: 1px solid var(--surface-border);
     border-radius: $radius-full;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     cursor: pointer;
     transition: all $transition-base;
 
     &:hover {
-      background-color: color-mix(in srgb, var(--theme-text-primary) 10%, transparent);
+      background-color: color-mix(in srgb, var(--text-color-primary) 10%, transparent);
       border-color: $brand-red;
       color: $brand-red;
     }
@@ -297,7 +297,7 @@ onUnmounted(() => {
     height: 48px;
     background: none;
     border: none;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     cursor: pointer;
     transition: color $transition-base;
 
@@ -316,7 +316,7 @@ onUnmounted(() => {
 			left: 0;
 			right: 0;
 			z-index: 999;
-			background-color: color-mix(in srgb, var(--theme-background) 95%, transparent);
+			background-color: color-mix(in srgb, var(--page-background) 95%, transparent);
 			backdrop-filter: blur(10px);
 			padding: $spacing-2xl;
 			transition: all $transition-base;
@@ -336,13 +336,13 @@ onUnmounted(() => {
   }
 
   @include element('mobile-nav-link') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     text-decoration: none;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 1px;
     padding: $spacing-md 0;
-    border-bottom: 1px solid var(--theme-border);
+    border-bottom: 1px solid var(--surface-border);
     transition: color $transition-base;
 
     &:hover {

@@ -156,7 +156,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
-  color: var(--theme-text-primary);
+  color: var(--text-color-primary);
   opacity: 0;
   transition: opacity $transition-slow;
 
@@ -200,12 +200,12 @@ onMounted(() => {
   }
 
   @include element('heading') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     margin-bottom: 0;
   }
 
   @include element('subtitle') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     margin-bottom: 0;
   }
 
@@ -255,10 +255,10 @@ onMounted(() => {
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: var(--theme-surface);
-    border: 1px solid var(--theme-border);
+    background: var(--surface-background);
+    border: 1px solid var(--surface-border);
     border-radius: 50%;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     cursor: pointer;
     transition: all 0.3s ease;
 
@@ -282,7 +282,7 @@ onMounted(() => {
     gap: $spacing-xs;
     font-size: 18px;
     font-weight: 600;
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
   }
 
   @include element('pagination-current') {
@@ -299,7 +299,7 @@ onMounted(() => {
 
   @include element('card') {
     background: transparent;
-    border-bottom: 1px solid var(--theme-border);
+    border-bottom: 1px solid var(--surface-border);
     display: flex;
     flex-direction: row;
     padding: $spacing-xl 0;
@@ -337,12 +337,12 @@ onMounted(() => {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.5px;
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     margin: 0;
   }
 
   @include element('card-title') {
-    color: var(--theme-text-primary);
+    color: var(--text-color-primary);
     font-weight: 700;
     font-size: 20px;
     line-height: 1.3;
@@ -354,7 +354,7 @@ onMounted(() => {
   }
 
   @include element('card-description') {
-    color: var(--theme-text-secondary);
+    color: var(--text-color-secondary);
     font-size: 14px;
     line-height: 1.5;
     margin: 0;
@@ -377,7 +377,7 @@ onMounted(() => {
   @include element('card-image') {
     width: 120px;
     height: 100px;
-    background: var(--theme-surface);
+    background: var(--surface-background);
     border-radius: $radius-md;
     overflow: hidden;
     flex-shrink: 0;
