@@ -131,8 +131,7 @@ const nextTestimonial = () => {
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
-  background-color: $gray-1;
-  color: $white;
+  color: var(--theme-text-primary);
   opacity: 0;
   transition: opacity $transition-slow;
 
@@ -171,7 +170,7 @@ const nextTestimonial = () => {
   }
 
   @include element('heading') {
-    color: $white;
+    color: var(--theme-text-primary);
     margin-bottom: $spacing-lg;
     line-height: 1.2;
   }
@@ -179,39 +178,38 @@ const nextTestimonial = () => {
   @include element('navigation') {
     display: flex;
     gap: $spacing-md;
-    margin-top: $spacing-lg;
+    margin-top: $spacing-md;
   }
 
   @include element('nav-button') {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 2px solid rgba($white, 0.2);
-    color: $white;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--theme-surface);
+    border: 1px solid var(--theme-border);
+    border-radius: 50%;
+    color: var(--theme-text-primary);
     cursor: pointer;
-    transition: all $transition-base;
+    transition: all 0.3s ease;
 
     &:hover {
+      background: $brand-red;
       border-color: $brand-red;
-      background-color: rgba($brand-red, 0.1);
+      color: $white;
+      transform: scale(1.1);
     }
 
-    @include modifier('active') {
-      background-color: $brand-red;
-      border-color: $brand-red;
-
-      &:hover {
-        background-color: $brand-red-dark;
-      }
+    @include modifier('disabled') {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
 
   @include element('featured') {
-    background: $gray-2;
+    background: var(--theme-surface);
     border-radius: $radius-lg;
     padding: $spacing-3xl;
     position: relative;
@@ -246,12 +244,12 @@ const nextTestimonial = () => {
   @include element('featured-name') {
     font-size: 16px;
     font-weight: 600;
-    color: $white;
+    color: var(--theme-text-primary);
   }
 
   @include element('featured-date') {
     font-size: 13px;
-    color: $gray-5;
+    color: var(--theme-text-tertiary);
   }
 
   @include element('quote-icon') {
@@ -260,7 +258,7 @@ const nextTestimonial = () => {
   }
 
   @include element('comment') {
-    color: $gray-7;
+    color: var(--theme-text-secondary);
     font-size: 15px;
     line-height: 1.8;
     margin-bottom: $spacing-2xl;
@@ -277,7 +275,7 @@ const nextTestimonial = () => {
   }
 
   @include element('star') {
-    color: $gray-5 !important;
+    color: var(--theme-text-tertiary) !important;
 
     @include modifier('filled') {
       color: #ffc107 !important;

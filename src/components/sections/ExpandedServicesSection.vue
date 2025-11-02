@@ -156,8 +156,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
-  background-color: $gray-1;
-  color: $white;
+  color: var(--theme-text-primary);
   opacity: 0;
   transition: opacity $transition-slow;
 
@@ -201,12 +200,12 @@ onMounted(() => {
   }
 
   @include element('heading') {
-    color: $white;
+    color: var(--theme-text-primary);
     margin-bottom: 0;
   }
 
   @include element('subtitle') {
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     margin-bottom: 0;
   }
 
@@ -256,16 +255,17 @@ onMounted(() => {
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: $gray-2;
-    border: 1px solid $gray-3;
+    background: var(--theme-surface);
+    border: 1px solid var(--theme-border);
     border-radius: 50%;
-    color: $white;
+    color: var(--theme-text-primary);
     cursor: pointer;
     transition: all 0.3s ease;
 
     &:hover:not(:disabled) {
       background: $brand-red;
       border-color: $brand-red;
+      color: $white;
       transform: scale(1.1);
     }
 
@@ -282,7 +282,7 @@ onMounted(() => {
     gap: $spacing-xs;
     font-size: 18px;
     font-weight: 600;
-    color: $white;
+    color: var(--theme-text-primary);
   }
 
   @include element('pagination-current') {
@@ -299,13 +299,14 @@ onMounted(() => {
 
   @include element('card') {
     background: transparent;
-    border-bottom: 1px solid $gray-3;
+    border-bottom: 1px solid var(--theme-border);
     display: flex;
     flex-direction: row;
     padding: $spacing-xl 0;
     gap: $spacing-lg;
     align-items: center;
     justify-content: space-between;
+    transition: border-color $transition-base;
 
     &:hover {
       .expanded-services__card-image {
@@ -336,12 +337,12 @@ onMounted(() => {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.5px;
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     margin: 0;
   }
 
   @include element('card-title') {
-    color: $white;
+    color: var(--theme-text-primary);
     font-weight: 700;
     font-size: 20px;
     line-height: 1.3;
@@ -353,7 +354,7 @@ onMounted(() => {
   }
 
   @include element('card-description') {
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     font-size: 14px;
     line-height: 1.5;
     margin: 0;
@@ -376,11 +377,12 @@ onMounted(() => {
   @include element('card-image') {
     width: 120px;
     height: 100px;
-    background: $gradient-dark-1;
+    background: var(--theme-surface);
     border-radius: $radius-md;
     overflow: hidden;
     flex-shrink: 0;
     position: relative;
+    transition: background $transition-base;
 
     @include tablet {
       width: 200px;

@@ -50,8 +50,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
-  background-color: $gray-1;
-  color: $white;
+  color: var(--theme-text-primary);
   opacity: 0;
   transition: opacity $transition-slow;
 
@@ -90,12 +89,12 @@ onMounted(() => {
   }
 
   @include element('heading') {
-    color: $white;
+    color: var(--theme-text-primary);
     margin-bottom: $spacing-lg;
   }
 
   @include element('description') {
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     margin-bottom: $spacing-3xl;
     line-height: 1.8;
 

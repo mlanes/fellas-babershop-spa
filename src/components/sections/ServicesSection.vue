@@ -95,7 +95,6 @@ onMounted(() => {
   display: flex;
   align-items: center;
   padding: $spacing-6xl 0;
-  background-color: $gray-1;
   opacity: 0;
   transition: opacity $transition-slow;
 
@@ -134,9 +133,10 @@ onMounted(() => {
   }
 
   @include element('heading') {
-    color: $white;
+    color: var(--theme-text-primary);
     line-height: 1.2;
     margin-bottom: $spacing-lg;
+    transition: color $transition-base;
   }
 
   @include element('list') {
@@ -184,9 +184,10 @@ onMounted(() => {
   }
 
   @include element('item-title') {
-    color: $gray-6;
+    color: var(--theme-text-secondary);
     font-size: 15px;
     font-weight: 400;
+    transition: color $transition-base;
   }
 
   @include element('button') {
@@ -208,13 +209,14 @@ onMounted(() => {
 
   @include element('image-placeholder') {
     aspect-ratio: 6 / 3;
-    background: $gradient-dark-1;
+    background: var(--theme-surface);
     border-radius: $radius-md;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $white;
+    color: var(--theme-text-secondary);
     overflow: hidden;
+    transition: background $transition-base, color $transition-base;
     animation: float 8s ease-in-out infinite;
 
     &:hover {

@@ -96,9 +96,10 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $gray-1;
-  color: $white;
+  background: var(--theme-background);
+  color: var(--theme-text-primary);
   overflow: hidden;
+  transition: background-color $transition-base, color $transition-base;
 
   @include element('video') {
     position: absolute;
@@ -118,10 +119,11 @@ onMounted(() => {
     height: 100%;
     background: linear-gradient(
       180deg,
-      rgba($gray-1, 0.7) 0%,
-      rgba($gray-1, 0.85) 100%
+      var(--theme-overlay-top) 0%,
+      var(--theme-overlay-bottom) 100%
     );
     z-index: 1;
+    transition: background $transition-base;
   }
 
   @include element('container') {
@@ -176,28 +178,31 @@ onMounted(() => {
     opacity: 0;
 
     @include modifier('premium') {
-      color: $white;
+      color: var(--theme-text-primary);
       background: none;
-      -webkit-text-fill-color: $white;
+      -webkit-text-fill-color: var(--theme-text-primary);
       letter-spacing: 0.2em;
+      transition: color $transition-base, background $transition-base, -webkit-text-fill-color $transition-base;
     }
   }
 
   @include element('tagline') {
-    color: $white;
+    color: var(--theme-text-primary);
     font-weight: 600;
     letter-spacing: 0.1em;
     opacity: 0;
     animation: slide-up $transition-base forwards;
     animation-delay: 0.6s;
+    transition: color $transition-base;
   }
 
   @include element('description') {
-    color: $gray-7;
+    color: var(--theme-text-secondary);
     max-width: 600px;
     opacity: 0;
     animation: slide-up $transition-base forwards;
     animation-delay: 0.8s;
+    transition: color $transition-base;
   }
 
   @include element('scroll-indicator') {
@@ -240,7 +245,8 @@ onMounted(() => {
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: $white;
+    color: var(--theme-text-primary);
+    transition: color $transition-base;
 
     @include tablet {
       font-size: 1rem;
