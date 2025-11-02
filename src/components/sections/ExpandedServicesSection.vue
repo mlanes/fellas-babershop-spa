@@ -260,10 +260,11 @@ onMounted(() => {
     flex-direction: column;
     gap: $spacing-md;
     align-items: center;
-    text-align: left;
+    text-align: center;
 
     @include tablet {
       align-items: flex-start;
+      text-align: left;
     }
   }
 
@@ -275,6 +276,11 @@ onMounted(() => {
   @include element('subtitle') {
     color: var(--text-color-secondary);
     margin-bottom: 0;
+    text-align: center;
+
+    @include tablet {
+      text-align: left;
+    }
   }
 
   @include element('content') {

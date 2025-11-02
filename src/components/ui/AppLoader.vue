@@ -96,6 +96,7 @@ onMounted(() => {
     background-repeat: no-repeat;
     opacity: 0.6;
     z-index: -1;
+    animation: bg-pulse 3s ease-in-out infinite;
   }
 
   &__content {
@@ -201,6 +202,18 @@ onMounted(() => {
     filter: drop-shadow(0px 0px 40px rgba($brand-red-dark, 0.7))
             drop-shadow(0px 0px 20px rgba($brand-red-dark, 0.5))
             drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.5));
+  }
+}
+
+// Background composition pulse animation
+@keyframes bg-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.02);
   }
 }
 </style>
