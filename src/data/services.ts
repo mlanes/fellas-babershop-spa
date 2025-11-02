@@ -5,15 +5,17 @@ import type { Service } from '@/types/service'
  */
 export const services: Service[] = [
   {
+    id: 'combo-premium',
     name: 'Combo Premium',
     description: 'Experiência completa de cuidado e bem-estar',
     icon: 'checkmark',
     detailedDescription:
-      'O Combo Premium é uma experiência completa de cuidado e bem-estar. Inclui: Corte de cabelo personalizado, Design de barba com barboterapia, toalha quente e ozônio, Terapia facial, Massagem relaxante, Sobrancelhas modeladas. E, à sua escolha: depilação de orelha e nariz ou hidratação capilar. Tudo pensado para proporcionar relaxamento profundo, pele saudável e uma barba impecável, sem irritações.',
+      'O Combo Premium é uma experiência completa de cuidado e bem-estar. Inclui: Corte de cabelo personalizado, Design de barba com barboterapia, toalha quente e ozono, Terapia facial, Massagem relaxante, Sobrancelhas modeladas. E, à sua escolha: depilação de orelha e nariz ou hidratação capilar. Tudo pensado para proporcionar relaxamento profundo, pele saudável e uma barba impecável, sem irritações.',
     price: '€30',
     duration: '60min',
   },
   {
+    id: 'haircut',
     name: 'Corte',
     description: 'Corte de cabelo 100% personalizado',
     icon: 'checkmark',
@@ -23,6 +25,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'haircut-beard',
     name: 'Corte e Barba',
     description: 'Corte e barba personalizados',
     icon: 'checkmark',
@@ -32,15 +35,17 @@ export const services: Service[] = [
     duration: '60min',
   },
   {
+    id: 'barbotherapy',
     name: 'Barboterapia',
     description: 'Tratamento completo para barba',
     icon: 'checkmark',
     detailedDescription:
-      'Barba tratada com toalha quente, ozônio, terapia facial e massagem. Ideal para peles sensíveis e relaxamento profundo.',
+      'Barba tratada com toalha quente, ozono, terapia facial e massagem. Ideal para peles sensíveis e relaxamento profundo.',
     price: '€15',
     duration: '30min',
   },
   {
+    id: 'beard-premium',
     name: 'Barba Premium',
     description: 'Barba com toalha quente e massagem',
     icon: 'checkmark',
@@ -50,6 +55,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'beard-simple',
     name: 'Barba Simples',
     description: 'Alinhamento básico da barba',
     icon: 'checkmark',
@@ -59,6 +65,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'haircut-beard-eyebrows',
     name: 'Corte, Barba e Sobrancelhas',
     description: 'Pacote completo de grooming',
     icon: 'checkmark',
@@ -68,15 +75,17 @@ export const services: Service[] = [
     duration: '60min',
   },
   {
+    id: 'haircut-barbotherapy',
     name: 'Corte e Barboterapia',
     description: 'Corte com tratamento relaxante',
     icon: 'checkmark',
     detailedDescription:
-      'Corte personalizado + barboterapia com toalha quente, ozônio e terapia facial para um cuidado completo e relaxante.',
+      'Corte personalizado + barboterapia com toalha quente, ozono e terapia facial para um cuidado completo e relaxante.',
     price: '€25',
     duration: '60min',
   },
   {
+    id: 'haircut-beard-premium',
     name: 'Corte, Barba Premium',
     description: 'Corte com barba premium',
     icon: 'checkmark',
@@ -86,6 +95,7 @@ export const services: Service[] = [
     duration: '60min',
   },
   {
+    id: 'beard-fade',
     name: 'Barba com Degrade',
     description: 'Barba com degradê profissional',
     icon: 'checkmark',
@@ -95,6 +105,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'beard-fade-contour',
     name: 'Barba Degrade e Contorno do Cabelo',
     description: 'Barba com degradê e contorno',
     icon: 'checkmark',
@@ -104,6 +115,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'hair-contour',
     name: 'Contorno do Cabelo',
     description: 'Acabamento e definição capilar',
     icon: 'checkmark',
@@ -113,6 +125,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'eyebrows',
     name: 'Sobrancelhas',
     description: 'Modelagem de sobrancelhas',
     icon: 'checkmark',
@@ -122,15 +135,17 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'head-shave',
     name: 'Raspar Cabeça',
     description: 'Corte rente com máquina',
     icon: 'checkmark',
     detailedDescription:
-      'Corte apenas com 1 pente da máquina, ideal para quem busca praticidade e estilo limpo.',
+      'Corte apenas com 1 pente da máquina, ideal para quem procura praticidade e estilo limpo.',
     price: '€10',
     duration: '30min',
   },
   {
+    id: 'head-shave-beard',
     name: 'Raspar Cabeça e Barba',
     description: 'Cabeça raspada com barba alinhada',
     icon: 'checkmark',
@@ -140,6 +155,7 @@ export const services: Service[] = [
     duration: '60min',
   },
   {
+    id: 'hair-hydration',
     name: 'Hidratação Capilar',
     description: 'Tratamento nutritivo para cabelo',
     icon: 'checkmark',
@@ -149,6 +165,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'beard-hydration',
     name: 'Hidratação Barba',
     description: 'Hidratação profunda para barba',
     icon: 'checkmark',
@@ -158,6 +175,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'facial-cleansing',
     name: 'Limpeza Facial',
     description: 'Esfoliação e hidratação facial',
     icon: 'checkmark',
@@ -167,6 +185,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'hair-therapy',
     name: 'Terapia Capilar',
     description: 'Tratamento para saúde capilar',
     icon: 'checkmark',
@@ -176,6 +195,7 @@ export const services: Service[] = [
     duration: '60min',
   },
   {
+    id: 'anti-dandruff-therapy',
     name: 'Terapia Capilar Anti-Caspas',
     description: 'Tratamento anti-caspa',
     icon: 'checkmark',
@@ -185,6 +205,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'hair-pigmentation',
     name: 'Pigmentação de Cabelo',
     description: 'Coloração com tinta base água',
     icon: 'checkmark',
@@ -194,6 +215,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'beard-pigmentation',
     name: 'Pigmentação de Barba',
     description: 'Coloração para barba',
     icon: 'checkmark',
@@ -203,6 +225,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'nose-waxing',
     name: 'Depilação Nariz',
     description: 'Remoção de pelos do nariz',
     icon: 'checkmark',
@@ -212,6 +235,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'waxing-combo',
     name: 'Depilação Combo (Nariz e Orelha)',
     description: 'Depilação completa',
     icon: 'checkmark',
@@ -221,24 +245,27 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'haircut-student',
     name: 'Corte (Estudante)',
     description: 'Corte especial para estudantes',
     icon: 'checkmark',
     detailedDescription:
-      'Corte personalizado com valor especial para estudantes, sem abrir mão do estilo. (Obrigatório apresentação do cartão de estudante valido)',
+      'Corte personalizado com valor especial para estudantes, sem abrir mão do estilo. (Obrigatória apresentação do cartão de estudante válido)',
     price: '€14',
     duration: '30min',
   },
   {
+    id: 'haircut-beard-student',
     name: 'Corte e Barba (Estudante)',
     description: 'Combo estudante',
     icon: 'checkmark',
     detailedDescription:
-      'Corte e barba alinhados, pensado para estudantes que buscam praticidade e visual moderno.',
+      'Corte e barba alinhados, pensado para estudantes que procuram praticidade e visual moderno.',
     price: '€18',
     duration: '60min',
   },
   {
+    id: 'sealant',
     name: 'Selante',
     description: 'Tratamento selante capilar',
     icon: 'checkmark',
@@ -248,6 +275,7 @@ export const services: Service[] = [
     duration: '60min',
   },
   {
+    id: 'haircut-beard-sealant',
     name: 'Corte, Barba e Selante',
     description: 'Combo premium com selante',
     icon: 'checkmark',
@@ -257,6 +285,7 @@ export const services: Service[] = [
     duration: '90min',
   },
   {
+    id: 'botox',
     name: 'Botox',
     description: 'Tratamento capilar botox',
     icon: 'checkmark',
@@ -266,6 +295,7 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
+    id: 'highlights',
     name: 'Luzes',
     description: 'Coloração fio a fio',
     icon: 'checkmark',
@@ -275,6 +305,7 @@ export const services: Service[] = [
     duration: '120min',
   },
   {
+    id: 'platinum',
     name: 'Platinado',
     description: 'Descoloração capilar',
     icon: 'checkmark',
@@ -284,6 +315,7 @@ export const services: Service[] = [
     duration: '120min',
   },
   {
+    id: 'image-consulting',
     name: 'Consultoria de imagem (Visagismo)',
     description: 'Análise personalizada de estilo',
     icon: 'checkmark',
@@ -293,6 +325,7 @@ export const services: Service[] = [
     duration: '60min',
   },
   {
+    id: 'courtesy-haircut',
     name: 'Corte Cortesia',
     description: 'Corte especial cortesia',
     icon: 'checkmark',

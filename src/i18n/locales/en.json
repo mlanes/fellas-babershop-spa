@@ -52,5 +52,172 @@
     "darkMode": "Dark Mode",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
+  },
+  "servicesList": {
+    "combo-premium": {
+      "name": "Premium Combo",
+      "description": "Complete care and wellness experience",
+      "detailedDescription": "The Premium Combo is a complete care and wellness experience. Includes: Personalized haircut, Beard design with barbotherapy, hot towel and ozone, Facial therapy, Relaxing massage, Shaped eyebrows. And, your choice: ear and nose waxing or hair hydration. Everything designed to provide deep relaxation, healthy skin and an impeccable beard, without irritation."
+    },
+    "haircut": {
+      "name": "Haircut",
+      "description": "100% personalized haircut",
+      "detailedDescription": "100% personalized haircut, with style adjusted to your profile and needs."
+    },
+    "haircut-beard": {
+      "name": "Haircut & Beard",
+      "description": "Personalized haircut and beard",
+      "detailedDescription": "Haircut and beard aligned for an impeccable look."
+    },
+    "barbotherapy": {
+      "name": "Barbotherapy",
+      "description": "Complete beard treatment",
+      "detailedDescription": "Beard treated with hot towel, ozone, facial therapy and massage. Ideal for sensitive skin and deep relaxation."
+    },
+    "beard-premium": {
+      "name": "Premium Beard",
+      "description": "Beard with hot towel and massage",
+      "detailedDescription": "Aligned beard with hot towel and relaxing facial massage - care and sophistication for your face."
+    },
+    "beard-simple": {
+      "name": "Simple Beard",
+      "description": "Basic beard alignment",
+      "detailedDescription": "Basic beard alignment (line), ideal for maintenance and definition."
+    },
+    "haircut-beard-eyebrows": {
+      "name": "Haircut, Beard & Eyebrows",
+      "description": "Complete grooming package",
+      "detailedDescription": "Tailored haircut, well-aligned beard and defined eyebrows - everything for an impeccable look."
+    },
+    "haircut-barbotherapy": {
+      "name": "Haircut & Barbotherapy",
+      "description": "Haircut with relaxing treatment",
+      "detailedDescription": "Personalized haircut + barbotherapy with hot towel, ozone and facial therapy for complete and relaxing care."
+    },
+    "haircut-beard-premium": {
+      "name": "Haircut, Premium Beard",
+      "description": "Haircut with premium beard",
+      "detailedDescription": "Personalized haircut with premium beard, including hot towel and facial massage."
+    },
+    "beard-fade": {
+      "name": "Beard with Fade",
+      "description": "Beard with professional fade",
+      "detailedDescription": "Beard styled with smooth or sharp fade, according to your style."
+    },
+    "beard-fade-contour": {
+      "name": "Beard Fade & Hair Contour",
+      "description": "Beard with fade and contour",
+      "detailedDescription": "Beard with fade and hair contour for a detailed and well-defined finish."
+    },
+    "hair-contour": {
+      "name": "Hair Contour",
+      "description": "Hair finishing and definition",
+      "detailedDescription": "Hair contour and finishing for a clean and defined look."
+    },
+    "eyebrows": {
+      "name": "Eyebrows",
+      "description": "Eyebrow shaping",
+      "detailedDescription": "Eyebrow shaping to enhance your look with symmetry and precision."
+    },
+    "head-shave": {
+      "name": "Head Shave",
+      "description": "Close machine cut",
+      "detailedDescription": "Cut with just 1 clipper guard, ideal for those seeking practicality and clean style."
+    },
+    "head-shave-beard": {
+      "name": "Head Shave & Beard",
+      "description": "Shaved head with aligned beard",
+      "detailedDescription": "Head shave (does not include fade), optional wash. Beard with size adjustment, volume, machine fade, razor contours and revitalizing aftershave."
+    },
+    "hair-hydration": {
+      "name": "Hair Hydration",
+      "description": "Nourishing hair treatment",
+      "detailedDescription": "Nourishing treatment that restores shine, softness and health to the hair."
+    },
+    "beard-hydration": {
+      "name": "Beard Hydration",
+      "description": "Deep beard hydration",
+      "detailedDescription": "Hydration treatment to leave the beard softer and healthier."
+    },
+    "facial-cleansing": {
+      "name": "Facial Cleansing",
+      "description": "Facial exfoliation and hydration",
+      "detailedDescription": "Deep exfoliation and hydration to remove impurities and revitalize the skin."
+    },
+    "hair-therapy": {
+      "name": "Hair Therapy",
+      "description": "Hair health treatment",
+      "detailedDescription": "Treatment focused on scalp health and hair strengthening, combating hair loss, oiliness or dryness."
+    },
+    "anti-dandruff-therapy": {
+      "name": "Anti-Dandruff Hair Therapy",
+      "description": "Anti-dandruff treatment",
+      "detailedDescription": "Specific treatment to combat dandruff and balance the scalp."
+    },
+    "hair-pigmentation": {
+      "name": "Hair Pigmentation",
+      "description": "Water-based dye coloring",
+      "detailedDescription": "Hair pigmentation with water-based dye is a service that darkens or evens out the color of the hair. Ideal for covering gray hair, filling in gaps or changing hair tone."
+    },
+    "beard-pigmentation": {
+      "name": "Beard Pigmentation",
+      "description": "Beard coloring",
+      "detailedDescription": "Beard coloring to correct gaps, even out color and enhance the look."
+    },
+    "nose-waxing": {
+      "name": "Nose Waxing",
+      "description": "Nose hair removal",
+      "detailedDescription": "Hygienic and discreet removal of nose hair."
+    },
+    "waxing-combo": {
+      "name": "Waxing Combo (Nose & Ear)",
+      "description": "Complete waxing",
+      "detailedDescription": "Removal of unwanted hair in a hygienic and discreet way, promoting cleanliness and aesthetics."
+    },
+    "haircut-student": {
+      "name": "Haircut (Student)",
+      "description": "Special haircut for students",
+      "detailedDescription": "Personalized haircut with special price for students, without compromising on style. (Valid student card required)"
+    },
+    "haircut-beard-student": {
+      "name": "Haircut & Beard (Student)",
+      "description": "Student combo",
+      "detailedDescription": "Aligned haircut and beard, designed for students seeking practicality and modern look."
+    },
+    "sealant": {
+      "name": "Sealant",
+      "description": "Hair sealant treatment",
+      "detailedDescription": "Treatment that seals the hair, reduces frizz and provides shine and prolonged protection."
+    },
+    "haircut-beard-sealant": {
+      "name": "Haircut, Beard & Sealant",
+      "description": "Premium combo with sealant",
+      "detailedDescription": "Personalized haircut and beard with sealant finish for shine, protection and durability."
+    },
+    "botox": {
+      "name": "Botox",
+      "description": "Hair botox treatment",
+      "detailedDescription": "Hair botox treatment for reconstruction and revitalization of the hair."
+    },
+    "highlights": {
+      "name": "Highlights",
+      "description": "Strand-by-strand coloring",
+      "detailedDescription": "Strand-by-strand coloring technique to create natural and modern highlight effects."
+    },
+    "platinum": {
+      "name": "Platinum",
+      "description": "Hair bleaching",
+      "detailedDescription": "Hair bleaching to achieve light and modern tones, striking and current."
+    },
+    "image-consulting": {
+      "name": "Image Consulting (Visagism)",
+      "description": "Personalized style analysis",
+      "detailedDescription": "Complete facial analysis to recommend the haircut and style that best suit your identity and personal features."
+    },
+    "courtesy-haircut": {
+      "name": "Courtesy Haircut",
+      "description": "Special courtesy haircut",
+      "detailedDescription": "Courtesy haircut service upon prior consultation."
+    }
   }
 }

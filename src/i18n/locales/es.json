@@ -52,5 +52,172 @@
     "darkMode": "Modo Oscuro",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú"
+  },
+  "servicesList": {
+    "combo-premium": {
+      "name": "Combo Premium",
+      "description": "Experiencia completa de cuidado y bienestar",
+      "detailedDescription": "El Combo Premium es una experiencia completa de cuidado y bienestar. Incluye: Corte de cabello personalizado, Diseño de barba con barboterapia, toalla caliente y ozono, Terapia facial, Masaje relajante, Cejas modeladas. Y, a tu elección: depilación de oreja y nariz o hidratación capilar. Todo pensado para proporcionar relajación profunda, piel saludable y una barba impecable, sin irritaciones."
+    },
+    "haircut": {
+      "name": "Corte",
+      "description": "Corte de cabello 100% personalizado",
+      "detailedDescription": "Corte de cabello 100% personalizado, con estilo ajustado a tu perfil y necesidad."
+    },
+    "haircut-beard": {
+      "name": "Corte y Barba",
+      "description": "Corte y barba personalizados",
+      "detailedDescription": "Corte de cabello y barba alineados para un look impecable."
+    },
+    "barbotherapy": {
+      "name": "Barboterapia",
+      "description": "Tratamiento completo para barba",
+      "detailedDescription": "Barba tratada con toalla caliente, ozono, terapia facial y masaje. Ideal para pieles sensibles y relajación profunda."
+    },
+    "beard-premium": {
+      "name": "Barba Premium",
+      "description": "Barba con toalla caliente y masaje",
+      "detailedDescription": "Barba alineada con toalla caliente y masaje facial relajante - cuidado y sofisticación para tu rostro."
+    },
+    "beard-simple": {
+      "name": "Barba Simple",
+      "description": "Alineación básica de la barba",
+      "detailedDescription": "Alineación básica de la barba (línea), ideal para mantenimiento y definición."
+    },
+    "haircut-beard-eyebrows": {
+      "name": "Corte, Barba y Cejas",
+      "description": "Paquete completo de grooming",
+      "detailedDescription": "Corte de cabello a medida, barba bien alineada y cejas definidas - todo para un look impecable."
+    },
+    "haircut-barbotherapy": {
+      "name": "Corte y Barboterapia",
+      "description": "Corte con tratamiento relajante",
+      "detailedDescription": "Corte personalizado + barboterapia con toalla caliente, ozono y terapia facial para un cuidado completo y relajante."
+    },
+    "haircut-beard-premium": {
+      "name": "Corte y Barba Premium",
+      "description": "Corte con barba premium",
+      "detailedDescription": "Corte personalizado con barba premium, incluyendo toalla caliente y masaje facial."
+    },
+    "beard-fade": {
+      "name": "Barba con Degradado",
+      "description": "Barba con degradado profesional",
+      "detailedDescription": "Barba modelada con degradado suave o marcado, según tu estilo."
+    },
+    "beard-fade-contour": {
+      "name": "Barba Degradado y Contorno del Cabello",
+      "description": "Barba con degradado y contorno",
+      "detailedDescription": "Barba con degradado y contorno capilar para un acabado detallado y bien definido."
+    },
+    "hair-contour": {
+      "name": "Contorno del Cabello",
+      "description": "Acabado y definición capilar",
+      "detailedDescription": "Contorno y acabado del cabello para un look limpio y definido."
+    },
+    "eyebrows": {
+      "name": "Cejas",
+      "description": "Modelado de cejas",
+      "detailedDescription": "Modelado de las cejas para valorizar la mirada con simetría y precisión."
+    },
+    "head-shave": {
+      "name": "Rapar Cabeza",
+      "description": "Corte al ras con máquina",
+      "detailedDescription": "Corte solo con 1 peine de la máquina, ideal para quienes buscan practicidad y estilo limpio."
+    },
+    "head-shave-beard": {
+      "name": "Rapar Cabeza y Barba",
+      "description": "Cabeza rapada con barba alineada",
+      "detailedDescription": "Rapar la cabeza (no incluye degradado), lavado opcional. Barba con ajuste de tamaño, volumen, degradado con máquina, contornos con navaja y aftershave revitalizante."
+    },
+    "hair-hydration": {
+      "name": "Hidratación Capilar",
+      "description": "Tratamiento nutritivo para cabello",
+      "detailedDescription": "Tratamiento nutritivo que recupera el brillo, la suavidad y la salud del cabello."
+    },
+    "beard-hydration": {
+      "name": "Hidratación de Barba",
+      "description": "Hidratación profunda para barba",
+      "detailedDescription": "Tratamiento de hidratación para dejar la barba más suave y saludable."
+    },
+    "facial-cleansing": {
+      "name": "Limpieza Facial",
+      "description": "Exfoliación e hidratación facial",
+      "detailedDescription": "Exfoliación e hidratación profunda para eliminar impurezas y revitalizar la piel."
+    },
+    "hair-therapy": {
+      "name": "Terapia Capilar",
+      "description": "Tratamiento para la salud capilar",
+      "detailedDescription": "Tratamiento enfocado en la salud del cuero cabelludo y fortalecimiento del cabello, combatiendo la caída, grasa o resequedad."
+    },
+    "anti-dandruff-therapy": {
+      "name": "Terapia Capilar Anticaspa",
+      "description": "Tratamiento anticaspa",
+      "detailedDescription": "Tratamiento específico para combatir la caspa y equilibrar el cuero cabelludo."
+    },
+    "hair-pigmentation": {
+      "name": "Pigmentación de Cabello",
+      "description": "Coloración con tinte base agua",
+      "detailedDescription": "La pigmentación de cabello con tinte a base de agua es un servicio que oscurece o uniformiza el color del cabello. Ideal para cubrir canas, rellenar huecos o alterar el tono del cabello."
+    },
+    "beard-pigmentation": {
+      "name": "Pigmentación de Barba",
+      "description": "Coloración para barba",
+      "detailedDescription": "Coloración de la barba para corregir huecos, uniformizar el color y realzar el look."
+    },
+    "nose-waxing": {
+      "name": "Depilación de Nariz",
+      "description": "Eliminación de pelos de la nariz",
+      "detailedDescription": "Eliminación higiénica y discreta de los pelos de la nariz."
+    },
+    "waxing-combo": {
+      "name": "Combo Depilación (Nariz y Oreja)",
+      "description": "Depilación completa",
+      "detailedDescription": "Eliminación del vello no deseado de forma higiénica y discreta, promoviendo limpieza y estética."
+    },
+    "haircut-student": {
+      "name": "Corte (Estudiante)",
+      "description": "Corte especial para estudiantes",
+      "detailedDescription": "Corte personalizado con precio especial para estudiantes, sin renunciar al estilo. (Obligatoria presentación del carnet de estudiante válido)"
+    },
+    "haircut-beard-student": {
+      "name": "Corte y Barba (Estudiante)",
+      "description": "Combo estudiante",
+      "detailedDescription": "Corte y barba alineados, pensado para estudiantes que buscan practicidad y look moderno."
+    },
+    "sealant": {
+      "name": "Sellador",
+      "description": "Tratamiento sellador capilar",
+      "detailedDescription": "Tratamiento que sella el cabello, reduce el frizz y proporciona brillo y protección prolongada."
+    },
+    "haircut-beard-sealant": {
+      "name": "Corte, Barba y Sellador",
+      "description": "Combo premium con sellador",
+      "detailedDescription": "Corte y barba personalizados con acabado en sellador para brillo, protección y durabilidad."
+    },
+    "botox": {
+      "name": "Bótox",
+      "description": "Tratamiento capilar bótox",
+      "detailedDescription": "Tratamiento de bótox capilar para reconstrucción y revitalización del cabello."
+    },
+    "highlights": {
+      "name": "Mechas",
+      "description": "Coloración mechón por mechón",
+      "detailedDescription": "Técnica de coloración mechón por mechón para crear efectos de mechas naturales y modernas."
+    },
+    "platinum": {
+      "name": "Platinado",
+      "description": "Decoloración capilar",
+      "detailedDescription": "Decoloración capilar para lograr tonos claros y modernos, llamativo y actual."
+    },
+    "image-consulting": {
+      "name": "Consultoría de Imagen (Visagismo)",
+      "description": "Análisis personalizado de estilo",
+      "detailedDescription": "Análisis completo del rostro para indicar el corte y estilo que más se adaptan a tu identidad y rasgos personales."
+    },
+    "courtesy-haircut": {
+      "name": "Corte Cortesía",
+      "description": "Corte especial cortesía",
+      "detailedDescription": "Servicio de corte cortesía mediante consulta previa."
+    }
   }
 }

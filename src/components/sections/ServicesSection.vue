@@ -4,13 +4,14 @@ import FIcon from '@/components/ui/FIcon.vue'
 import FButton from '@/components/ui/FButton.vue'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import { useLocale } from '@/composables/useLocale'
-import { services } from '@/data/services'
+import { useTranslatedServices } from '@/composables/useTranslatedServices'
 
 /**
  * ServicesSection - Popular services overview with images and call-to-action
  */
 const { scrollTo } = useSmoothScroll()
 const { t } = useLocale()
+const { services } = useTranslatedServices()
 const sectionRef = ref<HTMLElement | null>(null)
 
 const handleViewServices = () => {

@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
-import { services } from '@/data/services'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import { useLocale } from '@/composables/useLocale'
+import { useTranslatedServices } from '@/composables/useTranslatedServices'
 
 /**
  * ExpandedServicesSection - Detailed service catalog with pricing
  */
 const { scrollTo } = useSmoothScroll()
 const { t } = useLocale()
+const { services } = useTranslatedServices()
 const sectionRef = ref<HTMLElement | null>(null)
 const currentPage = ref(1)
 const itemsPerPage = 10
 const slideDirection = ref<'left' | 'right'>('right')
 
-const totalPages = computed(() => Math.ceil(services.length / itemsPerPage))
+const totalPages = computed(() => Math.ceil(services.value.length / itemsPerPage))
 
 const paginatedServices = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return services.slice(start, end)
+  return services.value.slice(start, end)
 })
 
 const canGoPrev = computed(() => currentPage.value > 1)
