@@ -215,7 +215,7 @@ onUnmounted(() => {
 
   @include element('nav') {
     display: none;
-    gap: $spacing-2xl;
+    gap: $spacing-lg;
 
     @include desktop {
       display: flex;
