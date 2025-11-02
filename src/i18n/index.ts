@@ -2,10 +2,11 @@ import { createI18n } from 'vue-i18n'
 import pt from './locales/pt.json'
 import ptBR from './locales/pt-BR.json'
 import en from './locales/en.json'
+import es from './locales/es.json'
 
 /**
  * Detect the user's preferred language from browser settings
- * Returns one of our supported locales: 'pt', 'pt-BR', or 'en'
+ * Returns one of our supported locales: 'pt', 'pt-BR', 'en', or 'es'
  */
 function detectUserLocale(): string {
   // Check if user has previously selected a language
@@ -22,6 +23,8 @@ function detectUserLocale(): string {
     return 'pt-BR'
   } else if (browserLocale.startsWith('pt')) {
     return 'pt'
+  } else if (browserLocale.startsWith('es')) {
+    return 'es'
   } else if (browserLocale.startsWith('en')) {
     return 'en'
   }
@@ -38,6 +41,7 @@ const i18n = createI18n({
     pt,
     'pt-BR': ptBR,
     en,
+    es,
   },
 })
 

@@ -14,6 +14,7 @@ const languages = [
   { code: 'pt' as Locale, label: 'Português (PT)', flag: '🇵🇹' },
   { code: 'pt-BR' as Locale, label: 'Português (BR)', flag: '🇧🇷' },
   { code: 'en' as Locale, label: 'English', flag: '🇬🇧' },
+  { code: 'es' as Locale, label: 'Español', flag: '🇪🇸' },
 ]
 
 const currentLanguage = computed(() => {
@@ -24,6 +25,7 @@ const getCurrentLanguageCode = computed(() => {
   const code = locale.value
   if (code === 'pt-BR') return 'BR'
   if (code === 'pt') return 'PT'
+  if (code === 'es') return 'ES'
   return code.toUpperCase()
 })
 

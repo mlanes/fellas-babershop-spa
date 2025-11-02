@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-export type Locale = 'pt' | 'pt-BR' | 'en'
+export type Locale = 'pt' | 'pt-BR' | 'en' | 'es'
 
 export function useLocale() {
   const { locale, t } = useI18n()
@@ -14,7 +14,7 @@ export function useLocale() {
   }
 
   const toggleLocale = () => {
-    const locales: Locale[] = ['pt', 'pt-BR', 'en']
+    const locales: Locale[] = ['pt', 'pt-BR', 'en', 'es']
     const currentIndex = locales.indexOf(currentLocale.value)
     const nextIndex = (currentIndex + 1) % locales.length
     setLocale(locales[nextIndex])
