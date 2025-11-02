@@ -1,4 +1,6 @@
 // Import order matters! Variables and mixins must come first
+@use 'colors';
+@use 'theme';
 @use 'variables';
 @use 'mixins';
 @use 'typography';
@@ -22,9 +24,10 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: variables.$white;
-  color: variables.$gray-1;
+  background-color: var(--theme-background);
+  color: var(--theme-text-primary);
   overflow-x: hidden;
+  transition: background-color variables.$transition-base, color variables.$transition-base;
 }
 
 // Remove default list styles
