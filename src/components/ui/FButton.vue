@@ -72,13 +72,13 @@ defineEmits<{
 
   // Variants
   @include modifier('primary') {
-    background-color: $brand-red-dark;
+    background: $gradient-brand-dark-red;
     color: $white;
 
     &:hover:not(:disabled) {
-      background-color: $brand-red-dark;
+      filter: brightness(1.1);
+      box-shadow: $shadow-glow-red;
       transform: translateY(-2px);
-      box-shadow: $shadow-lg;
     }
 
     &:active:not(:disabled) {

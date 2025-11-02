@@ -47,7 +47,7 @@ onMounted(() => {
           </div>
 
           <FButton
-            variant="gradient"
+            variant="primary"
             size="md"
             class="services__button"
             @click="handleViewServices"
@@ -168,7 +168,7 @@ onMounted(() => {
 
   @include element('icon') {
     color: $white !important;
-    background-color: $brand-red-dark;
+    background: $gradient-brand-dark-red;
     border: 4px solid color.adjust($brand-red-dark, $lightness: 10%);
     border-radius: 50%;
     padding: 2px;

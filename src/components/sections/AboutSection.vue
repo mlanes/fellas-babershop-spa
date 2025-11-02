@@ -30,7 +30,7 @@ onMounted(() => {
             {{ t('about.description') }}
           </p>
 
-          <FButton variant="gradient" size="md">{{ t('about.learnMore') }}</FButton>
+          <FButton variant="primary" size="md">{{ t('about.learnMore') }}</FButton>
         </div>
 
         <div class="about__badge">

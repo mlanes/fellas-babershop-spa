@@ -109,7 +109,7 @@ onUnmounted(() => {
           <FIcon :name="isDark ? 'sun' : 'moon'" :size="20" />
         </button>
 
-        <FButton variant="gradient" size="md" @click="handleBookingClick">
+        <FButton variant="primary" size="md" @click="handleBookingClick">
           {{ t('common.book') }}
         </FButton>
       </div>
@@ -153,7 +153,7 @@ onUnmounted(() => {
         </nav>
 
         <div class="header__mobile-actions">
-          <FButton variant="gradient" size="md" full-width @click="handleBookingClick">
+          <FButton variant="primary" size="md" full-width @click="handleBookingClick">
             {{ t('common.book') }}
           </FButton>
         </div>
