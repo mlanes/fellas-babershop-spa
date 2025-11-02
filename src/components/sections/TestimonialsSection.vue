@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import FIcon from '@/components/ui/FIcon.vue'
 import QuoteIcon from '@/assets/icons/quote.svg?component'
 import { testimonials } from '@/data/testimonials'
@@ -9,10 +9,22 @@ import { testimonials } from '@/data/testimonials'
  */
 const sectionRef = ref<HTMLElement | null>(null)
 const selectedTestimonial = ref(0)
+let autoRotateInterval: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
   if (sectionRef.value) {
     sectionRef.value.classList.add('fade-in')
+  }
+
+  // Auto-rotate testimonials every 5 seconds
+  autoRotateInterval = setInterval(() => {
+    nextTestimonial()
+  }, 5000)
+})
+
+onUnmounted(() => {
+  if (autoRotateInterval) {
+    clearInterval(autoRotateInterval)
   }
 })
 
@@ -21,13 +33,6 @@ onMounted(() => {
  */
 const renderStars = (rating: number) => {
   return Array.from({ length: 5 }, (_, i) => i < rating)
-}
-
-/**
- * Select a testimonial to display in the featured card
- */
-const selectTestimonial = (index: number) => {
-  selectedTestimonial.value = index
 }
 
 /**
@@ -76,45 +81,41 @@ const nextTestimonial = () => {
           </div>
         </div>
 
-        <!-- Center: Customer Avatars List -->
-        <div class="testimonials__list">
-          <button
-            v-for="(testimonial, index) in testimonials"
-            :key="index"
-            class="testimonials__list-item"
-            :class="{ 'testimonials__list-item--active': selectedTestimonial === index }"
-            @click="selectTestimonial(index)"
-          >
-            <img
-              :src="testimonial.avatarUrl"
-              :alt="testimonial.customerName"
-              class="testimonials__avatar"
-            />
-            <div class="testimonials__info">
-              <span class="testimonials__name">{{ testimonial.customerName }}</span>
-              <span class="testimonials__date">{{ testimonial.date }}</span>
-            </div>
-          </button>
-        </div>
-
         <!-- Right: Featured Testimonial Card -->
         <div class="testimonials__featured">
-          <QuoteIcon class="testimonials__quote-icon" />
+					<QuoteIcon class="testimonials__quote-icon" />
 
-          <p class="testimonials__comment">
-            {{ testimonials[selectedTestimonial].testimonialText }}
-          </p>
+          <transition name="testimonial-fade" mode="out-in">
+            <div :key="selectedTestimonial" class="testimonials__content">
+              <!-- Customer info (mobile only) -->
+              <div class="testimonials__featured-info">
+                <img
+                  :src="testimonials[selectedTestimonial].avatarUrl"
+                  :alt="testimonials[selectedTestimonial].customerName"
+                  class="testimonials__featured-avatar"
+                />
+                <div class="testimonials__featured-details">
+                  <span class="testimonials__featured-name">{{ testimonials[selectedTestimonial].customerName }}</span>
+                  <span class="testimonials__featured-date">{{ testimonials[selectedTestimonial].date }}</span>
+                </div>
+              </div>
 
-          <div class="testimonials__rating">
-            <FIcon
-              v-for="(filled, i) in renderStars(testimonials[selectedTestimonial].rating)"
-              :key="i"
-              :name="filled ? 'star-filled' : 'star'"
-              :size="24"
-              class="testimonials__star"
-              :class="{ 'testimonials__star--filled': filled }"
-            />
-          </div>
+              <p class="testimonials__comment">
+                {{ testimonials[selectedTestimonial].testimonialText }}
+              </p>
+
+              <div class="testimonials__rating">
+                <FIcon
+                  v-for="(filled, i) in renderStars(testimonials[selectedTestimonial].rating)"
+                  :key="i"
+                  :name="filled ? 'star-filled' : 'star'"
+                  :size="24"
+                  class="testimonials__star"
+                  :class="{ 'testimonials__star--filled': filled }"
+                />
+              </div>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
@@ -148,8 +149,8 @@ const nextTestimonial = () => {
     gap: $spacing-4xl;
     align-items: flex-start;
 
-    @include tablet {
-      grid-template-columns: 1fr auto 1.2fr;
+    @include desktop {
+      grid-template-columns: 1fr 1.5fr;
       gap: $spacing-5xl;
       align-items: center;
     }
@@ -209,80 +210,6 @@ const nextTestimonial = () => {
     }
   }
 
-  @include element('list') {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-xl;
-    padding: $spacing-lg 0;
-  }
-
-  @include element('list-item') {
-    display: flex;
-    align-items: center;
-    gap: $spacing-lg;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    text-align: left;
-    transition: all $transition-base;
-
-    &:hover {
-      .testimonials__avatar {
-        transform: scale(1.05);
-      }
-
-      .testimonials__name {
-        color: $white;
-      }
-    }
-
-    @include modifier('active') {
-      .testimonials__avatar {
-        border-color: $brand-red;
-        box-shadow: 0 0 0 3px rgba($brand-red, 0.3);
-      }
-
-      .testimonials__name {
-        color: $brand-red;
-      }
-
-      .testimonials__date {
-        color: $brand-red;
-        opacity: 0.8;
-      }
-    }
-  }
-
-  @include element('avatar') {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid transparent;
-    transition: all $transition-base;
-    flex-shrink: 0;
-  }
-
-  @include element('info') {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  @include element('name') {
-    font-size: 16px;
-    font-weight: 600;
-    color: $gray-6;
-    transition: all $transition-base;
-  }
-
-  @include element('date') {
-    font-size: 13px;
-    color: $gray-5;
-    transition: all $transition-base;
-  }
-
   @include element('featured') {
     background: $gray-2;
     border-radius: $radius-lg;
@@ -292,6 +219,39 @@ const nextTestimonial = () => {
     @include tablet {
       padding: $spacing-4xl;
     }
+  }
+
+  @include element('featured-info') {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+  }
+
+  @include element('featured-avatar') {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $brand-red;
+    flex-shrink: 0;
+  }
+
+  @include element('featured-details') {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  @include element('featured-name') {
+    font-size: 16px;
+    font-weight: 600;
+    color: $white;
+  }
+
+  @include element('featured-date') {
+    font-size: 13px;
+    color: $gray-5;
   }
 
   @include element('quote-icon') {
@@ -323,5 +283,21 @@ const nextTestimonial = () => {
       color: #ffc107 !important;
     }
   }
+}
+
+// Testimonial transition
+.testimonial-fade-enter-active,
+.testimonial-fade-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.testimonial-fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.testimonial-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>
