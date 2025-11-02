@@ -2,7 +2,7 @@
 
 A modern, responsive single-page application for Fellas Barbers - a premium barbershop experience in Coimbra, Portugal. Built with Vue 3, TypeScript, and modern web technologies.
 
-![Fellas Barbershop](./assets/preview.png)
+![Fellas Barbershop](./src/assets/img/logo.svg)
 
 ## Table of Contents
 
