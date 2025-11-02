@@ -102,7 +102,6 @@ onMounted(() => {
 
       <button
         class="hero__scroll-indicator"
-        :aria-label="t('hero.seeMore')"
         @click="handleScrollClick"
       >
         <FIcon name="see-more" :size="28" />

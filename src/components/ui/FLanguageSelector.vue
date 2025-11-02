@@ -57,7 +57,7 @@ onUnmounted(() => {
   <div ref="dropdownRef" class="language-selector">
     <button
       class="language-selector__button"
-      :aria-label="`Current language: ${currentLanguage.label}`"
+      :aria-label="`${currentLanguage.label} ${getCurrentLanguageCode}`"
       @click="toggleDropdown"
     >
       <span class="language-selector__flag">{{ currentLanguage.flag }}</span>

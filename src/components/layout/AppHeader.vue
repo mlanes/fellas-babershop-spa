@@ -93,7 +93,7 @@ onUnmounted(() => {
     <div class="header__container container">
       <!-- Logo and Navigation grouped together -->
       <div class="header__left">
-        <a href="#home" class="header__logo" @click.prevent="handleNavClick('#home')">
+        <a href="#home" class="header__logo" aria-label="Fellas Barbers Home" @click.prevent="handleNavClick('#home')">
           <FLogo size="md" />
         </a>
 

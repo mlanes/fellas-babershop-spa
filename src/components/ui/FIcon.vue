@@ -61,6 +61,7 @@ const featherIconSvg = computed(() => {
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     class="f-icon"
+    role="img"
     :aria-label="name"
   >
     <path
@@ -78,6 +79,7 @@ const featherIconSvg = computed(() => {
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     class="f-icon"
+    role="img"
     :aria-label="name"
   >
     <path
@@ -103,6 +105,7 @@ const featherIconSvg = computed(() => {
   <span
     v-else
     class="f-icon"
+    role="img"
     :aria-label="name"
     v-html="featherIconSvg"
   />
