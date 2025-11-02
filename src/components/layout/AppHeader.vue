@@ -68,7 +68,7 @@ onUnmounted(() => {
   <header
     ref="headerRef"
     class="header"
-    :class="{ 'header--scrolled': isScrolled }"
+    :class="{ 'header--scrolled': isScrolled, 'header--menu-open': isMobileMenuOpen }"
   >
     <div class="header__container container">
       <!-- Logo -->
@@ -151,6 +151,11 @@ onUnmounted(() => {
     background-color: rgba($gray-1, 0.7);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba($black, 0.3);
+  }
+
+  &--menu-open {
+    background-color: $gray-1;
+    backdrop-filter: none;
   }
 
   @include element('container') {
@@ -249,14 +254,16 @@ onUnmounted(() => {
   }
 
   @include element('mobile-menu') {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $gray-1;
-    padding: $spacing-2xl;
-    overflow-y: auto;
+		  position: fixed;
+			top: $header-height;
+			left: 0;
+			right: 0;
+			z-index: 999;
+			background-color: rgba($gray-1, 0.95);
+			padding: $spacing-2xl;
+			transition: all $transition-base;
+			height: calc(100vh - $header-height);
+			overflow-y: auto;
 
     @include desktop {
       display: none;
@@ -290,8 +297,7 @@ onUnmounted(() => {
   }
 
   @include element('mobile-actions') {
-    padding-top: $spacing-2xl;
-    border-top: 1px solid rgba($white, 0.1);
+    margin-top: $spacing-xl;
   }
 }
 

@@ -32,7 +32,8 @@ $spacing-5xl: 96px;
 $spacing-6xl: 128px;
 
 // Layout
-$header-height: 80px; // Approximate height with padding
+$header-height: 80px; // Desktop header height
+$header-height-mobile: 96px; // Mobile header height
 
 // Breakpoints
 $breakpoint-mobile: 768px;
