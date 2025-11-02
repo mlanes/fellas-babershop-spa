@@ -1,6 +1,5 @@
 // Import order matters! Variables and mixins must come first
-@use 'colors';
-@use 'theme';
+@use 'themes';
 @use 'variables';
 @use 'mixins';
 @use 'typography';

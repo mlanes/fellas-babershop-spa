@@ -1,0 +1,29 @@
+@use 'primitive-colors';
+@use 'color-definitions';
+
+/*
+   ============================================================
+   Theme System
+   ============================================================
+   Applies theme-specific color definitions based on data-theme attribute
+   ============================================================
+*/
+
+// Root element with light theme by default
+:root {
+  @include primitive-colors.primitive-colors;
+  @include color-definitions.light-definitions;
+}
+
+// Dark mode using data attribute (controlled by JavaScript)
+[data-theme='dark'] {
+  @include color-definitions.dark-definitions;
+}
+
+// Automatic dark mode based on system preference (fallback)
+// This applies only when no data-theme attribute is set (before JS loads)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include color-definitions.dark-definitions;
+  }
+}
