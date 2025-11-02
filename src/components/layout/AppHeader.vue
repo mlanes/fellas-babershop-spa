@@ -90,6 +90,7 @@ onUnmounted(() => {
             :href="item.href"
             class="header__nav-link"
             :class="{ 'header__nav-link--active': activeSection === item.href.slice(1) }"
+            :data-text="t(item.label)"
             @click.prevent="handleNavClick(item.href)"
           >
             {{ t(item.label) }}
@@ -223,40 +224,64 @@ onUnmounted(() => {
   }
 
   @include element('nav-link') {
-    color: var(--text-color-primary);
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: color $transition-base;
     position: relative;
+    padding: 10px;
+    color: var(--text-color-primary);
+    transition: color 0.3s ease;
 
+    // Gradient text overlay (starts hidden)
+    &::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      background: $gradient-brand-dark-red;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    // Vertical gradient line
     &::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: $brand-red-dark;
-      transform: scaleX(0);
-      transition: transform $transition-base;
+      top: -100%;
+      left: 50%;
+      width: 2px;
+      height: 0;
+      background: $gradient-brand-dark-red;
+      transition: height 0.7s ease;
     }
 
     &:hover {
-      color: $brand-red-dark;
+      color: transparent;
+
+      &::before {
+        opacity: 1;
+      }
 
       &::after {
-        transform: scaleX(1);
+        height: 40px;
       }
     }
 
     @include modifier('active') {
-      color: $brand-red-dark;
+      color: transparent;
+
+      &::before {
+        opacity: 1;
+      }
 
       &::after {
-        transform: scaleX(1);
+        height: 40px;
       }
     }
   }

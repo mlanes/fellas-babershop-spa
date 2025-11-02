@@ -72,13 +72,30 @@ defineEmits<{
 
   // Variants
   @include modifier('primary') {
+    position: relative;
     background: $gradient-brand-dark-red;
     color: $white;
+    overflow: hidden;
+    z-index: 1;
+
+    // Inverted gradient layer (hidden by default)
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #8b0000 0%, #e63946 100%); // Inverted gradient
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
 
     &:hover:not(:disabled) {
-      filter: brightness(1.1);
       box-shadow: $shadow-glow-red;
       transform: translateY(-2px);
+
+      &::before {
+        opacity: 1;
+      }
     }
 
     &:active:not(:disabled) {
