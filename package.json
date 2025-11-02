@@ -50,8 +50,10 @@
     "vite": "^7.1.12",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-image-optimizer": "^2.0.3",
+    "vite-plugin-pwa": "^1.1.0",
     "vite-svg-loader": "^5.1.0",
     "vitest": "^4.0.4",
-    "vue-tsc": "^3.1.2"
+    "vue-tsc": "^3.1.2",
+    "workbox-window": "^7.3.0"
   }
 }
