@@ -262,10 +262,10 @@ onUnmounted(() => {
     }
 
     &:hover {
-      color: transparent;
+      color: $brand-red-dark;
 
       &::before {
-        opacity: 1;
+        opacity: 0;
       }
 
       &::after {
@@ -274,10 +274,10 @@ onUnmounted(() => {
     }
 
     @include modifier('active') {
-      color: transparent;
+      color: $brand-red-dark;
 
       &::before {
-        opacity: 1;
+        opacity: 0;
       }
 
       &::after {

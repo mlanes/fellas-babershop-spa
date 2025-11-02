@@ -277,7 +277,7 @@ onUnmounted(() => {
     bottom: 0;
     left: 50%;
     width: 6px;
-    background-color: $brand-red-dark;
+    background: $brand-red-dark;
     transform: translateX(-50%);
     box-shadow: 0 0 20px rgba($brand-red-dark, 0.9),
                 0 0 40px rgba($brand-red-dark, 0.7),
@@ -292,7 +292,7 @@ onUnmounted(() => {
     transform: translate(-50%, -50%);
     width: 64px;
     height: 64px;
-    background: linear-gradient(135deg, $white 0%, $gray-7 100%);
+    background: var(--page-background);
     border: 3px solid $brand-red-dark;
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba($brand-red-dark, 0.2),
