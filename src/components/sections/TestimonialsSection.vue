@@ -236,8 +236,10 @@ const nextTestimonial = () => {
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid $brand-red-dark;
+    padding: 3px;
+    background: $gradient-brand-dark-red;
     flex-shrink: 0;
+    box-sizing: content-box;
   }
 
   @include element('featured-details') {
