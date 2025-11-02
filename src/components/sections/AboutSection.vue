@@ -132,29 +132,38 @@ onMounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba($brand-red-dark, 1) 0%, transparent 70%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba($brand-red-dark, 0.8) 0%, transparent 70%);
       -webkit-filter: blur(200px);
       filter: blur(200px);
       z-index: -1;
-      // Force hardware acceleration for iOS
-      transform: translate(-50%, -50%) translateZ(0);
-      -webkit-transform: translate(-50%, -50%) translateZ(0);
+      animation: pulse-blur-about 6s ease-in-out infinite;
 
       @include tablet {
-        width: 450px;
-        height: 450px;
-        -webkit-filter: blur(225px);
-        filter: blur(225px);
-      }
-
-      @include desktop {
-        width: 500px;
-        height: 500px;
+        width: 800px;
+        height: 800px;
         -webkit-filter: blur(250px);
         filter: blur(250px);
       }
+
+      @include desktop {
+        width: 800px;
+        height: 800px;
+        -webkit-filter: blur(250px);
+        filter: blur(250px);
+      }
+    }
+  }
+
+  @keyframes pulse-blur-about {
+    0%, 100% {
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
     }
   }
 
