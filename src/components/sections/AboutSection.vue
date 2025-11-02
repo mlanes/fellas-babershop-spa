@@ -83,6 +83,8 @@ onMounted(() => {
     animation: slide-up $transition-base forwards;
     animation-delay: 0.2s;
     opacity: 0;
+    position: relative;
+    z-index: 2;
   }
 
   @include element('subtitle') {

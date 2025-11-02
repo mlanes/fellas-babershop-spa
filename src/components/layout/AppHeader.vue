@@ -40,6 +40,14 @@ const handleProgrammaticScroll = () => {
 }
 
 /**
+ * Handle scrolled to home event - show navbar
+ */
+const handleScrolledToHome = () => {
+  isHeaderVisible.value = true
+  isProgrammaticScroll = false
+}
+
+/**
  * Handle scroll to update header background and active section
  */
 const handleScroll = () => {
@@ -94,12 +102,14 @@ const handleBookingClick = () => {
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   window.addEventListener('programmatic-scroll-start', handleProgrammaticScroll)
+  window.addEventListener('scrolled-to-home', handleScrolledToHome)
   handleScroll()
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('programmatic-scroll-start', handleProgrammaticScroll)
+  window.removeEventListener('scrolled-to-home', handleScrolledToHome)
 })
 </script>
 

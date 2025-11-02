@@ -33,7 +33,9 @@
   },
   "beforeAfter": {
     "label": "MIRA ESTO",
-    "heading": "Antes y Después",
+    "heading": "Antes & Después",
+    "headingBefore": "Antes",
+    "headingAfter": "Después",
     "subtitle": "Arrastra la barra hacia un lado",
     "before": "Antes",
     "after": "Después"

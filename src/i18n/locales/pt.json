@@ -34,6 +34,8 @@
   "beforeAfter": {
     "label": "VEJA ESTE",
     "heading": "Antes & Depois",
+    "headingBefore": "Antes",
+    "headingAfter": "Depois",
     "subtitle": "Arraste a barra para um dos lados",
     "before": "Antes",
     "after": "Depois"

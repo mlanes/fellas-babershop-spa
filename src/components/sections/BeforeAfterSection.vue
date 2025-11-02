@@ -34,7 +34,7 @@ onMounted(() => {
       <p class="before-after-section__label">{{ t('beforeAfter.label') }}</p>
 
       <h2 class="before-after-section__heading text-h2">
-        Antes <span class="before-after-section__heading-accent">&</span> Depois
+        {{ t('beforeAfter.headingBefore') }} <span class="before-after-section__heading-accent">&</span> {{ t('beforeAfter.headingAfter') }}
       </h2>
 
       <p class="before-after-section__subtitle text-body-lg">

@@ -34,6 +34,8 @@
   "beforeAfter": {
     "label": "CONFIRA ESTE",
     "heading": "Antes & Depois",
+    "headingBefore": "Antes",
+    "headingAfter": "Depois",
     "subtitle": "Arraste a barra para algum dos lados",
     "before": "Antes",
     "after": "Depois"

@@ -34,6 +34,8 @@
   "beforeAfter": {
     "label": "CHECK THIS OUT",
     "heading": "Before & After",
+    "headingBefore": "Before",
+    "headingAfter": "After",
     "subtitle": "Drag the bar to either side",
     "before": "Before",
     "after": "After"
