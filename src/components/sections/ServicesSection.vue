@@ -172,7 +172,6 @@ onMounted(() => {
   @include element('icon') {
     color: $white !important;
     background: $gradient-brand-dark-red;
-    border: 4px solid color.adjust($brand-red-dark, $lightness: 10%);
     border-radius: 50%;
     padding: 2px;
     flex-shrink: 0;
@@ -181,6 +180,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid $brand-red-dark;
 
     :deep(svg) {
       color: $white;
