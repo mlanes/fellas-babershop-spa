@@ -14,6 +14,16 @@ const { t } = useLocale()
 const { services } = useTranslatedServices()
 const sectionRef = ref<HTMLElement | null>(null)
 
+// Service images
+const serviceImages = [
+  new URL('@/assets/img/services/fellas-barbers-haircut-service-01.jpeg', import.meta.url).href,
+  new URL('@/assets/img/services/fellas-barbers-beard-trim-service-02.jpeg', import.meta.url).href,
+  new URL('@/assets/img/services/fellas-barbers-hair-styling-service-03.jpeg', import.meta.url).href,
+  new URL('@/assets/img/services/fellas-barbers-grooming-service-04.jpeg', import.meta.url).href,
+  new URL('@/assets/img/services/fellas-barbers-fade-haircut-service-05.jpeg', import.meta.url).href,
+  new URL('@/assets/img/services/fellas-barbers-premium-service-06.jpeg', import.meta.url).href,
+]
+
 const handleViewServices = () => {
   scrollTo('#expanded-services')
 }
@@ -59,27 +69,27 @@ onMounted(() => {
 
         <div class="services__images">
           <div class="services__image-row">
-            <div class="services__image-placeholder services__image-placeholder--large services__image-placeholder--1">
-              <p class="text-body-sm">Imagem 1</p>
+            <div class="services__image-container services__image-container--large services__image-container--1">
+              <img :src="serviceImages[0]" alt="Fellas Barbers professional haircut service" class="services__image" loading="lazy">
             </div>
-            <div class="services__image-placeholder services__image-placeholder--small services__image-placeholder--2">
-              <p class="text-body-sm">Imagem 2</p>
-            </div>
-          </div>
-          <div class="services__image-row">
-            <div class="services__image-placeholder services__image-placeholder--small services__image-placeholder--3">
-              <p class="text-body-sm">Imagem 3</p>
-            </div>
-            <div class="services__image-placeholder services__image-placeholder--large services__image-placeholder--4">
-              <p class="text-body-sm">Imagem 4</p>
+            <div class="services__image-container services__image-container--small services__image-container--2">
+              <img :src="serviceImages[1]" alt="Fellas Barbers beard trim and grooming service" class="services__image" loading="lazy">
             </div>
           </div>
           <div class="services__image-row">
-            <div class="services__image-placeholder services__image-placeholder--large services__image-placeholder--5">
-              <p class="text-body-sm">Imagem 5</p>
+            <div class="services__image-container services__image-container--small services__image-container--3">
+              <img :src="serviceImages[2]" alt="Fellas Barbers hair styling service" class="services__image" loading="lazy">
             </div>
-            <div class="services__image-placeholder services__image-placeholder--small services__image-placeholder--6">
-              <p class="text-body-sm">Imagem 6</p>
+            <div class="services__image-container services__image-container--large services__image-container--4">
+              <img :src="serviceImages[3]" alt="Fellas Barbers premium grooming service" class="services__image" loading="lazy">
+            </div>
+          </div>
+          <div class="services__image-row">
+            <div class="services__image-container services__image-container--large services__image-container--5">
+              <img :src="serviceImages[4]" alt="Fellas Barbers fade haircut service" class="services__image" loading="lazy">
+            </div>
+            <div class="services__image-container services__image-container--small services__image-container--6">
+              <img :src="serviceImages[5]" alt="Fellas Barbers premium barbershop service" class="services__image" loading="lazy">
             </div>
           </div>
         </div>
@@ -260,6 +270,57 @@ onMounted(() => {
     @include modifier('6') {
       animation-delay: 3.5s;
     }
+  }
+
+  @include element('image-container') {
+    aspect-ratio: 5 / 3;
+    border-radius: $radius-md;
+    overflow: hidden;
+    position: relative;
+    animation: float 8s ease-in-out infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    @include modifier('large') {
+      width: 60%;
+    }
+
+    @include modifier('small') {
+      width: 37%;
+    }
+
+    @include modifier('1') {
+      animation-delay: 0s;
+    }
+
+    @include modifier('2') {
+      animation-delay: 1.2s;
+    }
+
+    @include modifier('3') {
+      animation-delay: 2.8s;
+    }
+
+    @include modifier('4') {
+      animation-delay: 4.5s;
+    }
+
+    @include modifier('5') {
+      animation-delay: 1.8s;
+    }
+
+    @include modifier('6') {
+      animation-delay: 3.5s;
+    }
+  }
+
+  @include element('image') {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 }
 

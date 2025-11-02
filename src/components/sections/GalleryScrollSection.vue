@@ -112,7 +112,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="gallery-scroll">
+  <section ref="sectionRef" id="galeria" class="gallery-scroll">
     <div class="gallery-scroll__header-wrapper">
       <div class="gallery-scroll__header-sticky">
         <div class="gallery-scroll__header">
@@ -269,7 +269,7 @@ onUnmounted(() => {
   @include element('subtitle') {
     color: var(--text-color-secondary);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto $spacing-4xl auto;
   }
 
   @include element('pin-spacer') {
