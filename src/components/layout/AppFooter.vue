@@ -20,6 +20,13 @@ const currentYear = ref(new Date().getFullYear())
 const handleNavClick = (href: string) => {
   scrollTo(href)
 }
+
+/**
+ * Handle scroll to top
+ */
+const scrollToTop = () => {
+  scrollTo('#home')
+}
 </script>
 
 <template>
@@ -106,18 +113,14 @@ const handleNavClick = (href: string) => {
           © {{ currentYear }} {{ t('footer.copyright') }}
         </p>
 
-        <!-- Social Media -->
-        <div class="footer__bottom-social">
-          <a
-            :href="contactInfo.socialMedia.instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer__social-link"
-            aria-label="Instagram"
-          >
-            <FIcon name="instagram" :size="24" />
-          </a>
-        </div>
+        <!-- Go to Top Button -->
+        <button
+          class="footer__go-to-top"
+          aria-label="Go to top"
+          @click="scrollToTop"
+        >
+          <FIcon name="arrow-up" :size="24" />
+        </button>
       </div>
     </div>
   </footer>
@@ -193,7 +196,7 @@ const handleNavClick = (href: string) => {
     transition: color $transition-base;
   }
 
-  @include element('social-link') {
+  @include element('go-to-top') {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,8 +205,9 @@ const handleNavClick = (href: string) => {
     border-radius: 50%;
     background-color: color-mix(in srgb, var(--text-color-primary) 10%, transparent);
     color: var(--text-color-primary);
+    border: none;
+    cursor: pointer;
     transition: all $transition-base;
-    text-decoration: none;
 
     &:hover {
       background-color: $brand-red-dark;
@@ -303,11 +307,6 @@ const handleNavClick = (href: string) => {
   @include element('copyright') {
     color: var(--text-color-tertiary);
     transition: color $transition-base;
-  }
-
-  @include element('bottom-social') {
-    display: flex;
-    gap: $spacing-md;
   }
 }
 </style>

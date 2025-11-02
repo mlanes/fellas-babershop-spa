@@ -102,11 +102,11 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-3xl;
+    gap: $spacing-xl;
   }
 
   &__logo {
-    width: 200px;
+    width: 160px;
     height: auto;
     filter: drop-shadow(0px 0px 0px rgba(247, 247, 247, 0))
             drop-shadow(0px 0px 0px rgba(0, 0, 0, 0));
