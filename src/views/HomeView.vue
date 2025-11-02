@@ -35,6 +35,7 @@ import BarbershopsSection from '@/components/sections/BarbershopsSection.vue'
 
 .home {
   min-height: 100vh;
+  overflow-x: hidden;
 
   &__testimonials-wrapper {
     position: relative;
