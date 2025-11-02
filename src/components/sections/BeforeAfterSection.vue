@@ -46,6 +46,7 @@ onMounted(() => {
           v-for="(pair, index) in beforeAfterPairs"
           :key="index"
           class="before-after-section__item"
+          :class="{ 'before-after-section__item--hidden-mobile': index > 0 }"
         >
           <BeforeAfterSlider
             :before-image="pair.before"
@@ -65,10 +66,10 @@ onMounted(() => {
 @use '@/assets/styles/mixins' as *;
 
 .before-after-section {
-  min-height: calc(100vh - $header-height);
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 0 0 $spacing-6xl 0;
+  padding: $spacing-4xl 0;
   color: var(--text-color-primary);
   opacity: 0;
   transition: opacity $transition-slow;
@@ -139,6 +140,14 @@ onMounted(() => {
     opacity: 0;
     animation-delay: 0.2s;
     width: 100%;
+
+    @include modifier('hidden-mobile') {
+      display: none;
+
+      @include tablet {
+        display: block;
+      }
+    }
   }
 }
 </style>

@@ -156,10 +156,10 @@ onMounted(() => {
 @use '@/assets/styles/mixins' as *;
 
 .expanded-services {
-  min-height: calc(100vh - $header-height);
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: $spacing-6xl 0;
+  padding: $spacing-4xl 0;
   color: var(--text-color-primary);
   opacity: 0;
   transition: opacity $transition-slow;

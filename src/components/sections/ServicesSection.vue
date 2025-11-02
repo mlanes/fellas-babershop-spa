@@ -97,7 +97,7 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: $spacing-6xl 0;
+  padding: $spacing-4xl 0;
   opacity: 0;
   transition: opacity $transition-slow;
 

@@ -1,14 +1,33 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useLocale } from '@/composables/useLocale'
+import MediaPreviewDialog from '@/components/ui/MediaPreviewDialog.vue'
 
 /**
- * GalleryScrollSection - Infinite scrolling gallery with 2 rows
+ * GalleryScrollSection - Infinite scrolling gallery with 3 rows
  * Row 1: Scrolls left on page scroll
  * Row 2: Scrolls right on page scroll
+ * Row 3: Scrolls left on page scroll
  */
 
 const { t } = useLocale()
+
+// Media preview state
+const isPreviewOpen = ref(false)
+const previewMediaType = ref<'image' | 'video'>('image')
+const previewMediaSrc = ref('')
+const previewMediaAlt = ref('')
+
+const openPreview = (type: string, src: string, alt: string) => {
+  previewMediaType.value = type as 'image' | 'video'
+  previewMediaSrc.value = src
+  previewMediaAlt.value = alt
+  isPreviewOpen.value = true
+}
+
+const closePreview = () => {
+  isPreviewOpen.value = false
+}
 
 // Import all gallery images and videos dynamically
 const getImageUrl = (name: string) => {
@@ -120,6 +139,7 @@ onUnmounted(() => {
               v-for="(item, index) in [...row1Items, ...row1Items]"
               :key="`row1-${index}`"
               class="gallery-scroll__item"
+              @click="openPreview(item.type, item.src, item.alt)"
             >
               <video
                 v-if="item.type === 'video'"
@@ -147,6 +167,7 @@ onUnmounted(() => {
               v-for="(item, index) in [...row2Items, ...row2Items]"
               :key="`row2-${index}`"
               class="gallery-scroll__item"
+              @click="openPreview(item.type, item.src, item.alt)"
             >
               <video
                 v-if="item.type === 'video'"
@@ -174,6 +195,7 @@ onUnmounted(() => {
               v-for="(item, index) in [...row3Items, ...row3Items]"
               :key="`row3-${index}`"
               class="gallery-scroll__item"
+              @click="openPreview(item.type, item.src, item.alt)"
             >
               <video
                 v-if="item.type === 'video'"
@@ -197,6 +219,15 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
+
+    <!-- Media Preview Dialog -->
+    <MediaPreviewDialog
+      :is-open="isPreviewOpen"
+      :media-type="previewMediaType"
+      :media-src="previewMediaSrc"
+      :media-alt="previewMediaAlt"
+      @close="closePreview"
+    />
   </section>
 </template>
 
@@ -207,7 +238,7 @@ onUnmounted(() => {
 .gallery-scroll {
   width: 100%;
   position: relative;
-  padding: $spacing-6xl 0 0 0;
+  padding: $spacing-4xl 0;
 
   @include element('header') {
     // No margin needed as spacing is handled by sticky wrapper
@@ -282,11 +313,11 @@ onUnmounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
+      width: 500px;
+      height: 500px;
       background: radial-gradient(circle, rgba($brand-red-dark, 1) 0%, rgba($brand-red-dark, 0.8) 30%, transparent 70%);
-      -webkit-filter: blur(150px);
-      filter: blur(150px);
+      -webkit-filter: blur(110px);
+      filter: blur(110px);
       z-index: -1;
       // Force hardware acceleration for iOS
       transform: translate(-50%, -50%) translateZ(0);
@@ -294,17 +325,17 @@ onUnmounted(() => {
       opacity: 0.8;
 
       @include tablet {
-        width: 700px;
-        height: 700px;
-        -webkit-filter: blur(175px);
-        filter: blur(175px);
+        width: 600px;
+        height: 600px;
+        -webkit-filter: blur(130px);
+        filter: blur(130px);
       }
 
       @include desktop {
-        width: 800px;
-        height: 800px;
-        -webkit-filter: blur(200px);
-        filter: blur(200px);
+        width: 700px;
+        height: 700px;
+        -webkit-filter: blur(150px);
+        filter: blur(150px);
       }
     }
   }
@@ -342,6 +373,16 @@ onUnmounted(() => {
     overflow: hidden;
     position: relative;
     background: var(--surface-border);
+    cursor: pointer;
+    transition: transform $transition-base;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
 
     @include tablet {
       width: 200px;
@@ -359,11 +400,6 @@ onUnmounted(() => {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.05);
-    }
   }
 }
 </style>
