@@ -74,23 +74,41 @@ defineEmits<{
   @include modifier('primary') {
     position: relative;
     background: $gradient-brand-light-red;
+    color: $white;
+    overflow: hidden;
+    z-index: 1;
 
     @at-root [data-theme='dark'] & {
       background: $gradient-brand-dark-red;
     }
-    color: $white;
-    overflow: hidden;
-    z-index: 1;
+
+    // Auto dark mode based on system preference
+    @media (prefers-color-scheme: dark) {
+      @at-root :root:not([data-theme='light']) & {
+        background: $gradient-brand-dark-red;
+      }
+    }
 
     // Inverted gradient layer (hidden by default)
     &::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, #8b0000 0%, #e63946 100%); // Inverted gradient
+      background: linear-gradient(90deg, #c41e3a 0%, #e63946 100%); // Inverted light gradient
       opacity: 0;
       transition: opacity 0.3s ease;
       z-index: -1;
+
+      @at-root [data-theme='dark'] & {
+        background: linear-gradient(90deg, #8b0000 0%, #e63946 100%); // Inverted dark gradient
+      }
+
+      // Auto dark mode based on system preference
+      @media (prefers-color-scheme: dark) {
+        @at-root :root:not([data-theme='light']) & {
+          background: linear-gradient(90deg, #8b0000 0%, #e63946 100%); // Inverted dark gradient
+        }
+      }
     }
 
     &:hover:not(:disabled) {
