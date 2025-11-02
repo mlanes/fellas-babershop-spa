@@ -144,7 +144,7 @@ const nextTestimonial = () => {
                 <FIcon
                   v-for="(filled, i) in renderStars(testimonials[selectedTestimonial].rating)"
                   :key="i"
-                  :name="filled ? 'star-filled' : 'star'"
+                  name="star"
                   :size="24"
                   class="testimonials__star"
                   :class="{ 'testimonials__star--filled': filled }"
@@ -361,8 +361,18 @@ const nextTestimonial = () => {
   @include element('star') {
     color: var(--text-color-tertiary) !important;
 
+    :deep(svg) {
+      fill: none;
+      stroke: currentColor;
+    }
+
     @include modifier('filled') {
       color: #ffc107 !important;
+
+      :deep(svg) {
+        fill: currentColor;
+        stroke: currentColor;
+      }
     }
   }
 }

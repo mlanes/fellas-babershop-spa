@@ -426,7 +426,7 @@ onUnmounted(() => {
   @include element('mobile-nav') {
     display: flex;
     flex-direction: column;
-    gap: $spacing-xl;
+    gap: $spacing-sm;
     margin-bottom: $spacing-3xl;
   }
 
@@ -437,7 +437,7 @@ onUnmounted(() => {
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: $spacing-md 0;
+    padding: $spacing-sm 0;
     border-bottom: 1px solid var(--surface-border);
     transition: color $transition-base;
 

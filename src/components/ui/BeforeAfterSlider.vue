@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import FIcon from '@/components/ui/FIcon.vue'
 
 /**
  * BeforeAfterSlider - Interactive before/after image comparison slider
@@ -164,36 +165,16 @@ onUnmounted(() => {
     >
       <div class="before-after-slider__handle-line"></div>
       <div class="before-after-slider__handle-button">
-        <svg
+        <FIcon
+          name="chevron-left"
+          :size="24"
           class="before-after-slider__handle-icon"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-        >
-          <path
-            d="M15 18L9 12L15 6"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            fill="none"
-          />
-        </svg>
-        <svg
+        />
+        <FIcon
+          name="chevron-right"
+          :size="24"
           class="before-after-slider__handle-icon"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-        >
-          <path
-            d="M9 18L15 12L9 6"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            fill="none"
-          />
-        </svg>
+        />
       </div>
     </div>
   </div>
