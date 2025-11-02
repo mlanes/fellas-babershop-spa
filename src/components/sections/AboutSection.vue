@@ -59,7 +59,7 @@ onMounted(() => {
   color: var(--text-color-primary);
   opacity: 0;
   transition: opacity $transition-slow;
-  overflow: hidden;
+  overflow-x: hidden;
 
   &.fade-in {
     opacity: 1;
