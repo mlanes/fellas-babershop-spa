@@ -54,6 +54,9 @@ const row2Ref = ref<HTMLElement | null>(null)
 const row3Ref = ref<HTMLElement | null>(null)
 const sectionRef = ref<HTMLElement | null>(null)
 
+// Performance: use requestAnimationFrame for smooth updates
+let ticking = false
+
 const handleScroll = () => {
   if (!sectionRef.value || !row1Ref.value || !row2Ref.value || !row3Ref.value) return
 
@@ -78,30 +81,40 @@ const handleScroll = () => {
   const row2HalfWidth = row2Ref.value.scrollWidth / 2
   const row3HalfWidth = row3Ref.value.scrollWidth / 2
 
-  // Use a continuous loop without modulo jump
-  // Multiply progress by a large number to scroll through multiple cycles
-  const cycles = 1 // Number of complete loops during scroll
+  // Clamp progress to prevent going beyond the duplicated items
+  // This ensures smooth scrolling without modulo jumps
+  const clampedProgress = Math.max(0, Math.min(progress, 0.999))
 
-  // Row 1: moves left continuously
-  const scroll1 = (progress * row1HalfWidth * cycles) % row1HalfWidth
+  // Row 1: moves left - simple linear scroll through one set
+  const scroll1 = clampedProgress * row1HalfWidth
   row1Ref.value.style.transform = `translate3d(-${scroll1}px, 0px, 0px)`
 
-  // Row 2: moves right continuously
-  const scroll2 = (progress * row2HalfWidth * cycles) % row2HalfWidth
+  // Row 2: moves right - starts at -halfWidth and moves toward 0
+  const scroll2 = clampedProgress * row2HalfWidth
   row2Ref.value.style.transform = `translate3d(-${row2HalfWidth - scroll2}px, 0px, 0px)`
 
-  // Row 3: moves left continuously
-  const scroll3 = (progress * row3HalfWidth * cycles) % row3HalfWidth
+  // Row 3: moves left - same as row 1
+  const scroll3 = clampedProgress * row3HalfWidth
   row3Ref.value.style.transform = `translate3d(-${scroll3}px, 0px, 0px)`
 }
 
+const onScroll = () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      handleScroll()
+      ticking = false
+    })
+    ticking = true
+  }
+}
+
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', onScroll, { passive: true })
   handleScroll() // Initial call
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('scroll', onScroll)
 })
 </script>
 
