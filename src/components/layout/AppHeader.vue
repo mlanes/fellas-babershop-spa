@@ -36,13 +36,14 @@ const handleProgrammaticScroll = () => {
   // Reset after scroll animation completes (smooth scroll takes ~500-1000ms)
   setTimeout(() => {
     isProgrammaticScroll = false
-  }, 1000)
+  }, 600)
 }
 
 /**
  * Handle scrolled to home event - show navbar
  */
 const handleScrolledToHome = () => {
+  // Show header immediately when reaching home
   isHeaderVisible.value = true
   isProgrammaticScroll = false
 }
@@ -87,8 +88,18 @@ const handleScroll = () => {
  * Handle navigation click
  */
 const handleNavClick = (href: string) => {
-  scrollTo(href)
+  // If clicking on home and already at top, do nothing
+  if (href === '#home' && window.scrollY < 100) {
+    return
+  }
+
+  // Close menu immediately
   uiStore.closeMobileMenu()
+
+  // Small delay to allow menu close animation, then scroll
+  setTimeout(() => {
+    scrollTo(href, 40)
+  }, 100)
 }
 
 /**
@@ -222,7 +233,7 @@ onUnmounted(() => {
   background-color: rgba(0, 0, 0, 0.3);
   -webkit-backdrop-filter: saturate(180%) blur(10px);
   backdrop-filter: saturate(180%) blur(10px);
-  transition: transform 0.3s ease, background-color $transition-base, box-shadow $transition-base;
+  transition: transform 0.2s ease, background-color $transition-base, box-shadow $transition-base;
   // Force hardware acceleration for iOS
   transform: translateY(0) translateZ(0);
   -webkit-transform: translateY(0) translateZ(0);
