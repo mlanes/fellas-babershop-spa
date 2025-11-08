@@ -17,26 +17,38 @@ const currentPage = ref(1)
 const itemsPerPage = 10
 const slideDirection = ref<'left' | 'right'>('right')
 
-// Service image mapping - services with available images
-const serviceImageMap: Record<string, string> = {
-  'haircut': new URL('@/assets/img/services/fellas-barbers-haircut.jpeg', import.meta.url).href,
-  'haircut-beard': new URL('@/assets/img/services/fellas-barbers-haircut-beard.jpeg', import.meta.url).href,
-  'beard-premium': new URL('@/assets/img/services/fellas-barbers-beard-premium.jpeg', import.meta.url).href,
-  'beard-simple': new URL('@/assets/img/services/fellas-barbers-beard-simple.jpeg', import.meta.url).href,
-  'haircut-beard-eyebrows': new URL('@/assets/img/services/fellas-barbers-haircut-beard-eyebrows.jpeg', import.meta.url).href,
-  'haircut-beard-premium': new URL('@/assets/img/services/fellas-barbers-haircut-beard-premium.jpeg', import.meta.url).href,
-  'beard-fade': new URL('@/assets/img/services/fellas-barbers-beard-fade.jpeg', import.meta.url).href,
-  'beard-fade-contour': new URL('@/assets/img/services/fellas-barbers-beard-fade-contour.jpeg', import.meta.url).href,
-  'hair-contour': new URL('@/assets/img/services/fellas-barbers-hair-contour.jpeg', import.meta.url).href,
-  'eyebrows': new URL('@/assets/img/services/fellas-barbers-eyebrows.jpeg', import.meta.url).href,
-  'head-shave': new URL('@/assets/img/services/fellas-barbers-head-shave.jpeg', import.meta.url).href,
-  'head-shave-beard': new URL('@/assets/img/services/fellas-barbers-head-shave-beard.jpeg', import.meta.url).href,
-  'hair-hydration': new URL('@/assets/img/services/fellas-barbers-hair-hydration.jpeg', import.meta.url).href,
-  'beard-hydration': new URL('@/assets/img/services/fellas-barbers-beard-hydration.jpeg', import.meta.url).href,
-  'hair-therapy': new URL('@/assets/img/services/fellas-barbers-hair-therapy.jpeg', import.meta.url).href,
-  'haircut-student': new URL('@/assets/img/services/fellas-barbers-haircut-student.jpeg', import.meta.url).href,
-  'haircut-beard-student': new URL('@/assets/img/services/fellas-barbers-haircut-beard-student.jpeg', import.meta.url).href,
-  'highlights': new URL('@/assets/img/services/fellas-barbers-highlights.jpeg', import.meta.url).href,
+// Import all service images dynamically using Vite's glob import
+const allServiceImages = import.meta.glob('@/assets/img/services/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>
+
+// Helper function to get service image path - returns undefined if not found (will show logo)
+const getServiceImagePath = (serviceId: string): string | undefined => {
+  const imagePath = `/src/assets/img/services/fellas-barbers-${serviceId}.jpeg`
+  return allServiceImages[imagePath]
+}
+
+// Service image mapping - automatically maps service IDs to their images
+const serviceImageMap: Record<string, string | undefined> = {
+  'haircut': getServiceImagePath('haircut'),
+  'haircut-beard': getServiceImagePath('haircut-beard'),
+  'beard-premium': getServiceImagePath('beard-premium'),
+  'beard-simple': getServiceImagePath('beard-simple'),
+  'haircut-beard-eyebrows': getServiceImagePath('haircut-beard-eyebrows'),
+  'haircut-beard-premium': getServiceImagePath('haircut-beard-premium'),
+  'beard-fade': getServiceImagePath('beard-fade'),
+  'beard-fade-contour': getServiceImagePath('beard-fade-contour'),
+  'hair-contour': getServiceImagePath('hair-contour'),
+  'eyebrows': getServiceImagePath('eyebrows'),
+  'head-shave': getServiceImagePath('head-shave'),
+  'head-shave-beard': getServiceImagePath('head-shave-beard'),
+  'hair-hydration': getServiceImagePath('hair-hydration'),
+  'beard-hydration': getServiceImagePath('beard-hydration'),
+  'hair-therapy': getServiceImagePath('hair-therapy'),
+  'haircut-student': getServiceImagePath('haircut-student'),
+  'haircut-beard-student': getServiceImagePath('haircut-beard-student'),
+  'highlights': getServiceImagePath('highlights'),
 }
 
 // Services that should use center object position (rest use top)
