@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import FLogo from '@/components/ui/FLogo.vue'
 import FIcon from '@/components/ui/FIcon.vue'
+import FButton from '@/components/ui/FButton.vue'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import { useLocale } from '@/composables/useLocale'
 
@@ -16,6 +17,10 @@ const mobileVideoRef = ref<HTMLVideoElement | null>(null)
 
 const handleScrollClick = () => {
   scrollTo('#about')
+}
+
+const handleBookingClick = () => {
+  scrollTo('#barbershops')
 }
 
 onMounted(() => {
@@ -100,6 +105,17 @@ onMounted(() => {
         <p class="hero__description text-body-lg">
           {{ t('hero.description') }}
         </p>
+
+        <!-- Mobile/Tablet Book Button -->
+        <FButton
+          variant="primary"
+          size="md"
+          class="hero__book-btn"
+          @click="handleBookingClick"
+        >
+          <FIcon name="calendar" :size="18" />
+          {{ t('common.book') }}
+        </FButton>
       </div>
 
       <button
@@ -254,6 +270,20 @@ onMounted(() => {
     transition: color $transition-base;
   }
 
+  @include element('book-btn') {
+    margin-top: $spacing-md;
+    opacity: 0;
+    animation: slide-up $transition-base forwards, pulse-shadow 2s ease-in-out infinite;
+    animation-delay: 1s, 1.5s;
+
+    // Hide on desktop, show only on mobile and tablet
+    display: flex;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
   @include element('scroll-indicator') {
     position: absolute;
     bottom: $spacing-5xl;
@@ -269,11 +299,19 @@ onMounted(() => {
     opacity: 0;
     animation: fade-in $transition-base forwards, pulse 2s ease-in-out infinite;
     animation-delay: 1s;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: $spacing-md;
+
+    // Hide on mobile, show on tablet and desktop
+    display: none;
+
+    @include tablet {
+      display: flex;
+      bottom: $spacing-5xl;
+      padding: $spacing-md;
+    }
 
     &:hover {
       transform: translateX(-50%) translateY(-8px);
@@ -281,11 +319,6 @@ onMounted(() => {
 
     &:focus-visible {
       @include focus-indicator;
-    }
-
-    @include tablet {
-      bottom: $spacing-5xl;
-      padding: $spacing-md;
     }
   }
 
@@ -306,5 +339,17 @@ onMounted(() => {
 // Fade-in class for root element
 .fade-in {
   opacity: 1;
+}
+
+// Pulse shadow animation for the book button
+@keyframes pulse-shadow {
+  0%, 100% {
+    box-shadow: 0 0 20px 5px rgba($brand-red-dark, 0.8);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px 15px rgba($brand-red-dark, 0.3);
+    transform: scale(1.05);
+  }
 }
 </style>

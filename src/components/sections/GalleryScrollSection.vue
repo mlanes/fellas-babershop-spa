@@ -29,19 +29,29 @@ const closePreview = () => {
   isPreviewOpen.value = false
 }
 
-// Import all gallery images and videos dynamically
-const getImageUrl = (name: string) => {
-  return new URL(`../../assets/img/gallery/${name}`, import.meta.url).href
-}
+// Automatically import all gallery images using Vite's glob import
+const galleryImages = import.meta.glob('../../assets/img/gallery/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default'
+})
 
-const galleryItems = [
-  // Images
-  ...Array.from({ length: 42 }, (_, i) => ({
-    type: 'image',
-    src: getImageUrl(`gallery-${String(i + 1).padStart(2, '0')}.jpeg`),
-    alt: `Gallery image ${i + 1}`
-  }))
-]
+// Convert the imported images to an array and sort them
+const galleryItems = Object.entries(galleryImages)
+  .map(([path, url]) => {
+    // Extract filename from path
+    const filename = path.split('/').pop() || ''
+    // Extract number from filename for sorting (e.g., "gallery-01.jpeg" -> 1)
+    const match = filename.match(/gallery-(\d+)/)
+    const imageNumber = match ? parseInt(match[1]) : 0
+
+    return {
+      type: 'image' as const,
+      src: url as string,
+      alt: `Gallery image ${imageNumber}`,
+      order: imageNumber
+    }
+  })
+  .sort((a, b) => a.order - b.order) // Sort by number
 
 // Distribute items across 3 rows - divide into thirds
 const thirdIndex = Math.ceil(galleryItems.length / 3)
