@@ -29,14 +29,28 @@ const closePreview = () => {
   isPreviewOpen.value = false
 }
 
+// Define media item type
+type MediaItem = {
+  type: 'image' | 'video'
+  src: string
+  alt: string
+  order: number
+}
+
 // Automatically import all gallery images using Vite's glob import
 const galleryImages = import.meta.glob('../../assets/img/gallery/*.{jpg,jpeg,png,webp}', {
   eager: true,
   import: 'default'
 })
 
+// Automatically import all gallery videos using Vite's glob import
+const galleryVideos = import.meta.glob('../../assets/img/gallery/*.{mp4,webm}', {
+  eager: true,
+  import: 'default'
+})
+
 // Convert the imported images to an array and sort them
-const galleryItems = Object.entries(galleryImages)
+const imageItems: MediaItem[] = Object.entries(galleryImages)
   .map(([path, url]) => {
     // Extract filename from path
     const filename = path.split('/').pop() || ''
@@ -51,6 +65,26 @@ const galleryItems = Object.entries(galleryImages)
       order: imageNumber
     }
   })
+
+// Convert the imported videos to an array
+const videoItems: MediaItem[] = Object.entries(galleryVideos)
+  .map(([path, url]) => {
+    // Extract filename from path
+    const filename = path.split('/').pop() || ''
+    // Extract number from filename for sorting (e.g., "gallery-01.mp4" -> 1)
+    const match = filename.match(/gallery-(\d+)/)
+    const videoNumber = match ? parseInt(match[1]) : 0
+
+    return {
+      type: 'video' as const,
+      src: url as string,
+      alt: `Gallery video ${videoNumber}`,
+      order: videoNumber
+    }
+  })
+
+// Combine images and videos, then sort them
+const galleryItems = [...imageItems, ...videoItems]
   .sort((a, b) => a.order - b.order) // Sort by number
 
 // Distribute items across 3 rows - divide into thirds
