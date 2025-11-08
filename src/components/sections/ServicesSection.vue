@@ -19,7 +19,7 @@ const serviceImages = [
   new URL('@/assets/img/services/fellas-barbers-haircut-service-01.jpeg', import.meta.url).href,
   new URL('@/assets/img/services/fellas-barbers-beard-trim-service-02.jpeg', import.meta.url).href,
   new URL('@/assets/img/services/fellas-barbers-hair-styling-service-03.jpeg', import.meta.url).href,
-  new URL('@/assets/img/services/fellas-barbers-grooming-service-04.jpeg', import.meta.url).href,
+  new URL('@/assets/img/gallery/gallery-08.jpeg', import.meta.url).href,
   new URL('@/assets/img/services/fellas-barbers-fade-haircut-service-05.jpeg', import.meta.url).href,
   new URL('@/assets/img/services/fellas-barbers-premium-service-06.jpeg', import.meta.url).href,
 ]
