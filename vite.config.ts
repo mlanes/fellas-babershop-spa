@@ -13,24 +13,28 @@ export default defineConfig({
     vue(),
     svgLoader(),
     ViteImageOptimizer({
-      // JPEG optimization - aggressive compression
+      // JPEG optimization - maximum compression
       jpeg: {
-        quality: 60,
+        quality: 50,
         progressive: true,
+        mozjpeg: true,
       },
-      // JPG optimization - aggressive compression
+      // JPG optimization - maximum compression
       jpg: {
-        quality: 60,
+        quality: 50,
         progressive: true,
+        mozjpeg: true,
       },
-      // PNG optimization - aggressive compression
+      // PNG optimization - maximum compression
       png: {
-        quality: 60,
+        quality: 50,
         compressionLevel: 9,
+        strip: true,
       },
-      // WebP conversion - aggressive compression
+      // WebP optimization - maximum compression
       webp: {
-        quality: 70,
+        quality: 60,
+        lossless: false,
       },
     }),
     // Gzip compression
