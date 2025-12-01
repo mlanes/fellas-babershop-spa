@@ -102,6 +102,7 @@ const sectionRef = ref<HTMLElement | null>(null)
 let ticking = false
 
 const handleScroll = () => {
+  if (!import.meta.client) return
   if (!sectionRef.value || !row1Ref.value || !row2Ref.value || !row3Ref.value) return
 
   const rect = sectionRef.value.getBoundingClientRect()
@@ -153,12 +154,16 @@ const onScroll = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', onScroll, { passive: true })
-  handleScroll() // Initial call
+  if (import.meta.client) {
+    window.addEventListener('scroll', onScroll, { passive: true })
+    handleScroll() // Initial call
+  }
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
+  if (import.meta.client) {
+    window.removeEventListener('scroll', onScroll)
+  }
 })
 </script>
 

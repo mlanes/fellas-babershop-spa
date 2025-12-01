@@ -52,6 +52,8 @@ const handleScrolledToHome = () => {
  * Handle scroll to update header background and active section
  */
 const handleScroll = () => {
+  if (!import.meta.client) return
+
   const currentScrollY = window.scrollY
 
   isScrolled.value = currentScrollY > 20
@@ -89,7 +91,7 @@ const handleScroll = () => {
  */
 const handleNavClick = (href: string) => {
   // If clicking on home and already at top, do nothing
-  if (href === '#home' && window.scrollY < 100) {
+  if (import.meta.client && href === '#home' && window.scrollY < 100) {
     return
   }
 
@@ -111,16 +113,20 @@ const handleBookingClick = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-  window.addEventListener('programmatic-scroll-start', handleProgrammaticScroll)
-  window.addEventListener('scrolled-to-home', handleScrolledToHome)
-  handleScroll()
+  if (import.meta.client) {
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('programmatic-scroll-start', handleProgrammaticScroll)
+    window.addEventListener('scrolled-to-home', handleScrolledToHome)
+    handleScroll()
+  }
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('programmatic-scroll-start', handleProgrammaticScroll)
-  window.removeEventListener('scrolled-to-home', handleScrolledToHome)
+  if (import.meta.client) {
+    window.removeEventListener('scroll', handleScroll)
+    window.removeEventListener('programmatic-scroll-start', handleProgrammaticScroll)
+    window.removeEventListener('scrolled-to-home', handleScrolledToHome)
+  }
 })
 </script>
 

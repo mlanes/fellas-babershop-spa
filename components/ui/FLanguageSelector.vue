@@ -45,11 +45,15 @@ const handleClickOutside = (event: MouseEvent) => {
 }
 
 onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
+  if (import.meta.client) {
+    document.addEventListener('click', handleClickOutside)
+  }
 })
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
+  if (import.meta.client) {
+    document.removeEventListener('click', handleClickOutside)
+  }
 })
 </script>
 

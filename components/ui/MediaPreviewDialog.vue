@@ -33,6 +33,8 @@ const handleKeyDown = (e: KeyboardEvent) => {
 }
 
 watch(() => props.isOpen, (newValue) => {
+  if (!import.meta.client) return
+
   if (newValue) {
     document.body.style.overflow = 'hidden'
     // Auto-play video when dialog opens
@@ -49,12 +51,16 @@ watch(() => props.isOpen, (newValue) => {
 })
 
 onMounted(() => {
-  document.addEventListener('keydown', handleKeyDown)
+  if (import.meta.client) {
+    document.addEventListener('keydown', handleKeyDown)
+  }
 })
 
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeyDown)
-  document.body.style.overflow = ''
+  if (import.meta.client) {
+    document.removeEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = ''
+  }
 })
 </script>
 
