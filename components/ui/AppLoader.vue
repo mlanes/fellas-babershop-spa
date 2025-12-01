@@ -34,6 +34,13 @@ const hideLoader = () => {
 }
 
 onMounted(() => {
+  // Remove inline loader when Vue takes over
+  const inlineLoader = document.getElementById('__nuxt-loader')
+  if (inlineLoader) {
+    inlineLoader.classList.add('fade-out')
+    setTimeout(() => inlineLoader.remove(), 300)
+  }
+
   const interval = updateProgress()
 
   // Wait for DOM to be fully loaded
