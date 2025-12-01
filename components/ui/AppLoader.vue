@@ -9,8 +9,10 @@ import FellasLogo from '~/assets/img/logo.svg'
 
 const progress = ref(0)
 const isLoading = ref(true)
-const startTime = Date.now()
 const MIN_DISPLAY_TIME = 2500 // Minimum 2.5 seconds
+
+// Store start time - initialized in onMounted to avoid SSR mismatch
+let startTime = 0
 
 // Simulate progress during load
 const updateProgress = () => {
@@ -34,6 +36,9 @@ const hideLoader = () => {
 }
 
 onMounted(() => {
+  // Initialize start time on client only
+  startTime = Date.now()
+
   // Remove inline loader when Vue takes over
   const inlineLoader = document.getElementById('__nuxt-loader')
   if (inlineLoader) {
