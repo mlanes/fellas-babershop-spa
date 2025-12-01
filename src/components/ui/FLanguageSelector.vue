@@ -11,10 +11,10 @@ const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
 
 const languages = [
-  { code: 'pt' as Locale, label: 'Português (PT)', flag: '🇵🇹' },
-  { code: 'pt-BR' as Locale, label: 'Português (BR)', flag: '🇧🇷' },
+  { code: 'pt' as Locale, label: 'Português', flag: '🇵🇹' },
   { code: 'en' as Locale, label: 'English', flag: '🇬🇧' },
   { code: 'es' as Locale, label: 'Español', flag: '🇪🇸' },
+  { code: 'fr' as Locale, label: 'Français', flag: '🇫🇷' },
 ]
 
 const currentLanguage = computed(() => {
@@ -23,9 +23,9 @@ const currentLanguage = computed(() => {
 
 const getCurrentLanguageCode = computed(() => {
   const code = locale.value
-  if (code === 'pt-BR') return 'BR'
   if (code === 'pt') return 'PT'
   if (code === 'es') return 'ES'
+  if (code === 'fr') return 'FR'
   return code.toUpperCase()
 })
 
