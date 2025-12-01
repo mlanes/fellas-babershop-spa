@@ -27,6 +27,8 @@ dist-ssr
 build
 out
 .vite
+.output
+.nuxt
 
 # Editor directories and files
 .vscode/*
