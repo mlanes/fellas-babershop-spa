@@ -1,0 +1,246 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "gallery": "Galerie",
+    "barbershops": "Salons"
+  },
+  "hero": {
+    "title": "FELLAS BARBERS",
+    "premium": "PREMIUM",
+    "tagline": "VOTRE BARBIER DE CONFIANCE",
+    "description": "Soins personnels d'excellence. Nous combinons tradition et innovation dans un environnement accueillant, avec des barbiers spécialisés en style et confiance.",
+    "seeMore": "Voir Plus"
+  },
+  "about": {
+    "subtitle": "À PROPOS",
+    "heading": "Fellas Barbers",
+    "description": "Notre équipe est composée de véritables maîtres dans l'art de la transformation, prêts à créer un look unique qui célèbre votre individualité. Nous croyons que chaque client doit exprimer son essence authentique.",
+    "learnMore": "EN SAVOIR PLUS"
+  },
+  "services": {
+    "subtitle": "NOS",
+    "heading": "Services Populaires",
+    "viewPricing": "VOIR LES TARIFS",
+    "allServices": "Tous les Services",
+    "allServicesSubtitle": "Services de barbier professionnels avec qualité premium"
+  },
+  "testimonials": {
+    "subtitle": "TÉMOIGNAGES",
+    "heading": "Ce qu'ils disent de Fellas",
+    "reviewsCount": "1000+ avis"
+  },
+  "beforeAfter": {
+    "label": "DÉCOUVREZ",
+    "heading": "Avant & Après",
+    "headingBefore": "Avant",
+    "headingAfter": "Après",
+    "subtitle": "Faites glisser la barre de chaque côté",
+    "before": "Avant",
+    "after": "Après"
+  },
+  "gallery": {
+    "label": "NOTRE TRAVAIL",
+    "title": "Galerie",
+    "subtitle": "Découvrez nos transformations et l'art derrière chaque coupe"
+  },
+  "footer": {
+    "tagline": "VOTRE BARBIER DE CONFIANCE",
+    "description": "Expérience professionnelle en coupes de cheveux et entretien de barbe. Qualité et style depuis toujours.",
+    "usefulLinks": "Liens Utiles",
+    "schedule": "Horaires",
+    "contact": "Contact",
+    "copyright": "Fellas Barbers. Tous droits réservés."
+  },
+  "common": {
+    "book": "RÉSERVER",
+    "lightMode": "Mode Clair",
+    "darkMode": "Mode Sombre",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "servicesList": {
+    "combo-premium": {
+      "name": "Combo Premium",
+      "description": "Expérience complète de soins et bien-être",
+      "detailedDescription": "Le Combo Premium est une expérience complète de soins et bien-être. Comprend : Coupe de cheveux personnalisée, Design de barbe avec barbothérapie, serviette chaude et ozone, Thérapie faciale, Massage relaxant, Sourcils sculptés. Et, au choix : épilation des oreilles et du nez ou hydratation des cheveux. Tout conçu pour offrir une relaxation profonde, une peau saine et une barbe impeccable, sans irritation."
+    },
+    "haircut": {
+      "name": "Coupe de Cheveux",
+      "description": "Coupe 100% personnalisée",
+      "detailedDescription": "Coupe de cheveux 100% personnalisée, avec un style adapté à votre profil et vos besoins."
+    },
+    "haircut-beard": {
+      "name": "Coupe & Barbe",
+      "description": "Coupe et barbe personnalisées",
+      "detailedDescription": "Coupe de cheveux et barbe alignées pour un look impeccable."
+    },
+    "barbotherapy": {
+      "name": "Barbothérapie",
+      "description": "Traitement complet de la barbe",
+      "detailedDescription": "Barbe traitée avec serviette chaude, ozone, thérapie faciale et massage. Idéal pour les peaux sensibles et une relaxation profonde."
+    },
+    "beard-premium": {
+      "name": "Barbe Premium",
+      "description": "Barbe avec serviette chaude et massage",
+      "detailedDescription": "Barbe alignée avec serviette chaude et massage facial relaxant - soin et sophistication pour votre visage."
+    },
+    "beard-simple": {
+      "name": "Barbe Simple",
+      "description": "Alignement basique de la barbe",
+      "detailedDescription": "Alignement basique de la barbe (contour), idéal pour l'entretien et la définition."
+    },
+    "haircut-beard-eyebrows": {
+      "name": "Coupe, Barbe & Sourcils",
+      "description": "Forfait grooming complet",
+      "detailedDescription": "Coupe sur mesure, barbe bien alignée et sourcils définis - tout pour un look impeccable."
+    },
+    "haircut-barbotherapy": {
+      "name": "Coupe & Barbothérapie",
+      "description": "Coupe avec traitement relaxant",
+      "detailedDescription": "Coupe personnalisée + barbothérapie avec serviette chaude, ozone et thérapie faciale pour un soin complet et relaxant."
+    },
+    "haircut-beard-premium": {
+      "name": "Coupe, Barbe Premium",
+      "description": "Coupe avec barbe premium",
+      "detailedDescription": "Coupe personnalisée avec barbe premium, incluant serviette chaude et massage facial."
+    },
+    "beard-fade": {
+      "name": "Barbe avec Dégradé",
+      "description": "Barbe avec dégradé professionnel",
+      "detailedDescription": "Barbe stylisée avec dégradé doux ou prononcé, selon votre style."
+    },
+    "beard-fade-contour": {
+      "name": "Barbe Dégradé & Contour Cheveux",
+      "description": "Barbe avec dégradé et contour",
+      "detailedDescription": "Barbe avec dégradé et contour des cheveux pour une finition détaillée et bien définie."
+    },
+    "hair-contour": {
+      "name": "Contour Cheveux",
+      "description": "Finition et définition des cheveux",
+      "detailedDescription": "Contour et finition des cheveux pour un look propre et défini."
+    },
+    "eyebrows": {
+      "name": "Sourcils",
+      "description": "Sculpture des sourcils",
+      "detailedDescription": "Sculpture des sourcils pour mettre en valeur votre regard avec symétrie et précision."
+    },
+    "head-shave": {
+      "name": "Rasage Tête",
+      "description": "Coupe tondeuse courte",
+      "detailedDescription": "Coupe avec un seul sabot de tondeuse, idéal pour ceux qui recherchent praticité et style épuré."
+    },
+    "head-shave-beard": {
+      "name": "Rasage Tête & Barbe",
+      "description": "Tête rasée avec barbe alignée",
+      "detailedDescription": "Rasage de tête (dégradé non inclus), lavage optionnel. Barbe avec ajustement de taille, volume, dégradé tondeuse, contours rasoir et après-rasage revitalisant."
+    },
+    "hair-hydration": {
+      "name": "Hydratation Cheveux",
+      "description": "Traitement nourrissant pour cheveux",
+      "detailedDescription": "Traitement nourrissant qui restaure brillance, douceur et santé des cheveux."
+    },
+    "beard-hydration": {
+      "name": "Hydratation Barbe",
+      "description": "Hydratation profonde de la barbe",
+      "detailedDescription": "Traitement d'hydratation pour une barbe plus douce et plus saine."
+    },
+    "facial-cleansing": {
+      "name": "Nettoyage Facial",
+      "description": "Exfoliation et hydratation faciale",
+      "detailedDescription": "Exfoliation et hydratation profondes pour éliminer les impuretés et revitaliser la peau."
+    },
+    "hair-therapy": {
+      "name": "Thérapie Capillaire",
+      "description": "Traitement santé des cheveux",
+      "detailedDescription": "Traitement axé sur la santé du cuir chevelu et le renforcement des cheveux, luttant contre la chute, le gras ou la sécheresse."
+    },
+    "anti-dandruff-therapy": {
+      "name": "Thérapie Anti-Pelliculaire",
+      "description": "Traitement anti-pelliculaire",
+      "detailedDescription": "Traitement spécifique pour combattre les pellicules et équilibrer le cuir chevelu."
+    },
+    "hair-pigmentation": {
+      "name": "Pigmentation Cheveux",
+      "description": "Coloration à base d'eau",
+      "detailedDescription": "La pigmentation des cheveux avec teinture à base d'eau est un service qui fonce ou uniformise la couleur des cheveux. Idéal pour couvrir les cheveux blancs, combler les zones clairsemées ou changer la teinte des cheveux."
+    },
+    "beard-pigmentation": {
+      "name": "Pigmentation Barbe",
+      "description": "Coloration de barbe",
+      "detailedDescription": "Coloration de la barbe pour corriger les zones clairsemées, uniformiser la couleur et sublimer le look."
+    },
+    "nose-waxing": {
+      "name": "Épilation Nez",
+      "description": "Épilation des poils du nez",
+      "detailedDescription": "Épilation hygiénique et discrète des poils du nez."
+    },
+    "waxing-combo": {
+      "name": "Combo Épilation (Nez & Oreilles)",
+      "description": "Épilation complète",
+      "detailedDescription": "Épilation des poils indésirables de manière hygiénique et discrète, favorisant propreté et esthétique."
+    },
+    "haircut-student": {
+      "name": "Coupe (Étudiant)",
+      "description": "Coupe spéciale étudiants",
+      "detailedDescription": "Coupe personnalisée à prix spécial pour étudiants, sans compromis sur le style. (Carte étudiant valide requise)"
+    },
+    "haircut-beard-student": {
+      "name": "Coupe & Barbe (Étudiant)",
+      "description": "Combo étudiant",
+      "detailedDescription": "Coupe et barbe alignées, conçues pour les étudiants recherchant praticité et look moderne."
+    },
+    "sealant": {
+      "name": "Scellant",
+      "description": "Traitement scellant capillaire",
+      "detailedDescription": "Traitement qui scelle les cheveux, réduit les frisottis et apporte brillance et protection prolongée."
+    },
+    "haircut-beard-sealant": {
+      "name": "Coupe, Barbe & Scellant",
+      "description": "Combo premium avec scellant",
+      "detailedDescription": "Coupe et barbe personnalisées avec finition scellante pour brillance, protection et durabilité."
+    },
+    "botox": {
+      "name": "Botox",
+      "description": "Traitement botox capillaire",
+      "detailedDescription": "Traitement botox capillaire pour la reconstruction et la revitalisation des cheveux."
+    },
+    "highlights": {
+      "name": "Mèches",
+      "description": "Coloration mèche par mèche",
+      "detailedDescription": "Technique de coloration mèche par mèche pour créer des effets de mèches naturels et modernes."
+    },
+    "platinum": {
+      "name": "Platine",
+      "description": "Décoloration des cheveux",
+      "detailedDescription": "Décoloration des cheveux pour obtenir des tons clairs et modernes, frappants et actuels."
+    },
+    "image-consulting": {
+      "name": "Conseil en Image (Visagisme)",
+      "description": "Analyse de style personnalisée",
+      "detailedDescription": "Analyse complète du visage pour recommander la coupe et le style qui conviennent le mieux à votre identité et traits personnels."
+    },
+    "courtesy-haircut": {
+      "name": "Coupe Gracieuse",
+      "description": "Coupe spéciale gracieuse",
+      "detailedDescription": "Service de coupe gracieuse sur consultation préalable."
+    }
+  },
+  "barbershops": {
+    "label": "NOS",
+    "title": "Salons",
+    "subtitle": "Visitez nos établissements à Lisbonne et découvrez l'atmosphère unique de chaque espace",
+    "unit": "Établissement",
+    "viewMap": "Voir sur la Carte",
+    "bookNow": "Réserver",
+    "schedule": {
+      "weekdays": "Lun - Ven",
+      "saturday": "Samedi",
+      "sunday": "Dimanche",
+      "holidays": "Jours fériés",
+      "closed": "Fermé",
+      "and": "et"
+    }
+  }
+}
