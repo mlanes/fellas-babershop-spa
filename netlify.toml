@@ -1,9 +1,9 @@
 [build]
   command = "npm run build"
-  publish = ".output/public"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Nuxt 3 handles its own routing via Nitro server
-# No redirects needed - Netlify Functions will handle SSR
+# Nuxt 3 SSR with Nitro Netlify preset
+# Netlify automatically handles the server functions
