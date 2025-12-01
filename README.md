@@ -1,162 +1,159 @@
-# Fellas Barbershop 💈
+# Fellas Barbershop
 
-A modern, responsive single-page application for Fellas Barbers - a premium barbershop experience in Coimbra, Portugal. Built with Vue 3, TypeScript, and modern web technologies.
-
-![Fellas Barbershop](./src/assets/img/logo.svg)
+A modern, responsive web application for Fellas Barbers - a premium barbershop in Lisboa, Portugal. Built with Nuxt 3, TypeScript, and deployed on Netlify with SSR.
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
-- [Design](#design)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Development](#development)
-- [Testing](#testing)
-- [Building for Production](#building-for-production)
+- [Deployment](#deployment)
+- [Internationalization](#internationalization)
+- [Design](#design)
 - [Contributing](#contributing)
 
 ## Overview
 
-Fellas Barbershop SPA is a professionally crafted web application showcasing barbershop services with a focus on user experience, accessibility, and performance. The application features smooth animations, responsive design, internationalization support, and a comprehensive gallery of services.
+Fellas Barbershop is a professionally crafted web application showcasing barbershop services with a focus on user experience, performance, and modern web standards. The application features smooth animations, responsive design, multi-language support, PWA capabilities, and server-side rendering for optimal SEO.
+
+**Live Site:** [fellasbarbershop.pt](https://fellasbarbershop.pt)
 
 ## Features
 
 ### Core Features
 
+- **Server-Side Rendering (SSR)**: Nuxt 3 with Nitro for optimal SEO and performance
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices
-- **Internationalization (i18n)**: Multi-language support with Vue I18n
-- **Theme Support**: Light and dark theme with smooth transitions
-- **Smooth Scrolling**: Buttery smooth navigation between sections
-- **Scroll Animations**: Engaging animations triggered by scroll events
-- **Scroll Spy Navigation**: Active navigation highlighting based on scroll position
+- **Dark/Light Theme**: Automatic and manual theme switching with smooth transitions
+- **Internationalization (i18n)**: Multi-language support (Portuguese, English, Spanish, French)
+- **Progressive Web App (PWA)**: Installable with offline support via Workbox
+- **Smooth Animations**: Scroll-triggered animations and transitions
 
-### Component Features
+### UI Components
 
-- **Service Showcase**: Interactive service cards with detailed information
-- **Infinite Scroll Gallery**: Three-row gallery with infinite scrolling effect
-- **Media Preview Dialog**: Full-screen media preview with keyboard navigation
-- **Contact Forms**: Accessible and validated contact forms
-- **Testimonials**: Customer testimonials with social proof
-- **Icon System**: Integrated Feather Icons for consistent iconography
+- **Hero Section**: Full-screen video background with animated logo
+- **Services Showcase**: Interactive service cards with pricing
+- **Infinite Scroll Gallery**: Three-row gallery with media preview dialog
+- **Barbershop Locations**: Carousel showcasing multiple locations
+- **Testimonials**: Customer reviews with navigation
+- **Before/After Gallery**: Transformation showcases
 
-### Development Features
+### Performance Features
 
-- **TypeScript**: Full type safety across the application
-- **Storybook**: Component development and documentation
-- **Unit Testing**: Vitest for component and unit tests
-- **E2E Testing**: Playwright for end-to-end testing
-- **Accessibility Testing**: Axe-core integration for a11y testing
-- **ESLint & Prettier**: Code quality and formatting enforcement
-
-## Design
-
-The design system and UI/UX specifications are available in Figma:
-
-**[View Figma Design](https://www.figma.com/design/KcNyrpxsmfBF6B3CNdzfVF/Fellas-Barber?node-id=0-1&p=f&t=LBEbTQ2tji4qFw0p-0)**
-
-The design includes:
-
-- Complete component library
-- Responsive breakpoints
-- Color system and typography
-- Spacing and layout guidelines
-- Animation specifications
+- **Lazy Loading**: Images and videos load on demand
+- **Asset Caching**: PWA with intelligent caching strategies
+- **Optimized Fonts**: Preconnected Google Fonts
+- **SSR Prerendering**: Static pages prerendered at build time
 
 ## Tech Stack
 
 ### Core
 
-- **Vue 3**: Progressive JavaScript framework with Composition API
-- **TypeScript**: Type-safe development
-- **Vite**: Next-generation frontend tooling
-- **Vue Router**: Official routing solution
-- **Pinia**: State management library
+| Technology | Purpose |
+|------------|---------|
+| **Nuxt 3** | Vue meta-framework with SSR |
+| **Vue 3** | Progressive JavaScript framework |
+| **TypeScript** | Type-safe development |
+| **Nitro** | Server engine (Netlify preset) |
 
-### UI/UX
+### Styling & UI
 
-- **SCSS**: Enhanced CSS with variables and nesting
-- **Feather Icons**: Beautiful open-source icons
-- **VueUse**: Collection of Vue Composition utilities
+| Technology | Purpose |
+|------------|---------|
+| **SCSS** | Enhanced CSS with variables, mixins, nesting |
+| **CSS Custom Properties** | Dynamic theming system |
+| **nuxt-svgo** | Optimized SVG component loading |
 
-### Development Tools
+### State & Data
 
-- **Storybook**: Component development environment
-- **Vitest**: Unit testing framework
-- **Playwright**: End-to-end testing
-- **ESLint**: Code linting
-- **Prettier**: Code formatting
+| Technology | Purpose |
+|------------|---------|
+| **Pinia** | State management |
+| **@nuxtjs/i18n** | Internationalization |
+| **@vite-pwa/nuxt** | PWA functionality |
 
-### Internationalization
+### Development
 
-- **Vue I18n**: Internationalization plugin
+| Technology | Purpose |
+|------------|---------|
+| **ESLint** | Code linting |
+| **Prettier** | Code formatting |
+| **Sass** | SCSS compilation |
 
 ## Project Structure
 
 ```
 fellas-babershop-spa/
-├── .storybook/           # Storybook configuration
-├── assets/               # Static assets
-├── public/               # Public static files
-├── src/
-│   ├── components/       # Vue components
-│   │   ├── layout/       # Layout components (Header, Footer)
-│   │   ├── sections/     # Page sections (Hero, Services, Gallery, etc.)
-│   │   └── ui/           # Reusable UI components
-│   ├── composables/      # Vue composables
-│   │   ├── useTheme.ts
-│   │   ├── useScrollSpy.ts
-│   │   ├── useSmoothScroll.ts
-│   │   └── useScrollAnimation.ts
-│   ├── i18n/             # Internationalization
-│   │   ├── locales/      # Translation files
-│   │   └── index.ts
-│   ├── router/           # Vue Router configuration
-│   ├── stores/           # Pinia stores
-│   ├── types/            # TypeScript type definitions
-│   ├── styles/           # Global styles
-│   ├── App.vue           # Root component
-│   └── main.ts           # Application entry point
-├── tests/                # Test files
-├── specs/                # Project specifications
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
+├── assets/
+│   ├── img/                 # Images and SVGs
+│   ├── styles/
+│   │   ├── _variables.scss  # SCSS variables
+│   │   ├── _mixins.scss     # SCSS mixins
+│   │   ├── _themes.scss     # Theme system
+│   │   ├── _primitive-colors.scss
+│   │   ├── _color-definitions.scss
+│   │   └── main.scss        # Global styles
+│   └── video/               # Video assets
+├── components/
+│   ├── layout/              # AppHeader, AppFooter
+│   ├── sections/            # Page sections (Hero, Services, Gallery, etc.)
+│   └── ui/                  # Reusable UI components (FButton, FLogo, etc.)
+├── composables/             # Vue composables
+│   ├── useTheme.ts
+│   ├── useScrollSpy.ts
+│   ├── useSmoothScroll.ts
+│   └── useScrollAnimation.ts
+├── locales/                 # Translation files
+│   ├── pt.json
+│   ├── en.json
+│   ├── es.json
+│   └── fr.json
+├── pages/                   # Route pages
+│   ├── index.vue
+│   ├── services.vue
+│   ├── gallery.vue
+│   ├── contacts.vue
+│   └── score.vue
+├── public/                  # Static assets
+│   ├── favicon.svg
+│   ├── robots.txt
+│   └── og-image.jpg
+├── app.vue                  # Root component
+├── app.html                 # Custom HTML template
+├── nuxt.config.ts           # Nuxt configuration
+├── netlify.toml             # Netlify deployment config
+└── package.json
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Node.js**: Version 18.x or higher
-- **npm**: Version 9.x or higher (comes with Node.js)
+- **Node.js**: Version 20.x or higher
+- **npm**: Version 9.x or higher
 
 ### Installation
 
 1. Clone the repository:
-
    ```bash
    git clone <repository-url>
    cd fellas-babershop-spa
    ```
-2. Install dependencies:
 
+2. Install dependencies:
    ```bash
    npm install
    ```
-3. Create environment file (optional):
 
-   ```bash
-   cp .env.example .env
-   ```
-4. Start the development server:
-
+3. Start the development server:
    ```bash
    npm run dev
    ```
-5. Open your browser and navigate to `http://localhost:5173`
+
+4. Open your browser at `http://localhost:3000`
 
 ## Development
 
@@ -166,106 +163,124 @@ fellas-babershop-spa/
 # Start development server with hot reload
 npm run dev
 
-# Build for production
+# Build for production (SSR)
 npm run build
+
+# Generate static site
+npm run generate
 
 # Preview production build locally
 npm run preview
 
-# Run unit tests
-npm run test:unit
-
-# Run E2E tests
-npm run test:e2e
-
-# Start Storybook
-npm run storybook
-
-# Build Storybook
-npm run build-storybook
-
-# Lint and fix files
+# Lint files
 npm run lint
 
 # Format code with Prettier
 npm run format
 ```
 
-### Development Workflow
+### Environment Variables
 
-1. **Component Development**: Use Storybook for isolated component development
+Create a `.env` file for local development:
 
-   ```bash
-   npm run storybook
-   ```
-2. **Type Checking**: TypeScript provides real-time type checking in your IDE
-3. **Linting**: Run ESLint to catch potential issues
-
-   ```bash
-   npm run lint
-   ```
-4. **Formatting**: Format code with Prettier
-
-   ```bash
-   npm run format
-   ```
-
-## Testing
-
-### Unit Tests
-
-Unit tests are written with Vitest and Vue Test Utils:
-
-```bash
-npm run test:unit
+```env
+VITE_APP_TITLE=Fellas Barbers
+VITE_BOOKING_URL=https://booking.example.com
+VITE_INSTAGRAM_URL=https://instagram.com/fellasbarbers
+VITE_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
 ```
 
-### End-to-End Tests
+### Theme System
 
-E2E tests use Playwright for browser automation:
+The app uses a CSS custom properties-based theme system:
 
-```bash
-npm run test:e2e
+- **Light theme**: Default, clean appearance
+- **Dark theme**: Rich dark mode with brand colors
+- **Auto**: Follows system preference
+
+Theme is managed via `data-theme` attribute on `<html>` and persisted in localStorage.
+
+### Adding New Components
+
+1. Create component in appropriate directory (`components/ui/`, `components/sections/`)
+2. Use SCSS with `@use '~/assets/styles/variables' as *`
+3. Follow existing naming conventions (`FButton`, `FLogo`, etc.)
+4. Add translations to locale files if needed
+
+## Deployment
+
+### Netlify (Current)
+
+The project is configured for Netlify SSR deployment:
+
+```toml
+# netlify.toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
 ```
 
-### Accessibility Tests
+**Deployment is automatic** on push to `main` branch.
 
-Accessibility testing is integrated with Playwright using Axe-core:
+### Manual Deployment
 
-- Tests run automatically during E2E test execution
-- Storybook includes the a11y addon for manual testing
-
-## Building for Production
-
-1. Build the application:
-
+1. Build the project:
    ```bash
    npm run build
    ```
-2. The optimized build will be in the `dist/` directory
-3. Preview the production build locally:
 
+2. The `.output` directory contains the server and static assets
+
+3. Deploy using Netlify CLI:
    ```bash
-   npm run preview
+   netlify deploy --prod
    ```
 
-### Build Optimizations
+## Internationalization
 
-- Code splitting for optimal bundle sizes
-- Tree shaking to remove unused code
-- Minification of JavaScript and CSS
-- Asset optimization (images, fonts)
-- Gzip compression ready
+Supported languages:
+- **Portuguese (pt)** - Default
+- **English (en)**
+- **Spanish (es)**
+- **French (fr)**
 
-## Component Documentation
+### Adding Translations
 
-Component documentation and examples are available in Storybook:
+1. Add keys to all locale files in `locales/`
+2. Use in components:
+   ```vue
+   <template>
+     <p>{{ $t('key.path') }}</p>
+   </template>
+   ```
 
-```bash
-npm run storybook
-```
+### Language Detection
 
-Access Storybook at `http://localhost:6006`
+- Detects browser language on first visit
+- Stores preference in cookie (`i18n_redirected`)
+- No URL prefix strategy (`/services` not `/en/services`)
+
+## Design
+
+The design system and UI/UX specifications are available in Figma:
+
+**[View Figma Design](https://www.figma.com/design/KcNyrpxsmfBF6B3CNdzfVF/Fellas-Barber?node-id=0-1&p=f&t=LBEbTQ2tji4qFw0p-0)**
+
+### Color System
+
+| Color | Light Mode | Dark Mode |
+|-------|------------|-----------|
+| Primary | `#E83752` | `#E83752` |
+| Background | `#F7F9FC` | `#0A0909` |
+| Text | `#000000` | `#FFFFFF` |
+
+### Typography
+
+- **Primary Font**: Raleway (Google Fonts)
+- **Weights**: 400, 500, 600, 700
 
 ## Browser Support
 
@@ -274,30 +289,20 @@ Access Storybook at `http://localhost:6006`
 - Safari (latest)
 - Edge (latest)
 
-## Performance
+## Performance Targets
 
-The application is optimized for performance:
+| Metric | Target |
+|--------|--------|
+| Lighthouse Performance | 90+ |
+| First Contentful Paint | < 1.5s |
+| Largest Contentful Paint | < 2.5s |
+| Cumulative Layout Shift | < 0.1 |
 
-- Lighthouse score: 90+ across all metrics
-- First Contentful Paint (FCP): < 1.5s
-- Largest Contentful Paint (LCP): < 2.5s
-- Cumulative Layout Shift (CLS): < 0.1
-- Time to Interactive (TTI): < 3.5s
+## Known Issues & Improvements
 
-## Accessibility
-
-The application follows WCAG 2.1 Level AA guidelines:
-
-- Semantic HTML
-- ARIA labels and roles
-- Keyboard navigation
-- Focus management
-- Screen reader support
-- Color contrast compliance
+See [SEO_ACCESSIBILITY_AUDIT.md](./SEO_ACCESSIBILITY_AUDIT.md) for a detailed audit of SEO and accessibility improvements.
 
 ## Contributing
-
-Contributions are welcome! Please follow these guidelines:
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/my-feature`
@@ -312,11 +317,11 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
-- `style`: Code style changes (formatting, etc.)
+- `style`: Code style changes
 - `refactor`: Code refactoring
-- `test`: Test updates
+- `perf`: Performance improvements
 - `chore`: Build process or tooling changes
 
 ---
 
-Built with ❤️ by Mario Lanes
+Built with care by Mario Lannes
