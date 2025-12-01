@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  // Netlify deployment preset
+  nitro: {
+    preset: 'netlify',
+  },
+
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/i18n',
