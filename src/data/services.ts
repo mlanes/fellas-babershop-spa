@@ -11,7 +11,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'O Combo Premium é uma experiência completa de cuidado e bem-estar. Inclui: Corte de cabelo personalizado, Design de barba com barboterapia, toalha quente e ozono, Terapia facial, Massagem relaxante, Sobrancelhas modeladas. E, à sua escolha: depilação de orelha e nariz ou hidratação capilar. Tudo pensado para proporcionar relaxamento profundo, pele saudável e uma barba impecável, sem irritações.',
-    price: '€30',
+    price: '€32',
     duration: '60min',
   },
   {
@@ -21,7 +21,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte de cabelo 100% personalizado, com estilo ajustado ao seu perfil e necessidade.',
-    price: '€16',
+    price: '€17',
     duration: '30min',
   },
   {
@@ -31,7 +31,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte de cabelo e barba alinhados para um visual impecável.',
-    price: '€20',
+    price: '€22',
     duration: '60min',
   },
   {
@@ -41,7 +41,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Barba tratada com toalha quente, ozono, terapia facial e massagem. Ideal para peles sensíveis e relaxamento profundo.',
-    price: '€15',
+    price: '€16',
     duration: '30min',
   },
   {
@@ -51,7 +51,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Barba alinhada com toalha quente e massagem facial relaxante cuidado e sofisticação para o seu rosto.',
-    price: '€12',
+    price: '€13',
     duration: '30min',
   },
   {
@@ -61,7 +61,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Alinhamento básico da barba (linha), ideal para manutenção e definição.',
-    price: '€8',
+    price: '€9',
     duration: '30min',
   },
   {
@@ -71,7 +71,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte de cabelo sob medida, barba bem alinhada e sobrancelhas definidas  tudo para um visual impecável.',
-    price: '€23',
+    price: '€25',
     duration: '60min',
   },
   {
@@ -81,7 +81,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte personalizado + barboterapia com toalha quente, ozono e terapia facial para um cuidado completo e relaxante.',
-    price: '€25',
+    price: '€26',
     duration: '60min',
   },
   {
@@ -91,7 +91,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte personalizado com barba premium, incluindo toalha quente e massagem facial.',
-    price: '€22',
+    price: '€24',
     duration: '60min',
   },
   {
@@ -101,7 +101,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Barba modelada com degradê suave ou marcante, conforme seu estilo.',
-    price: '€10',
+    price: '€11',
     duration: '30min',
   },
   {
@@ -111,7 +111,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Barba com degradê e contorno capilar para um acabamento detalhado e bem definido.',
-    price: '€13',
+    price: '€14',
     duration: '30min',
   },
   {
@@ -121,7 +121,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Contorno e acabamento do cabelo para um visual limpo e definido.',
-    price: '€5',
+    price: '€6',
     duration: '30min',
   },
   {
@@ -131,7 +131,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Modelagem das sobrancelhas para valorizar o olhar com simetria e precisão.',
-    price: '€5',
+    price: '€6',
     duration: '30min',
   },
   {
@@ -141,7 +141,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte apenas com 1 pente da máquina, ideal para quem procura praticidade e estilo limpo.',
-    price: '€10',
+    price: '€11',
     duration: '30min',
   },
   {
@@ -151,7 +151,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Raspar a cabeça (não inclui degrade), lavagem opcional. Barba com ajuste de tamanho, volume, degradê com máquina, contornos com navalha e pós-barba revitalizante.',
-    price: '€18',
+    price: '€19',
     duration: '60min',
   },
   {
@@ -161,7 +161,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Tratamento nutritivo que recupera o brilho, a maciez e a saúde dos fios.',
-    price: '€10',
+    price: '€11',
     duration: '30min',
   },
   {
@@ -171,7 +171,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Tratamento de hidratação para deixar a barba mais macia e saudável.',
-    price: '€6',
+    price: '€7',
     duration: '30min',
   },
   {
@@ -181,7 +181,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Esfoliação e hidratação profunda para remover impurezas e revitalizar a pele.',
-    price: '€10',
+    price: '€11',
     duration: '30min',
   },
   {
@@ -191,7 +191,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Tratamento voltado à saúde do couro cabeludo e fortalecimento dos fios, combatendo queda, oleosidade ou ressecamento.',
-    price: '€30',
+    price: '€31',
     duration: '60min',
   },
   {
@@ -201,7 +201,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Tratamento específico para combater a caspa e equilibrar o couro cabeludo.',
-    price: '€10',
+    price: '€11',
     duration: '30min',
   },
   {
@@ -211,7 +211,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'A pigmentação de cabelo com tinta à base de água é um serviço que escurece ou uniformiza a cor dos fios. Ideal para cobrir fios brancos, preencher falhas ou alterar a tonalidade do cabelo.',
-    price: '€15',
+    price: '€16',
     duration: '30min',
   },
   {
@@ -221,7 +221,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Coloração da barba para corrigir falhas, uniformizar a cor e realçar o visual.',
-    price: '€10',
+    price: '€11',
     duration: '30min',
   },
   {
@@ -241,7 +241,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Remoção dos pelos indesejados de forma higiênica e discreta, promovendo limpeza e estética.',
-    price: 'Consultar',
+    price: '€11',
     duration: '30min',
   },
   {
@@ -251,7 +251,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte personalizado com valor especial para estudantes, sem abrir mão do estilo. (Obrigatória apresentação do cartão de estudante válido)',
-    price: '€14',
+    price: '€15',
     duration: '30min',
   },
   {
@@ -261,7 +261,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Corte e barba alinhados, pensado para estudantes que procuram praticidade e visual moderno.',
-    price: '€18',
+    price: '€20',
     duration: '60min',
   },
   {
@@ -301,7 +301,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Técnica de coloração fio a fio para criar efeitos de luzes naturais e modernas.',
-    price: 'A partir de €60',
+    price: '€60',
     duration: '120min',
   },
   {
@@ -311,7 +311,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Descoloração capilar para atingir tons claros e modernos, marcante e atual.',
-    price: 'A partir de €70',
+    price: '€70',
     duration: '120min',
   },
   {
@@ -321,7 +321,7 @@ export const services: Service[] = [
     icon: 'checkmark',
     detailedDescription:
       'Análise completa do rosto para indicar o corte e estilo que mais combinam com sua identidade e traços pessoais.',
-    price: 'A partir de €60',
+    price: '€60',
     duration: '60min',
   },
   {
