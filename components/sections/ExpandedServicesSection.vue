@@ -17,77 +17,8 @@ const currentPage = ref(1)
 const itemsPerPage = 10
 const slideDirection = ref<'left' | 'right'>('right')
 
-// Import all service images dynamically using Vite's glob import
-const allServiceImages = import.meta.glob('@/assets/img/services/*.{jpg,jpeg,png,webp}', {
-  eager: true,
-  import: 'default'
-}) as Record<string, string>
-
-// Helper function to get service image path - returns undefined if not found (will show logo)
-const getServiceImagePath = (serviceId: string): string | undefined => {
-  // Try different possible keys based on how glob resolves paths
-  const possibleKeys = [
-    `/assets/img/services/fellas-barbers-${serviceId}.jpeg`,
-    `@/assets/img/services/fellas-barbers-${serviceId}.jpeg`,
-    `../assets/img/services/fellas-barbers-${serviceId}.jpeg`,
-  ]
-
-  for (const key of Object.keys(allServiceImages)) {
-    if (key.includes(`fellas-barbers-${serviceId}.jpeg`)) {
-      return allServiceImages[key]
-    }
-  }
-  return undefined
-}
-
-// Service image mapping - automatically maps service IDs to their images
-const serviceImageMap: Record<string, string | undefined> = {
-  'haircut': getServiceImagePath('haircut'),
-  'haircut-beard': getServiceImagePath('haircut-beard'),
-  'beard-premium': getServiceImagePath('beard-premium'),
-  'beard-simple': getServiceImagePath('beard-simple'),
-  'haircut-beard-eyebrows': getServiceImagePath('haircut-beard-eyebrows'),
-  'haircut-beard-premium': getServiceImagePath('haircut-beard-premium'),
-  'beard-fade': getServiceImagePath('beard-fade'),
-  'beard-fade-contour': getServiceImagePath('beard-fade-contour'),
-  'hair-contour': getServiceImagePath('hair-contour'),
-  'eyebrows': getServiceImagePath('eyebrows'),
-  'head-shave': getServiceImagePath('head-shave'),
-  'head-shave-beard': getServiceImagePath('head-shave-beard'),
-  'hair-hydration': getServiceImagePath('hair-hydration'),
-  'beard-hydration': getServiceImagePath('beard-hydration'),
-  'hair-therapy': getServiceImagePath('hair-therapy'),
-  'haircut-student': getServiceImagePath('haircut-student'),
-  'haircut-beard-student': getServiceImagePath('haircut-beard-student'),
-  'highlights': getServiceImagePath('highlights'),
-}
-
-// Services that should use center object position (rest use top)
-const centerPositionServices = [
-  'haircut',
-  'haircut-beard',
-  'beard-premium',
-  'beard-simple',
-  'haircut-beard-eyebrows',
-  'hair-contour',
-  'eyebrows',
-  'head-shave',
-  'head-shave-beard',
-  'hair-hydration',
-  'beard-hydration',
-  'hair-therapy',
-  'haircut-student'
-]
-
-// Helper to get service image if available
-const getServiceImage = (serviceId: string | undefined) => {
-  return serviceId ? serviceImageMap[serviceId] : undefined
-}
-
-// Helper to determine object position
-const getImagePosition = (serviceId: string | undefined) => {
-  return serviceId && centerPositionServices.includes(serviceId) ? 'center' : 'top'
-}
+// No service images assigned — all cards show the logo fallback
+const getServiceImage = (_serviceId: string | undefined) => undefined
 
 const totalPages = computed(() => Math.ceil(services.value.length / itemsPerPage))
 
@@ -187,22 +118,8 @@ onMounted(() => {
                 </div>
               </div>
 
-              <div
-                class="expanded-services__card-image"
-                :class="{ 'expanded-services__card-image--has-image': getServiceImage(service.id) }"
-              >
-                <div
-                  v-if="getServiceImage(service.id)"
-                  class="expanded-services__card-image-wrapper"
-                  :style="{ '--image-position': getImagePosition(service.id) }"
-                >
-                  <img
-                    :src="getServiceImage(service.id)"
-                    :alt="`Fellas Barbers ${service.name} service`"
-                    loading="lazy"
-                  />
-                </div>
-                <FellasLogo v-else class="expanded-services__card-logo" />
+              <div class="expanded-services__card-image">
+                <FellasLogo class="expanded-services__card-logo" />
               </div>
             </div>
           </div>
