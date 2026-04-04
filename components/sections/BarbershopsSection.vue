@@ -1,84 +1,25 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import FIcon from '~/components/ui/FIcon.vue'
-
-// Import barbershop images
-import alameda1 from '~/assets/img/barbershops/alameda/fellas-barbers-alameda-interior-1.png'
-import alameda2 from '~/assets/img/barbershops/alameda/fellas-barbers-alameda-interior-2.png'
-import alameda3 from '~/assets/img/barbershops/alameda/fellas-barbers-alameda-interior-3.png'
-import campoGrande1 from '~/assets/img/barbershops/campo-grande/fellas-barbers-campo-grande-interior-1.png'
-import campoGrande2 from '~/assets/img/barbershops/campo-grande/fellas-barbers-campo-grande-interior-2.png'
-import campoGrande3 from '~/assets/img/barbershops/campo-grande/fellas-barbers-campo-grande-interior-3.png'
-import campoGrande4 from '~/assets/img/barbershops/campo-grande/fellas-barbers-campo-grande-interior-4.png'
+import { useBarbershops } from '~/composables/useBarbershops'
 
 const { t } = useI18n()
+const { barbershops } = useBarbershops()
 
-interface Barbershop {
-  id: string
-  name: string
-  address: string
-  phone?: string
-  whatsapp?: string
-  instagram?: string
-  facebook?: string
-  scheduleWeekday: string
-  scheduleWeekend: string
-  scheduleSunday: string
-  mapsUrl: string
-  bookingUrl: string
-  images: string[]
-}
+const shopIds = computed(() => barbershops.value.map(s => s.id))
 
-const barbershops = ref<Barbershop[]>([
-  {
-    id: 'alameda',
-    name: `${t('barbershops.unit')} Alameda`,
-    address: 'Alameda Dom Afonso Henriques, 47A - 1000-123 Alameda - Lisboa/LI - Portugal',
-    phone: '+351 215 860 238',
-    whatsapp: '+351 912 286 442',
-    instagram: 'https://www.instagram.com/fellasbarber.pt',
-    facebook: 'https://www.facebook.com/FellasBarberAlameda',
-    scheduleWeekday: `${t('barbershops.schedule.weekdays')}: 09:00 - 19:00`,
-    scheduleWeekend: `${t('barbershops.schedule.saturday')} ${t('barbershops.schedule.and')} ${t('barbershops.schedule.holidays')}: 09:00 - 17:00`,
-    scheduleSunday: `${t('barbershops.schedule.sunday')}: ${t('barbershops.schedule.closed')}`,
-    mapsUrl: 'https://maps.app.goo.gl/D83DuiVBsqQ4mith6',
-    bookingUrl: 'https://sites.appbarber.com.br/fellasbarbersho-auei',
-    images: [alameda1, alameda2, alameda3]
-  },
-  {
-    id: 'campo-grande',
-    name: `${t('barbershops.unit')} Campo Grande`,
-    address: 'Campo Grande, 296 B - 1700-097 Alvalade - Lisboa/LI - Portugal',
-    phone: '+351 215 904 241',
-    whatsapp: '+351 910 452 767',
-    instagram: 'https://www.instagram.com/fellasbarber2.pt',
-    facebook: 'https://www.facebook.com/people/Fellas-Barber-Premium-II/61562815660848/?rdid=nEF4vgUgQpGM7Q6g&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Eky6MhsaA%2F%3Fmibexti',
-    scheduleWeekday: `${t('barbershops.schedule.weekdays')}: 10:00 - 20:00`,
-    scheduleWeekend: `${t('barbershops.schedule.saturday')} ${t('barbershops.schedule.and')} ${t('barbershops.schedule.holidays')}: 10:00 - 18:00`,
-    scheduleSunday: `${t('barbershops.schedule.sunday')}: ${t('barbershops.schedule.closed')}`,
-    mapsUrl: 'https://maps.app.goo.gl/ykdUubmgE2FxJQph9',
-    bookingUrl: 'https://sites.appbarber.com.br/fellasbarberpre-81lr',
-    images: [campoGrande1, campoGrande2, campoGrande3, campoGrande4]
-  }
-])
+const currentImageIndex = ref<Record<string, number>>(
+  Object.fromEntries(shopIds.value.map(id => [id, 0]))
+)
 
-const currentImageIndex = ref<Record<string, number>>({
-  alameda: 0,
-  'campo-grande': 0
-})
+const isTransitioning = ref<Record<string, boolean>>(
+  Object.fromEntries(shopIds.value.map(id => [id, false]))
+)
 
-// Track transition state to handle infinite loop
-const isTransitioning = ref<Record<string, boolean>>({
-  alameda: false,
-  'campo-grande': false
-})
-
-// Auto-play intervals for each carousel
-const intervals = ref<Record<string, ReturnType<typeof setInterval> | null>>({
-  alameda: null,
-  'campo-grande': null
-})
+const intervals = ref<Record<string, ReturnType<typeof setInterval> | null>>(
+  Object.fromEntries(shopIds.value.map(id => [id, null]))
+)
 
 const startAutoPlay = (shopId: string, totalImages: number) => {
   // Clear existing interval
@@ -405,17 +346,18 @@ onUnmounted(() => {
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    grid-template-columns: 1fr;
     gap: $spacing-lg;
     margin: 0 auto;
     width: 100%;
 
     @include tablet {
+      grid-template-columns: repeat(2, 1fr);
       gap: 48px;
     }
 
     @include desktop {
-      width: 70%;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }

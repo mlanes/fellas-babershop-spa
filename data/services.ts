@@ -185,26 +185,6 @@ export const services: Service[] = [
     duration: '30min',
   },
   {
-    id: 'hair-therapy',
-    name: 'Terapia Capilar',
-    description: 'Tratamento para saúde capilar',
-    icon: 'checkmark',
-    detailedDescription:
-      'Tratamento voltado à saúde do couro cabeludo e fortalecimento dos fios, combatendo queda, oleosidade ou ressecamento.',
-    price: '€31',
-    duration: '60min',
-  },
-  {
-    id: 'anti-dandruff-therapy',
-    name: 'Terapia Capilar Anti-Caspas',
-    description: 'Tratamento anti-caspa',
-    icon: 'checkmark',
-    detailedDescription:
-      'Tratamento específico para combater a caspa e equilibrar o couro cabeludo.',
-    price: '€11',
-    duration: '30min',
-  },
-  {
     id: 'hair-pigmentation',
     name: 'Pigmentação de Cabelo',
     description: 'Coloração com tinta base água',
@@ -313,25 +293,5 @@ export const services: Service[] = [
       'Descoloração capilar para atingir tons claros e modernos, marcante e atual.',
     price: '€70',
     duration: '120min',
-  },
-  {
-    id: 'image-consulting',
-    name: 'Consultoria de imagem (Visagismo)',
-    description: 'Análise personalizada de estilo',
-    icon: 'checkmark',
-    detailedDescription:
-      'Análise completa do rosto para indicar o corte e estilo que mais combinam com sua identidade e traços pessoais.',
-    price: '€60',
-    duration: '60min',
-  },
-  {
-    id: 'courtesy-haircut',
-    name: 'Corte Cortesia',
-    description: 'Corte especial cortesia',
-    icon: 'checkmark',
-    detailedDescription:
-      'Serviço de corte cortesia mediante consulta prévia.',
-    price: 'Consultar',
-    duration: '30min',
   },
 ]

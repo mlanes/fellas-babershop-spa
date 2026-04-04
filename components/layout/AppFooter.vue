@@ -5,12 +5,14 @@ import FIcon from '~/components/ui/FIcon.vue'
 import { navigationItems } from '~/data/navigation'
 import { useSmoothScroll } from '~/composables/useSmoothScroll'
 import { useLocale } from '~/composables/useLocale'
+import { useBarbershops } from '~/composables/useBarbershops'
 
 /**
  * AppFooter - Main footer with contact information and links
  */
 const { scrollTo } = useSmoothScroll()
 const { t } = useLocale()
+const { barbershops } = useBarbershops()
 const currentYear = ref(new Date().getFullYear())
 
 /**
@@ -59,46 +61,23 @@ const scrollToTop = () => {
           </nav>
         </div>
 
-        <!-- Alameda Contact -->
-        <div class="footer__column">
-          <h3 class="footer__heading text-h6">Alameda</h3>
+        <!-- Barbershop Contacts -->
+        <div v-for="shop in barbershops" :key="shop.id" class="footer__column">
+          <h3 class="footer__heading text-h6">{{ shop.name }}</h3>
           <div class="footer__contacts">
-            <a href="tel:+351215860238" class="footer__contact">
+            <a v-if="shop.phone" :href="`tel:${shop.phone.replace(/\s/g, '')}`" class="footer__contact">
               <FIcon name="phone" :size="20" />
-              <span>+351 215 860 238</span>
+              <span>{{ shop.phone }}</span>
             </a>
-            <a href="https://wa.me/351912286442" target="_blank" rel="noopener noreferrer" class="footer__contact">
+            <a v-if="shop.whatsapp" :href="`https://wa.me/${shop.whatsapp.replace(/[\s+]/g, '')}`" target="_blank" rel="noopener noreferrer" class="footer__contact">
               <FIcon name="whatsapp" :size="20" />
-              <span>+351 912 286 442</span>
+              <span>{{ shop.whatsapp }}</span>
             </a>
-            <a href="https://www.instagram.com/fellasbarber.pt" target="_blank" rel="noopener noreferrer" class="footer__contact">
+            <a v-if="shop.instagram" :href="shop.instagram" target="_blank" rel="noopener noreferrer" class="footer__contact">
               <FIcon name="instagram" :size="20" />
               <span>Instagram</span>
             </a>
-            <a href="https://www.facebook.com/FellasBarberAlameda" target="_blank" rel="noopener noreferrer" class="footer__contact">
-              <FIcon name="facebook" :size="20" />
-              <span>Facebook</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Campo Grande Contact -->
-        <div class="footer__column">
-          <h3 class="footer__heading text-h6">Campo Grande</h3>
-          <div class="footer__contacts">
-            <a href="tel:+351215904241" class="footer__contact">
-              <FIcon name="phone" :size="20" />
-              <span>+351 215 904 241</span>
-            </a>
-            <a href="https://wa.me/351910452767" target="_blank" rel="noopener noreferrer" class="footer__contact">
-              <FIcon name="whatsapp" :size="20" />
-              <span>+351 910 452 767</span>
-            </a>
-            <a href="https://www.instagram.com/fellasbarber2.pt" target="_blank" rel="noopener noreferrer" class="footer__contact">
-              <FIcon name="instagram" :size="20" />
-              <span>Instagram</span>
-            </a>
-            <a href="https://www.facebook.com/people/Fellas-Barber-Premium-II/61562815660848/?rdid=nEF4vgUgQpGM7Q6g&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Eky6MhsaA%2F%3Fmibexti" target="_blank" rel="noopener noreferrer" class="footer__contact">
+            <a v-if="shop.facebook" :href="shop.facebook" target="_blank" rel="noopener noreferrer" class="footer__contact">
               <FIcon name="facebook" :size="20" />
               <span>Facebook</span>
             </a>
@@ -151,8 +130,8 @@ const scrollToTop = () => {
     }
 
     @include desktop {
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: $spacing-4xl;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: $spacing-3xl;
     }
   }
 
