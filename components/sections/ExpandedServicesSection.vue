@@ -113,9 +113,9 @@ onMounted(() => {
                 <p class="expanded-services__card-description">
                   {{ service.description }}
                 </p>
-                <div class="expanded-services__card-price">
+                <!-- <div class="expanded-services__card-price">
                   {{ service.price }}
-                </div>
+                </div> -->
               </div>
 
               <div class="expanded-services__card-image">
