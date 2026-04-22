@@ -30,7 +30,7 @@ export function useBarbershops() {
       facebook: 'https://www.facebook.com/FellasBarberAlameda',
       scheduleWeekday: `${t('barbershops.schedule.weekdays')}: 10:00 - 19:00`,
       scheduleWeekend: `${t('barbershops.schedule.saturday')} ${t('barbershops.schedule.and')} ${t('barbershops.schedule.holidays')}: 10:00 - 17:00`,
-      scheduleSunday: `${t('barbershops.schedule.sunday')}: ${t('barbershops.schedule.closed')}`,
+      scheduleSunday: `${t('barbershops.schedule.sunday')}: 10:00 - 14:00`,
       mapsUrl: 'https://maps.app.goo.gl/D83DuiVBsqQ4mith6',
       bookingUrl: 'https://sites.appbarber.com.br/fellasbarbersho-auei',
       images: [alameda1, alameda2, alameda3],
