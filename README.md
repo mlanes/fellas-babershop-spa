@@ -12,6 +12,7 @@ A modern, responsive web application for Fellas Barbers — a premium barbershop
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Development](#development)
+- [Design System & Storybook](#design-system--storybook)
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Internationalization](#internationalization)
@@ -63,7 +64,8 @@ A marketing/showcase site for a three-location barbershop, prerendered at build 
 | SEO | @nuxtjs/sitemap, runtime JSON-LD, dynamic canonical/hreflang |
 | PWA | @vite-pwa/nuxt (Workbox) |
 | Styling | SCSS with CSS custom properties for theming, nuxt-svgo for SVGs |
-| Tests | Playwright (e2e) |
+| Design system | Storybook 9 (`@storybook-vue/nuxt`) — Foundations docs + component playground |
+| Tests | Playwright (e2e), Lighthouse (`npm run lighthouse`) |
 | Lint/format | ESLint, Prettier |
 
 ## Project Structure
@@ -73,6 +75,11 @@ fellas-babershop-spa/
 ├── app.vue                       # Root component (lang, canonical, JSON-LD)
 ├── nuxt.config.ts                # Modules, head, image, PWA, i18n config
 ├── netlify.toml                  # Netlify build config
+├── .npmrc                        # legacy-peer-deps (see Storybook section)
+├── .storybook/
+│   ├── main.ts                   # Story globs + framework
+│   ├── preview.ts                # Global SCSS, theme toolbar, sidebar order
+│   └── docs/                     # MDX Foundations pages (Colors / Typography / Spacing)
 ├── assets/
 │   ├── img/                      # SVG-only assets (logos, decorations)
 │   ├── styles/                   # SCSS tokens, mixins, themes, typography
@@ -80,7 +87,7 @@ fellas-babershop-spa/
 ├── components/
 │   ├── layout/                   # AppHeader, AppFooter
 │   ├── sections/                 # Home page sections (Hero, Services, …)
-│   └── ui/                       # Reusable primitives (FButton, FIcon, FLogo, …)
+│   └── ui/                       # Reusable primitives + co-located *.stories.ts
 ├── composables/                  # useTheme, useLocale, useBarbershops, useStructuredData, …
 ├── data/                         # Static content (services, testimonials, contact, navigation)
 ├── i18n/locales/                 # pt.json, en.json, es.json, fr.json
@@ -121,6 +128,9 @@ npm run lint         # ESLint
 npm run format       # Prettier
 npm run test:e2e     # Playwright headless
 npm run test:e2e:ui  # Playwright UI mode
+npm run lighthouse   # Lighthouse audit against fellasbarber.com, opens HTML report
+npm run storybook    # Storybook dev server on :6006
+npm run build-storybook  # Static Storybook to ./storybook-static
 ```
 
 ### Environment Variables
@@ -156,6 +166,51 @@ VITE_GOOGLE_ANALYTICS_ID=
 - TypeScript everywhere; new data shapes get interfaces in `types/`.
 - `F*`-prefixed components are reusable UI primitives — keep them business-logic-free.
 - Strings that the user sees go through the `t()` translation helper.
+
+## Design System & Storybook
+
+The reusable `F*`-prefixed primitives in `components/ui/` are the design
+system: `FButton`, `FIcon`, `FLogo`, `FLogoFooter`, `FLanguageSelector`,
+`FEyebrow`, `FSectionHeading`, `FModal`, plus `BeforeAfterSlider`.
+Section components (`components/sections/`) are page-level and
+data-coupled — they consume primitives but aren't part of the design
+system surface.
+
+### Running it
+
+```bash
+npm run storybook          # dev server at http://localhost:6006
+npm run build-storybook    # static build to ./storybook-static
+```
+
+### Sidebar layout
+
+- **Introduction** — design system overview
+- **Foundations** — MDX docs visualising the tokens (Colors, Typography,
+  Spacing). Source of truth stays in `assets/styles/`.
+- **Components** — every `F*` primitive with prop controls (auto-inferred
+  from its TS prop interface), side-by-side size/variant stories, and an
+  autodoc page
+
+The toolbar's paintbrush flips every story between **Light** and **Dark**
+themes via `data-theme`.
+
+### Adding a component story
+
+1. Drop `MyComponent.stories.ts` next to the component in `components/ui/`.
+2. Set `title: 'Components/MyComponent'`.
+3. Use `tags: ['autodocs']` for an auto-generated docs page.
+
+### Storybook + Nuxt quirk
+
+The `.npmrc` at the repo root sets `legacy-peer-deps=true`. The latest
+stable `@nuxtjs/storybook@9.0.1` ships contradictory peer-dep metadata
+(declares `storybook@~9.0.5` but its own bundled deps need `^9.1.x`).
+`legacy-peer-deps` is the standard workaround until a fixed
+`@nuxtjs/storybook` release lands. **`@nuxtjs/storybook` is deliberately
+*not* in the `nuxt.config.ts` modules array** — the Storybook framework
+(`@storybook-vue/nuxt`) boots Nuxt itself, and registering the module
+during the Nuxt build path crashed `nuxt prepare` on Netlify.
 
 ## Testing
 
