@@ -79,26 +79,26 @@ onMounted(() => {
         <div class="services__images">
           <div class="services__image-row">
             <div class="services__image-container services__image-container--large services__image-container--1">
-              <NuxtImg :src="serviceImages[0]" alt="Fellas Barbers professional haircut service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
+              <NuxtImg :src="serviceImages[0]" alt="Fellas Barbers professional haircut service" class="services__image" loading="lazy" decoding="async" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
             <div class="services__image-container services__image-container--small services__image-container--2">
-              <NuxtImg :src="serviceImages[1]" alt="Fellas Barbers beard trim and grooming service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
+              <NuxtImg :src="serviceImages[1]" alt="Fellas Barbers beard trim and grooming service" class="services__image" loading="lazy" decoding="async" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
           </div>
           <div class="services__image-row">
             <div class="services__image-container services__image-container--small services__image-container--3">
-              <NuxtImg :src="serviceImages[2]" alt="Fellas Barbers hair styling service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
+              <NuxtImg :src="serviceImages[2]" alt="Fellas Barbers hair styling service" class="services__image" loading="lazy" decoding="async" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
             <div class="services__image-container services__image-container--large services__image-container--4">
-              <NuxtImg :src="serviceImages[3]" alt="Fellas Barbers premium grooming service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
+              <NuxtImg :src="serviceImages[3]" alt="Fellas Barbers premium grooming service" class="services__image" loading="lazy" decoding="async" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
           </div>
           <div class="services__image-row">
             <div class="services__image-container services__image-container--large services__image-container--5">
-              <NuxtImg :src="serviceImages[4]" alt="Fellas Barbers fade haircut service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
+              <NuxtImg :src="serviceImages[4]" alt="Fellas Barbers fade haircut service" class="services__image" loading="lazy" decoding="async" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
             <div class="services__image-container services__image-container--small services__image-container--6">
-              <NuxtImg :src="serviceImages[5]" alt="Fellas Barbers premium barbershop service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
+              <NuxtImg :src="serviceImages[5]" alt="Fellas Barbers premium barbershop service" class="services__image" loading="lazy" decoding="async" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
           </div>
         </div>

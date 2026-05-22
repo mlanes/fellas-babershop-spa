@@ -134,6 +134,7 @@ onUnmounted(() => {
         class="before-after-slider__image"
         draggable="false"
         loading="lazy"
+        decoding="async"
         sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--after">
@@ -152,6 +153,7 @@ onUnmounted(() => {
         class="before-after-slider__image"
         draggable="false"
         loading="lazy"
+        decoding="async"
         sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--before">

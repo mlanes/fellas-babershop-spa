@@ -187,6 +187,7 @@ onUnmounted(() => {
                 :alt="item.alt"
                 class="gallery-scroll__media"
                 loading="lazy"
+                decoding="async"
                 sizes="200px md:300px lg:400px"
               />
             </div>
@@ -216,6 +217,7 @@ onUnmounted(() => {
                 :alt="item.alt"
                 class="gallery-scroll__media"
                 loading="lazy"
+                decoding="async"
                 sizes="200px md:300px lg:400px"
               />
             </div>
@@ -245,6 +247,7 @@ onUnmounted(() => {
                 :alt="item.alt"
                 class="gallery-scroll__media"
                 loading="lazy"
+                decoding="async"
                 sizes="200px md:300px lg:400px"
               />
             </div>

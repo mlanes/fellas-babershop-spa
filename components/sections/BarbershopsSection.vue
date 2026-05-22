@@ -121,6 +121,7 @@ onUnmounted(() => {
                 :alt="`${shop.name} - Interior ${index + 1}`"
                 class="barbershop-card__image"
                 loading="lazy"
+                decoding="async"
                 sizes="sm:100vw md:50vw lg:33vw"
               />
             </div>

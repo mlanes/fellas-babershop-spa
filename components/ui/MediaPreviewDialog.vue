@@ -112,6 +112,7 @@ onUnmounted(() => {
               :src="mediaSrc"
               :alt="mediaAlt"
               class="media-preview-dialog__media"
+              decoding="async"
               sizes="100vw lg:80vw"
             />
           </div>

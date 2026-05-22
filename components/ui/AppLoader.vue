@@ -9,9 +9,8 @@ import FellasLogo from '~/assets/img/logo.svg'
 
 const progress = ref(0)
 const isLoading = ref(true)
-const MIN_DISPLAY_TIME = 2500 // Minimum 2.5 seconds
+const MIN_DISPLAY_TIME = 0 // No artificial delay; fade as soon as DOM is ready
 
-// Store start time - initialized in onMounted to avoid SSR mismatch
 let startTime = 0
 
 // Simulate progress during load
