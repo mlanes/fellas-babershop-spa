@@ -1,6 +1,8 @@
 # Fellas Barbershop
 
-A modern, responsive web application for Fellas Barbers - a premium barbershop in Lisboa, Portugal. Built with Nuxt 3, TypeScript, and deployed on Netlify with SSR.
+A modern, responsive web application for Fellas Barbers — a premium barbershop with three locations in Lisbon, Portugal. Built with Nuxt 3, TypeScript and deployed on Netlify.
+
+**Live site:** [fellasbarber.com](https://fellasbarber.com)
 
 ## Table of Contents
 
@@ -10,6 +12,7 @@ A modern, responsive web application for Fellas Barbers - a premium barbershop i
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Development](#development)
+- [Testing](#testing)
 - [Deployment](#deployment)
 - [Internationalization](#internationalization)
 - [Design](#design)
@@ -17,201 +20,158 @@ A modern, responsive web application for Fellas Barbers - a premium barbershop i
 
 ## Overview
 
-Fellas Barbershop is a professionally crafted web application showcasing barbershop services with a focus on user experience, performance, and modern web standards. The application features smooth animations, responsive design, multi-language support, PWA capabilities, and server-side rendering for optimal SEO.
-
-**Live Site:** [fellasbarbershop.pt](https://fellasbarbershop.pt)
+A marketing/showcase site for a three-location barbershop, prerendered at build time for fast initial load and indexed via JSON-LD structured data. Four languages, dark/light theming, PWA installable, fully responsive.
 
 ## Features
 
-### Core Features
+### Core
 
-- **Server-Side Rendering (SSR)**: Nuxt 3 with Nitro for optimal SEO and performance
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices
-- **Dark/Light Theme**: Automatic and manual theme switching with smooth transitions
-- **Internationalization (i18n)**: Multi-language support (Portuguese, English, Spanish, French)
-- **Progressive Web App (PWA)**: Installable with offline support via Workbox
-- **Smooth Animations**: Scroll-triggered animations and transitions
+- **SSR + prerendering**: All pages prerendered at build via Nuxt 3 + Nitro; runtime image transformation through Netlify's image service
+- **Responsive**: Mobile, tablet and desktop layouts; the gallery scrollytelling effect only activates ≥1024px so touch devices scroll naturally
+- **Dark/light theme**: Manual toggle + automatic system-preference detection, no boot flash
+- **i18n**: Portuguese (default), English, Spanish, French with cookie-based detection (`no_prefix` strategy)
+- **PWA**: Installable, Workbox-cached fonts/images/videos for offline-friendly return visits
+- **A11y**: WCAG 2.1 AA target sizes, ARIA landmarks, modal focus trap, keyboard-navigable language selector
 
-### UI Components
+### Sections
 
-- **Hero Section**: Full-screen video background with animated logo
-- **Services Showcase**: Interactive service cards with pricing
-- **Infinite Scroll Gallery**: Three-row gallery with media preview dialog
-- **Barbershop Locations**: Carousel showcasing multiple locations
-- **Testimonials**: Customer reviews with navigation
-- **Before/After Gallery**: Transformation showcases
+- Hero with looping background video (separate desktop/mobile sources + real poster frame)
+- Services overview and full pricing list
+- Infinite-scroll gallery (desktop pinned scrollytelling, mobile/tablet continuous CSS drift)
+- Before/after slider
+- Customer testimonials carousel
+- Three barbershop locations with image carousel and external booking links
 
-### Performance Features
+### Performance
 
-- **Lazy Loading**: Images and videos load on demand
-- **Asset Caching**: PWA with intelligent caching strategies
-- **Optimized Fonts**: Preconnected Google Fonts
-- **SSR Prerendering**: Static pages prerendered at build time
+- **@nuxt/image**: Auto WebP/AVIF, responsive srcset, native lazy + async decode
+- **Self-hosted fonts**: Raleway and Bebas Neue via `@fontsource/*`, no Google Fonts CDN round-trips
+- **Re-encoded mobile hero video**: 6.1 MB → ~6 MB combined, audio dropped (video is muted)
+- **JSON-LD structured data**: Organization + WebSite + per-location BarberShop schemas
+- **Canonical + hreflang links** on every page
 
 ## Tech Stack
 
-### Core
-
-| Technology | Purpose |
-|------------|---------|
-| **Nuxt 3** | Vue meta-framework with SSR |
-| **Vue 3** | Progressive JavaScript framework |
-| **TypeScript** | Type-safe development |
-| **Nitro** | Server engine (Netlify preset) |
-
-### Styling & UI
-
-| Technology | Purpose |
-|------------|---------|
-| **SCSS** | Enhanced CSS with variables, mixins, nesting |
-| **CSS Custom Properties** | Dynamic theming system |
-| **nuxt-svgo** | Optimized SVG component loading |
-
-### State & Data
-
-| Technology | Purpose |
-|------------|---------|
-| **Pinia** | State management |
-| **@nuxtjs/i18n** | Internationalization |
-| **@vite-pwa/nuxt** | PWA functionality |
-
-### Development
-
-| Technology | Purpose |
-|------------|---------|
-| **ESLint** | Code linting |
-| **Prettier** | Code formatting |
-| **Sass** | SCSS compilation |
+| Category | Tech |
+|---|---|
+| Framework | Nuxt 3, Vue 3, TypeScript |
+| Server | Nitro (Netlify preset) |
+| State | Pinia |
+| i18n | @nuxtjs/i18n |
+| Images | @nuxt/image (Netlify image service in prod, IPX locally) |
+| Fonts | @fontsource/raleway, @fontsource/bebas-neue (self-hosted) |
+| SEO | @nuxtjs/sitemap, runtime JSON-LD, dynamic canonical/hreflang |
+| PWA | @vite-pwa/nuxt (Workbox) |
+| Styling | SCSS with CSS custom properties for theming, nuxt-svgo for SVGs |
+| Tests | Playwright (e2e) |
+| Lint/format | ESLint, Prettier |
 
 ## Project Structure
 
 ```
 fellas-babershop-spa/
+├── app.vue                       # Root component (lang, canonical, JSON-LD)
+├── nuxt.config.ts                # Modules, head, image, PWA, i18n config
+├── netlify.toml                  # Netlify build config
 ├── assets/
-│   ├── img/                 # Images and SVGs
-│   ├── styles/
-│   │   ├── _variables.scss  # SCSS variables
-│   │   ├── _mixins.scss     # SCSS mixins
-│   │   ├── _themes.scss     # Theme system
-│   │   ├── _primitive-colors.scss
-│   │   ├── _color-definitions.scss
-│   │   └── main.scss        # Global styles
-│   └── video/               # Video assets
+│   ├── img/                      # SVG-only assets (logos, decorations)
+│   ├── styles/                   # SCSS tokens, mixins, themes, typography
+│   └── videos/                   # Hero background videos
 ├── components/
-│   ├── layout/              # AppHeader, AppFooter
-│   ├── sections/            # Page sections (Hero, Services, Gallery, etc.)
-│   └── ui/                  # Reusable UI components (FButton, FLogo, etc.)
-├── composables/             # Vue composables
-│   ├── useTheme.ts
-│   ├── useScrollSpy.ts
-│   ├── useSmoothScroll.ts
-│   └── useScrollAnimation.ts
-├── locales/                 # Translation files
-│   ├── pt.json
-│   ├── en.json
-│   ├── es.json
-│   └── fr.json
-├── pages/                   # Route pages
-│   ├── index.vue
-│   ├── services.vue
-│   ├── gallery.vue
-│   ├── contacts.vue
-│   └── score.vue
-├── public/                  # Static assets
-│   ├── favicon.svg
-│   ├── robots.txt
-│   └── og-image.jpg
-├── app.vue                  # Root component
-├── app.html                 # Custom HTML template
-├── nuxt.config.ts           # Nuxt configuration
-├── netlify.toml             # Netlify deployment config
-└── package.json
+│   ├── layout/                   # AppHeader, AppFooter
+│   ├── sections/                 # Home page sections (Hero, Services, …)
+│   └── ui/                       # Reusable primitives (FButton, FIcon, FLogo, …)
+├── composables/                  # useTheme, useLocale, useBarbershops, useStructuredData, …
+├── data/                         # Static content (services, testimonials, contact, navigation)
+├── i18n/locales/                 # pt.json, en.json, es.json, fr.json
+├── pages/                        # File-based routing (/, /services, /gallery, /contacts, /score)
+├── public/
+│   ├── images/                   # Runtime images (services, gallery, barbershops, before-after, hero posters)
+│   ├── favicon.svg, robots.txt …
+├── tests/e2e/                    # Playwright specs
+└── types/                        # TypeScript interfaces
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Node.js**: Version 20.x or higher
-- **npm**: Version 9.x or higher
+- Node.js 20.x or higher
+- npm 9.x or higher
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd fellas-babershop-spa
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open your browser at `http://localhost:3000`
+```bash
+git clone <repository-url>
+cd fellas-babershop-spa
+npm install
+npm run dev   # http://localhost:3000
+```
 
 ## Development
 
 ### Available Scripts
 
 ```bash
-# Start development server with hot reload
-npm run dev
-
-# Build for production (SSR)
-npm run build
-
-# Generate static site
-npm run generate
-
-# Preview production build locally
-npm run preview
-
-# Lint files
-npm run lint
-
-# Format code with Prettier
-npm run format
+npm run dev          # Dev server with HMR
+npm run build        # Production build (Netlify SSR preset)
+npm run generate     # Static prerender to ./dist
+npm run preview      # Preview production build locally
+npm run lint         # ESLint
+npm run format       # Prettier
+npm run test:e2e     # Playwright headless
+npm run test:e2e:ui  # Playwright UI mode
 ```
 
 ### Environment Variables
 
-Create a `.env` file for local development:
+`.env` for local overrides:
 
 ```env
 VITE_APP_TITLE=Fellas Barbers
 VITE_BOOKING_URL=https://booking.example.com
-VITE_INSTAGRAM_URL=https://instagram.com/fellasbarbers
-VITE_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+VITE_INSTAGRAM_URL=https://instagram.com/fellasbarber.pt
+VITE_GOOGLE_ANALYTICS_ID=
 ```
 
 ### Theme System
 
-The app uses a CSS custom properties-based theme system:
+- `data-theme="light|dark"` set on `<html>`.
+- An inline script in `nuxt.config.ts` applies the theme **before** Vue hydrates so there is no flash. Don't touch that without testing the boot.
+- `composables/useTheme.ts` exposes `toggleTheme()` and persists the choice in `localStorage`.
 
-- **Light theme**: Default, clean appearance
-- **Dark theme**: Rich dark mode with brand colors
-- **Auto**: Follows system preference
+### Adding Things
 
-Theme is managed via `data-theme` attribute on `<html>` and persisted in localStorage.
+| Want to add | Where |
+|---|---|
+| A service | `data/services.ts` + `i18n/locales/*.json` under `servicesList.<id>` |
+| A barbershop location | `composables/useBarbershops.ts`, drop images in `public/images/barbershops/<id>/`, add `barbershops.units.<id>` translations |
+| A gallery image | Drop in `public/images/gallery/`, append filename to the `galleryFilenames` array in `GalleryScrollSection.vue` |
+| A page | `pages/<name>.vue`, list in `nuxt.config.ts` `routeRules` prerender, add nav entry in `data/navigation.ts` |
 
-### Adding New Components
+### Conventions
 
-1. Create component in appropriate directory (`components/ui/`, `components/sections/`)
-2. Use SCSS with `@use '~/assets/styles/variables' as *`
-3. Follow existing naming conventions (`FButton`, `FLogo`, etc.)
-4. Add translations to locale files if needed
+- Runtime image assets live in `public/images/<topic>/`. Reference as `/images/...` strings and render via `<NuxtImg>`, not `<img>`, so they pick up WebP/AVIF + responsive srcset.
+- SVGs stay in `assets/img/` and import as Vue components via `nuxt-svgo`.
+- TypeScript everywhere; new data shapes get interfaces in `types/`.
+- `F*`-prefixed components are reusable UI primitives — keep them business-logic-free.
+- Strings that the user sees go through the `t()` translation helper.
+
+## Testing
+
+End-to-end coverage with Playwright across Chromium, Firefox, WebKit, Mobile Chrome and Mobile Safari:
+
+```bash
+npm run test:e2e -- --project=chromium     # single browser
+npm run test:e2e                           # all 5 projects (90 tests)
+npm run test:e2e:ui                        # interactive UI mode
+```
+
+The spec files (`tests/e2e/*.spec.ts`) cover home page rendering, per-route 200s + titles, theme toggle, mobile menu, language switching, and SEO meta presence.
 
 ## Deployment
 
-### Netlify (Current)
-
-The project is configured for Netlify SSR deployment:
+Netlify builds on every push to `main`:
 
 ```toml
 # netlify.toml
@@ -223,105 +183,62 @@ The project is configured for Netlify SSR deployment:
   NODE_VERSION = "20"
 ```
 
-**Deployment is automatic** on push to `main` branch.
-
-### Manual Deployment
-
-1. Build the project:
-   ```bash
-   npm run build
-   ```
-
-2. The `.output` directory contains the server and static assets
-
-3. Deploy using Netlify CLI:
-   ```bash
-   netlify deploy --prod
-   ```
+The Netlify image service handles on-the-fly image transformation for `@nuxt/image`.
 
 ## Internationalization
 
-Supported languages:
-- **Portuguese (pt)** - Default
-- **English (en)**
-- **Spanish (es)**
-- **French (fr)**
+Four locales (`pt` default, `en`, `es`, `fr`) with `no_prefix` strategy — same URL for every language, locale switched via the `i18n_redirected` cookie. `<html lang>` updates dynamically from the active locale.
 
-### Adding Translations
+Add a key to all four files in `i18n/locales/`, use as:
 
-1. Add keys to all locale files in `locales/`
-2. Use in components:
-   ```vue
-   <template>
-     <p>{{ $t('key.path') }}</p>
-   </template>
-   ```
-
-### Language Detection
-
-- Detects browser language on first visit
-- Stores preference in cookie (`i18n_redirected`)
-- No URL prefix strategy (`/services` not `/en/services`)
+```vue
+<template>
+  <p>{{ $t('key.path') }}</p>
+</template>
+```
 
 ## Design
 
-The design system and UI/UX specifications are available in Figma:
+Design system in Figma: **[View Figma Design](https://www.figma.com/design/KcNyrpxsmfBF6B3CNdzfVF/Fellas-Barber?node-id=0-1&p=f&t=LBEbTQ2tji4qFw0p-0)**
 
-**[View Figma Design](https://www.figma.com/design/KcNyrpxsmfBF6B3CNdzfVF/Fellas-Barber?node-id=0-1&p=f&t=LBEbTQ2tji4qFw0p-0)**
+### Brand colors
 
-### Color System
-
-| Color | Light Mode | Dark Mode |
-|-------|------------|-----------|
+| | Light | Dark |
+|---|---|---|
 | Primary | `#E83752` | `#E83752` |
 | Background | `#F7F9FC` | `#0A0909` |
 | Text | `#000000` | `#FFFFFF` |
 
 ### Typography
 
-- **Primary Font**: Raleway (Google Fonts)
-- **Weights**: 400, 500, 600, 700
+- **Raleway** (400 / 600 / 700 / 800) — primary
+- **Bebas Neue** (400) — display accents
+
+Both shipped via `@fontsource/*` (no external font CDN).
 
 ## Browser Support
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+Chrome, Firefox, Safari and Edge — latest two stable versions of each.
 
 ## Performance Targets
 
 | Metric | Target |
-|--------|--------|
-| Lighthouse Performance | 90+ |
-| First Contentful Paint | < 1.5s |
-| Largest Contentful Paint | < 2.5s |
-| Cumulative Layout Shift | < 0.1 |
-
-## Known Issues & Improvements
-
-See [SEO_ACCESSIBILITY_AUDIT.md](./SEO_ACCESSIBILITY_AUDIT.md) for a detailed audit of SEO and accessibility improvements.
+|---|---|
+| Lighthouse Performance | ≥ 95 (mobile), 99+ (desktop) |
+| Lighthouse Accessibility | 100 |
+| Lighthouse Best Practices | 100 |
+| Lighthouse SEO | 100 |
+| FCP | < 1.8s |
+| LCP | < 2.6s |
+| CLS | 0 |
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Commit your changes: `git commit -m 'feat: add some feature'`
-4. Push to the branch: `git push origin feature/my-feature`
-5. Submit a pull request
-
-### Commit Convention
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes
-- `refactor`: Code refactoring
-- `perf`: Performance improvements
-- `chore`: Build process or tooling changes
+1. Branch off `main`: `git checkout -b mario/<type>/<short-name>` (`feat`, `fix`, `chore`, `perf`, `docs`, `test`, `refactor`)
+2. Commit using [Conventional Commits](https://www.conventionalcommits.org/): `<type>(<scope>): <subject>`
+3. Prefer multiple focused commits over one big commit when changes touch unrelated concerns
+4. Push and open a PR
 
 ---
 
-Built with care by Mario Lannes
+Built with care by Mario Lanes
