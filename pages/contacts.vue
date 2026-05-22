@@ -1,13 +1,20 @@
 <script setup lang="ts">
 useHead({
   title: 'Contactos - Fellas Barbers',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Contactos das três unidades Fellas Barbers em Lisboa e Almada: moradas, telefones, WhatsApp e horários de atendimento.',
+    },
+  ],
 })
 </script>
 
 <template>
   <div class="contacts-view">
     <div class="container">
-      <h1 class="text-h2">Contactos</h1>
+      <h1>Contactos</h1>
       <p class="text-body">Coming Soon</p>
     </div>
   </div>

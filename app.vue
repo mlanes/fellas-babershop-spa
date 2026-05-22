@@ -2,8 +2,12 @@
 import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import AppLoader from '~/components/ui/AppLoader.vue'
+import { useStructuredData } from '~/composables/useStructuredData'
 
 const { locale, t } = useI18n()
+const route = useRoute()
+
+const SITE_URL = 'https://fellasbarber.com'
 
 const localeToLang: Record<string, string> = {
   pt: 'pt-PT',
@@ -12,11 +16,31 @@ const localeToLang: Record<string, string> = {
   fr: 'fr-FR',
 }
 
+const canonicalUrl = computed(() => {
+  const path = route.path === '/' ? '' : route.path.replace(/\/$/, '')
+  return `${SITE_URL}${path}`
+})
+
 useHead({
   htmlAttrs: {
     lang: computed(() => localeToLang[locale.value] ?? locale.value),
   },
+  link: [
+    { rel: 'canonical', href: canonicalUrl },
+    // i18n strategy is no_prefix, so all locales share one URL. hreflang
+    // tags still tell search engines what languages this URL serves.
+    { rel: 'alternate', hreflang: 'pt-PT', href: canonicalUrl },
+    { rel: 'alternate', hreflang: 'en-US', href: canonicalUrl },
+    { rel: 'alternate', hreflang: 'es-ES', href: canonicalUrl },
+    { rel: 'alternate', hreflang: 'fr-FR', href: canonicalUrl },
+    { rel: 'alternate', hreflang: 'x-default', href: canonicalUrl },
+  ],
+  meta: [
+    { property: 'og:url', content: canonicalUrl },
+  ],
 })
+
+useStructuredData()
 </script>
 
 <template>

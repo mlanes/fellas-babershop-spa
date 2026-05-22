@@ -1,13 +1,20 @@
 <script setup lang="ts">
 useHead({
   title: 'Galeria - Fellas Barbers',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Veja a galeria da Fellas Barbers: cortes, barbas, transformações antes e depois e ambiente das nossas barbearias em Lisboa.',
+    },
+  ],
 })
 </script>
 
 <template>
   <div class="gallery-view">
     <div class="container">
-      <h1 class="text-h2">Galeria</h1>
+      <h1>Galeria</h1>
       <p class="text-body">Coming Soon</p>
     </div>
   </div>
