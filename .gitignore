@@ -22,13 +22,13 @@ playwright/.cache/
 
 # Build outputs
 dist
-dist-ssr
 *.local
 build
 out
 .vite
 .output
 .nuxt
+.netlify
 
 # Editor directories and files
 .vscode/*
@@ -56,10 +56,6 @@ out
 Thumbs.db
 .DS_Store
 
-# Storybook
-storybook-static
-.storybook/dist
-
 # TypeScript
 *.tsbuildinfo
 
@@ -73,3 +69,6 @@ storybook-static
 .specify/
 specs/
 CLAUDE.md
+
+# Lighthouse reports
+.lighthouse/

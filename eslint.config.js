@@ -12,7 +12,14 @@ export default [
 
   {
     name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/node_modules/**', '**/.storybook/dist/**', '**/storybook-static/**'],
+    ignores: [
+      '**/dist/**',
+      '**/.output/**',
+      '**/.nuxt/**',
+      '**/.netlify/**',
+      '**/coverage/**',
+      '**/node_modules/**',
+    ],
   },
 
   js.configs.recommended,
