@@ -10,7 +10,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^9.5.3",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.4.1",
+    "@playwright/test": "^1.60.0",
     "eslint": "^9.38.0",
     "nuxt-svgo": "^4.2.6",
     "prettier": "^3.6.2",
