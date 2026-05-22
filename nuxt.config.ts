@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     '@nuxt/image',
     '@nuxtjs/sitemap',
-    '@nuxtjs/storybook',
   ],
 
   runtimeConfig: {
