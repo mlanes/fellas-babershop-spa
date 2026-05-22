@@ -22,9 +22,14 @@
     "pinia": "^3.0.4"
   },
   "devDependencies": {
+    "@fontsource/bebas-neue": "^5.2.7",
+    "@fontsource/raleway": "^5.2.8",
     "@nuxt/eslint": "^1.4.1",
+    "@nuxt/image": "^2.0.0",
     "@playwright/test": "^1.60.0",
+    "chrome-launcher": "^1.2.1",
     "eslint": "^9.38.0",
+    "lighthouse": "^13.3.0",
     "nuxt-svgo": "^4.2.6",
     "prettier": "^3.6.2",
     "sass": "^1.93.2",

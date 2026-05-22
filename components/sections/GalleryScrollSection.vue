@@ -29,63 +29,37 @@ const closePreview = () => {
   isPreviewOpen.value = false
 }
 
-// Define media item type
 type MediaItem = {
   type: 'image' | 'video'
   src: string
   alt: string
-  order: number
 }
 
-// Automatically import all gallery images using Vite's glob import
-const galleryImages = import.meta.glob('../../assets/img/gallery/*.{jpg,jpeg,png,webp}', {
-  eager: true,
-  import: 'default'
+// Add new gallery images to public/images/gallery/ and append the filename here.
+const galleryFilenames = [
+  'gallery-01.jpeg', 'gallery-02.jpeg', 'gallery-03.jpeg', 'gallery-04.jpeg',
+  'gallery-05.jpeg', 'gallery-06.jpeg', 'gallery-07.jpeg', 'gallery-08.jpeg',
+  'gallery-09.jpeg', 'gallery-10.jpeg', 'gallery-11.jpeg', 'gallery-12.jpeg',
+  'gallery-13.jpeg', 'gallery-14.jpeg', 'gallery-15.jpeg', 'gallery-16.jpeg',
+  'gallery-17.jpeg', 'gallery-22.jpeg', 'gallery-28.jpeg', 'gallery-29.jpeg',
+  'gallery-30.jpeg', 'gallery-31.jpeg', 'gallery-32.jpeg', 'gallery-33.jpeg',
+  'gallery-34.jpeg', 'gallery-35.jpeg', 'gallery-36.jpeg', 'gallery-37.jpeg',
+  'gallery-38.jpeg', 'gallery-39.jpeg', 'gallery-40.jpeg', 'gallery-41.jpeg',
+  'gallery-42.jpeg', 'gallery-43.jpeg', 'gallery-44.jpeg', 'gallery-45.jpeg',
+  'gallery-46.jpeg', 'gallery-47.jpeg', 'gallery-48.jpeg', 'gallery-49.jpeg',
+]
+
+const videoExtensions = /\.(mp4|webm)$/i
+const galleryItems: MediaItem[] = galleryFilenames.map((filename) => {
+  const isVideo = videoExtensions.test(filename)
+  const match = filename.match(/gallery-(\d+)/)
+  const number = match ? parseInt(match[1]) : 0
+  return {
+    type: isVideo ? 'video' : 'image',
+    src: `/images/gallery/${filename}`,
+    alt: `${isVideo ? 'Gallery video' : 'Gallery image'} ${number}`,
+  }
 })
-
-// Automatically import all gallery videos using Vite's glob import
-const galleryVideos = import.meta.glob('../../assets/img/gallery/*.{mp4,webm}', {
-  eager: true,
-  import: 'default'
-})
-
-// Convert the imported images to an array and sort them
-const imageItems: MediaItem[] = Object.entries(galleryImages)
-  .map(([path, url]) => {
-    // Extract filename from path
-    const filename = path.split('/').pop() || ''
-    // Extract number from filename for sorting (e.g., "gallery-01.jpeg" -> 1)
-    const match = filename.match(/gallery-(\d+)/)
-    const imageNumber = match ? parseInt(match[1]) : 0
-
-    return {
-      type: 'image' as const,
-      src: url as string,
-      alt: `Gallery image ${imageNumber}`,
-      order: imageNumber
-    }
-  })
-
-// Convert the imported videos to an array
-const videoItems: MediaItem[] = Object.entries(galleryVideos)
-  .map(([path, url]) => {
-    // Extract filename from path
-    const filename = path.split('/').pop() || ''
-    // Extract number from filename for sorting (e.g., "gallery-01.mp4" -> 1)
-    const match = filename.match(/gallery-(\d+)/)
-    const videoNumber = match ? parseInt(match[1]) : 0
-
-    return {
-      type: 'video' as const,
-      src: url as string,
-      alt: `Gallery video ${videoNumber}`,
-      order: videoNumber
-    }
-  })
-
-// Combine images and videos, then sort them
-const galleryItems = [...imageItems, ...videoItems]
-  .sort((a, b) => a.order - b.order) // Sort by number
 
 // Distribute items across 3 rows - divide into thirds
 const thirdIndex = Math.ceil(galleryItems.length / 3)
@@ -207,12 +181,13 @@ onUnmounted(() => {
                 @mouseenter="(e) => (e.target as HTMLVideoElement).play()"
                 @mouseleave="(e) => (e.target as HTMLVideoElement).pause()"
               />
-              <img
+              <NuxtImg
                 v-else
                 :src="item.src"
                 :alt="item.alt"
                 class="gallery-scroll__media"
                 loading="lazy"
+                sizes="200px md:300px lg:400px"
               />
             </div>
           </div>
@@ -235,12 +210,13 @@ onUnmounted(() => {
                 @mouseenter="(e) => (e.target as HTMLVideoElement).play()"
                 @mouseleave="(e) => (e.target as HTMLVideoElement).pause()"
               />
-              <img
+              <NuxtImg
                 v-else
                 :src="item.src"
                 :alt="item.alt"
                 class="gallery-scroll__media"
                 loading="lazy"
+                sizes="200px md:300px lg:400px"
               />
             </div>
           </div>
@@ -263,12 +239,13 @@ onUnmounted(() => {
                 @mouseenter="(e) => (e.target as HTMLVideoElement).play()"
                 @mouseleave="(e) => (e.target as HTMLVideoElement).pause()"
               />
-              <img
+              <NuxtImg
                 v-else
                 :src="item.src"
                 :alt="item.alt"
                 class="gallery-scroll__media"
                 loading="lazy"
+                sizes="200px md:300px lg:400px"
               />
             </div>
           </div>

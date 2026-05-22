@@ -3,13 +3,10 @@ import { ref, onMounted } from 'vue'
 import BeforeAfterSlider from '~/components/ui/BeforeAfterSlider.vue'
 import { useLocale } from '~/composables/useLocale'
 
-// Import before/after images
-import beforeImg1 from '~/assets/img/before-after/fellas-barbers-haircut-after-1.jpg'
-import afterImg1 from '~/assets/img/before-after/fellas-barbers-haircut-after-2.jpg'
-import beforeImg2 from '~/assets/img/before-after/fellas-barbers-haircut-before-2.jpg'
-import afterImg2 from '~/assets/img/before-after/fellas-barbers-haircut-after-2.jpg'
-import beforeImg3 from '~/assets/img/before-after/fellas-barbers-haircut-before-3.jpg'
-import afterImg3 from '~/assets/img/before-after/fellas-barbers-haircut-after-3.jpg'
+const beforeImg1 = '/images/before-after/fellas-barbers-haircut-after-1.jpg'
+const afterImg1 = '/images/before-after/fellas-barbers-haircut-after-2.jpg'
+const beforeImg3 = '/images/before-after/fellas-barbers-haircut-before-3.jpg'
+const afterImg3 = '/images/before-after/fellas-barbers-haircut-after-3.jpg'
 
 /**
  * BeforeAfterSection - Before and After image comparison section

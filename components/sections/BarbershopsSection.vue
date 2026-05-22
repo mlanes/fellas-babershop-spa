@@ -114,13 +114,14 @@ onUnmounted(() => {
               class="barbershop-card__images"
               :style="{ transform: `translate3d(-${currentImageIndex[shop.id] * 100}%, 0, 0)` }"
             >
-              <img
+              <NuxtImg
                 v-for="(image, index) in shop.images"
                 :key="index"
                 :src="image"
                 :alt="`${shop.name} - Interior ${index + 1}`"
                 class="barbershop-card__image"
                 loading="lazy"
+                sizes="sm:100vw md:50vw lg:33vw"
               />
             </div>
 
@@ -440,13 +441,23 @@ onUnmounted(() => {
   }
 
   &__dot {
+    position: relative;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background: rgba($white, 0.5);
     border: none;
+    padding: 0;
     cursor: pointer;
     transition: background $transition-fast, transform $transition-fast;
+
+    // WCAG 2.1 AA touch target: expand hit area to 24x24 without growing the visible dot
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+    }
 
     &:hover {
       background: rgba($white, 0.8);

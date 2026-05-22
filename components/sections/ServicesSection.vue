@@ -6,13 +6,12 @@ import { useSmoothScroll } from '~/composables/useSmoothScroll'
 import { useLocale } from '~/composables/useLocale'
 import { useTranslatedServices } from '~/composables/useTranslatedServices'
 
-// Import service images
-import serviceImg1 from '~/assets/img/services/fellas-barbers-haircut-service-01.jpeg'
-import serviceImg2 from '~/assets/img/services/fellas-barbers-beard-trim-service-02.jpeg'
-import serviceImg3 from '~/assets/img/services/fellas-barbers-hair-styling-service-03.jpeg'
-import galleryImg from '~/assets/img/gallery/gallery-08.jpeg'
-import serviceImg5 from '~/assets/img/services/fellas-barbers-fade-haircut-service-05.jpeg'
-import serviceImg6 from '~/assets/img/services/fellas-barbers-premium-service-06.jpeg'
+const serviceImg1 = '/images/services/fellas-barbers-haircut-service-01.jpeg'
+const serviceImg2 = '/images/services/fellas-barbers-beard-trim-service-02.jpeg'
+const serviceImg3 = '/images/services/fellas-barbers-hair-styling-service-03.jpeg'
+const galleryImg = '/images/gallery/gallery-08.jpeg'
+const serviceImg5 = '/images/services/fellas-barbers-fade-haircut-service-05.jpeg'
+const serviceImg6 = '/images/services/fellas-barbers-premium-service-06.jpeg'
 
 /**
  * ServicesSection - Popular services overview with images and call-to-action
@@ -80,26 +79,26 @@ onMounted(() => {
         <div class="services__images">
           <div class="services__image-row">
             <div class="services__image-container services__image-container--large services__image-container--1">
-              <img :src="serviceImages[0]" alt="Fellas Barbers professional haircut service" class="services__image" loading="lazy">
+              <NuxtImg :src="serviceImages[0]" alt="Fellas Barbers professional haircut service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
             <div class="services__image-container services__image-container--small services__image-container--2">
-              <img :src="serviceImages[1]" alt="Fellas Barbers beard trim and grooming service" class="services__image" loading="lazy">
+              <NuxtImg :src="serviceImages[1]" alt="Fellas Barbers beard trim and grooming service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
           </div>
           <div class="services__image-row">
             <div class="services__image-container services__image-container--small services__image-container--3">
-              <img :src="serviceImages[2]" alt="Fellas Barbers hair styling service" class="services__image" loading="lazy">
+              <NuxtImg :src="serviceImages[2]" alt="Fellas Barbers hair styling service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
             <div class="services__image-container services__image-container--large services__image-container--4">
-              <img :src="serviceImages[3]" alt="Fellas Barbers premium grooming service" class="services__image" loading="lazy">
+              <NuxtImg :src="serviceImages[3]" alt="Fellas Barbers premium grooming service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
           </div>
           <div class="services__image-row">
             <div class="services__image-container services__image-container--large services__image-container--5">
-              <img :src="serviceImages[4]" alt="Fellas Barbers fade haircut service" class="services__image" loading="lazy">
+              <NuxtImg :src="serviceImages[4]" alt="Fellas Barbers fade haircut service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
             <div class="services__image-container services__image-container--small services__image-container--6">
-              <img :src="serviceImages[5]" alt="Fellas Barbers premium barbershop service" class="services__image" loading="lazy">
+              <NuxtImg :src="serviceImages[5]" alt="Fellas Barbers premium barbershop service" class="services__image" loading="lazy" sizes="sm:50vw md:33vw lg:25vw" />
             </div>
           </div>
         </div>

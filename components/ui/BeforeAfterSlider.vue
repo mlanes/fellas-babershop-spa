@@ -128,12 +128,13 @@ onUnmounted(() => {
   >
     <!-- After Image (full width) -->
     <div class="before-after-slider__image-container">
-      <img
+      <NuxtImg
         :src="afterImage"
         :alt="afterLabel"
         class="before-after-slider__image"
         draggable="false"
         loading="lazy"
+        sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--after">
         {{ afterLabel }}
@@ -145,12 +146,13 @@ onUnmounted(() => {
       class="before-after-slider__image-container before-after-slider__image-container--before"
       :style="{ clipPath: clipPathBefore }"
     >
-      <img
+      <NuxtImg
         :src="beforeImage"
         :alt="beforeLabel"
         class="before-after-slider__image"
         draggable="false"
         loading="lazy"
+        sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--before">
         {{ beforeLabel }}

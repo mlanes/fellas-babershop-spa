@@ -71,6 +71,9 @@ onUnmounted(() => {
         v-if="isOpen"
         ref="dialogRef"
         class="media-preview-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Media preview"
         @click="handleBackdropClick"
       >
         <div class="media-preview-dialog__content">
@@ -104,11 +107,12 @@ onUnmounted(() => {
               loop
               playsinline
             />
-            <img
+            <NuxtImg
               v-else
               :src="mediaSrc"
               :alt="mediaAlt"
               class="media-preview-dialog__media"
+              sizes="100vw lg:80vw"
             />
           </div>
         </div>
