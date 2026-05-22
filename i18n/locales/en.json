@@ -61,6 +61,17 @@
     "closeMenu": "Close menu",
     "skipToContent": "Skip to main content"
   },
+  "comingSoon": {
+    "badge": "Coming soon",
+    "description": "This page is on its way. In the meantime, everything you need is on our home page.",
+    "backHome": "Back to home",
+    "pages": {
+      "services": "Services",
+      "gallery": "Gallery",
+      "contacts": "Contacts",
+      "score": "Score"
+    }
+  },
   "servicesList": {
     "combo-premium": {
       "name": "Premium Combo",

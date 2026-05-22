@@ -61,6 +61,17 @@
     "closeMenu": "Fermer le menu",
     "skipToContent": "Aller au contenu principal"
   },
+  "comingSoon": {
+    "badge": "Bientôt disponible",
+    "description": "Cette page arrive bientôt. En attendant, retrouvez l'essentiel sur notre page d'accueil.",
+    "backHome": "Retour à l'accueil",
+    "pages": {
+      "services": "Services",
+      "gallery": "Galerie",
+      "contacts": "Contacts",
+      "score": "Score"
+    }
+  },
   "servicesList": {
     "combo-premium": {
       "name": "Combo Premium",

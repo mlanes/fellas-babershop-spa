@@ -23,7 +23,8 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    sources: ['/sitemap.xml'],
+    // Coming-soon routes are noindex placeholders — keep them out of the sitemap.
+    exclude: ['/services', '/gallery', '/contacts', '/score'],
   },
 
   image: {

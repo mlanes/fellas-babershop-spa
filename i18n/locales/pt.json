@@ -61,6 +61,17 @@
     "closeMenu": "Fechar menu",
     "skipToContent": "Saltar para o conteúdo principal"
   },
+  "comingSoon": {
+    "badge": "Em breve",
+    "description": "Esta página está a caminho. Entretanto, encontra tudo o que precisa na nossa página inicial.",
+    "backHome": "Voltar ao início",
+    "pages": {
+      "services": "Serviços",
+      "gallery": "Galeria",
+      "contacts": "Contactos",
+      "score": "Score"
+    }
+  },
   "barbershops": {
     "label": "AS NOSSAS",
     "title": "Barbearias",

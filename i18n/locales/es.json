@@ -61,6 +61,17 @@
     "closeMenu": "Cerrar menú",
     "skipToContent": "Saltar al contenido principal"
   },
+  "comingSoon": {
+    "badge": "Próximamente",
+    "description": "Esta página está en camino. Mientras tanto, encontrarás todo lo que necesitas en nuestra página de inicio.",
+    "backHome": "Volver al inicio",
+    "pages": {
+      "services": "Servicios",
+      "gallery": "Galería",
+      "contacts": "Contactos",
+      "score": "Score"
+    }
+  },
   "servicesList": {
     "combo-premium": {
       "name": "Combo Premium",

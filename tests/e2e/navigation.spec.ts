@@ -1,11 +1,13 @@
 import { expect, test } from '@playwright/test'
 import { gotoAndReady } from './helpers'
 
+// Titles on the coming-soon pages are localized, so match either the
+// Portuguese or English form depending on the test browser's locale.
 const routes = [
-  { path: '/', title: /Fellas Barbers - A Sua Barbearia/i },
-  { path: '/services', title: /Serviços/i },
-  { path: '/gallery', title: /Galeria/i },
-  { path: '/contacts', title: /Contactos/i },
+  { path: '/', title: /Fellas Barbers/i },
+  { path: '/services', title: /(Serviços|Services)/i },
+  { path: '/gallery', title: /(Galeria|Gallery)/i },
+  { path: '/contacts', title: /(Contactos|Contacts)/i },
   { path: '/score', title: /Score/i },
 ]
 

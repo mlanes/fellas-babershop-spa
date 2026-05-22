@@ -15,6 +15,7 @@ import { useLocale } from '~/composables/useLocale'
  * AppHeader - Main navigation header
  */
 const uiStore = useUIStore()
+const route = useRoute()
 const { isMobileMenuOpen, activeSection } = storeToRefs(uiStore)
 const { scrollTo } = useSmoothScroll()
 const { isDark, toggleTheme } = useTheme()
@@ -90,13 +91,20 @@ const handleScroll = () => {
  * Handle navigation click
  */
 const handleNavClick = (href: string) => {
-  // If clicking on home and already at top, do nothing
-  if (import.meta.client && href === '#home' && window.scrollY < 100) {
+  uiStore.closeMobileMenu()
+
+  // Nav targets are in-page anchors that only exist on the home page.
+  // From any other route, navigate home with the hash so Nuxt scrolls
+  // to the section on arrival instead of silently doing nothing.
+  if (route.path !== '/') {
+    navigateTo(`/${href}`)
     return
   }
 
-  // Close menu immediately
-  uiStore.closeMobileMenu()
+  // Already home and clicking home at the top — nothing to do.
+  if (import.meta.client && href === '#home' && window.scrollY < 100) {
+    return
+  }
 
   // Small delay to allow menu close animation, then scroll
   setTimeout(() => {
@@ -108,8 +116,14 @@ const handleNavClick = (href: string) => {
  * Handle booking button click
  */
 const handleBookingClick = () => {
-  scrollTo('#barbershops')
   uiStore.closeMobileMenu()
+
+  if (route.path !== '/') {
+    navigateTo('/#barbershops')
+    return
+  }
+
+  scrollTo('#barbershops')
 }
 
 onMounted(() => {
@@ -465,9 +479,7 @@ onUnmounted(() => {
 			left: 0;
 			right: 0;
 			z-index: 999;
-			background-color: color-mix(in srgb, var(--page-background) 95%, transparent);
-			-webkit-backdrop-filter: blur(10px);
-			backdrop-filter: blur(10px);
+			background-color: var(--page-background);
 			padding: $spacing-2xl;
 			transition: all $transition-base;
 			height: calc(100vh - $header-height);

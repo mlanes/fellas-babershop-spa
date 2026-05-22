@@ -1,31 +1,14 @@
 <script setup lang="ts">
-useHead({
-  title: 'Contactos - Fellas Barbers',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Contactos das três unidades Fellas Barbers em Lisboa e Almada: moradas, telefones, WhatsApp e horários de atendimento.',
-    },
-  ],
-})
+import ComingSoon from '~/components/sections/ComingSoon.vue'
+import { useLocale } from '~/composables/useLocale'
+
+const { t } = useLocale()
+const title = computed(() => t('comingSoon.pages.contacts'))
+
+useHead({ title: computed(() => `${title.value} — Fellas Barbers`) })
+useSeoMeta({ robots: 'noindex, follow' })
 </script>
 
 <template>
-  <div class="contacts-view">
-    <div class="container">
-      <h1>Contactos</h1>
-      <p class="text-body">Coming Soon</p>
-    </div>
-  </div>
+  <ComingSoon :title="title" />
 </template>
-
-<style scoped lang="scss">
-.contacts-view {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-</style>
