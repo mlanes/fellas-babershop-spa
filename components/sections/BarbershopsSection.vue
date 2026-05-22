@@ -452,31 +452,28 @@ onUnmounted(() => {
   }
 
   &__dot {
-    position: relative;
+    // 24x24 hit area (WCAG 2.1 AA target size). The visible dot is the
+    // 12x12 background clipped to content-box; 6px padding gives the buffer.
+    box-sizing: content-box;
     width: 12px;
     height: 12px;
+    padding: 6px;
     border-radius: 50%;
     background: rgba($white, 0.5);
+    background-clip: content-box;
     border: none;
-    padding: 0;
     cursor: pointer;
     transition: background $transition-fast, transform $transition-fast;
 
-    // WCAG 2.1 AA touch target: expand hit area to 24x24 without growing the visible dot
-    &::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-    }
-
     &:hover {
       background: rgba($white, 0.8);
+      background-clip: content-box;
       transform: scale(1.2);
     }
 
     &--active {
       background: $brand-red-dark;
+      background-clip: content-box;
       transform: scale(1.2);
     }
   }
