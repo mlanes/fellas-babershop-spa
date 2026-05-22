@@ -33,6 +33,18 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      // Sidebar order: introduction first, then foundations (Colors →
+      // Typography → Spacing), then the components, alphabetical within.
+      storySort: {
+        order: [
+          'Introduction',
+          'Foundations',
+          ['Colors', 'Typography', 'Spacing'],
+          'Components',
+        ],
+      },
+    },
   },
 }
 

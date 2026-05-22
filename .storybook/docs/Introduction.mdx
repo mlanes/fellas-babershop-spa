@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Introduction" />
+
+# Fellas Barbershop — Design System
+
+The component library and design tokens behind [fellasbarber.com](https://fellasbarber.com).
+
+This Storybook is the showcase, playground and living documentation for the
+reusable parts of the site. The source of truth for the tokens themselves
+lives in [`assets/styles/`](https://github.com/mlanes/fellas-babershop-ssr/tree/main/assets/styles)
+— the docs here just visualise them.
+
+## Sidebar layout
+
+- **Foundations** — design tokens: Colors, Typography, Spacing.
+- **Components** — the reusable `F*`-prefixed primitives. Section
+  components (`HeroSection`, `ServicesSection`, …) are page-level and
+  data-coupled, so they live in the app, not here.
+
+## How it's wired
+
+- **Framework:** `@storybook-vue/nuxt`. Storybook boots Nuxt itself, so
+  components have access to `useI18n`, `~/` alias, `nuxt-svgo` SVG
+  components and `<NuxtImg>` — exactly what they get in the real app.
+- **Theme toggle:** use the paintbrush icon in the toolbar to flip
+  every story between **Light** and **Dark**. The decorator sets
+  `data-theme` on `<html>`, the same hook the components read.
+- **Fonts + tokens:** the global SCSS is imported in `preview.ts`, so
+  Raleway / Bebas Neue and every `--*` custom property are available.
+
+## Adding a story
+
+1. Drop a `<ComponentName>.stories.ts` next to the component in
+   `components/ui/`.
+2. Set `title: 'Components/<ComponentName>'` so it lands in the right
+   sidebar group.
+3. Use `tags: ['autodocs']` to get a Docs page generated from the
+   component's TypeScript props automatically.
+
+## Adding a Foundations doc
+
+1. Drop an MDX file under `.storybook/docs/foundations/`.
+2. Set `<Meta title="Foundations/<Page>" />`.
+3. Add it to the `storySort` order in `.storybook/preview.ts` if you
+   want it in a specific position.

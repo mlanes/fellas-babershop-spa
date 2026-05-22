@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+The brand palette is fixed; the surface colors flip via the `data-theme`
+attribute on `<html>`. Components consume the **CSS custom properties**
+below — they don't hardcode hex.
+
+> Source of truth: `assets/styles/_color-definitions.scss`,
+> `assets/styles/_primitive-colors.scss`.
+
+## Brand
+
+<div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', margin: '1rem 0' }}>
+  <div style={{ flex: '1 1 180px', minWidth: 180 }}>
+    <div style={{ background: '#E83752', height: 96, borderRadius: 8 }} />
+    <strong>Primary</strong><br />
+    <code>#E83752</code>
+  </div>
+  <div style={{ flex: '1 1 180px', minWidth: 180 }}>
+    <div style={{ background: '#D4203B', height: 96, borderRadius: 8 }} />
+    <strong>Primary Dark</strong><br />
+    <code>#D4203B</code>
+  </div>
+  <div style={{ flex: '1 1 180px', minWidth: 180 }}>
+    <div style={{ background: 'linear-gradient(135deg, #E83752, #D4203B)', height: 96, borderRadius: 8 }} />
+    <strong>Brand Gradient</strong><br />
+    <code>$gradient-brand-light-red</code>
+  </div>
+</div>
+
+## Theme tokens
+
+Surface and text tokens that flip per `data-theme="light|dark"`.
+
+| Token | Light | Dark |
+| --- | --- | --- |
+| `--page-background` | near-white | near-black |
+| `--page-color` | near-black | near-white |
+| `--text-color-primary` | near-black | near-white |
+| `--text-color-secondary` | gray-700 | gray-300 |
+| `--surface-background` | white | dark gray |
+| `--surface-border` | gray-200 | gray-700 |
+
+Toggle the **Theme** toolbar above (paintbrush icon) to see every
+component swap palettes.
+
+## Status
+
+| Token | Use |
+| --- | --- |
+| `--status-color-success` | confirmation states |
+| `--status-color-error` | error states |
+
+## When to add a new color
+
+Almost never. If something needs a one-off color, prefer composing
+existing tokens (e.g. `color-mix(in srgb, var(--text-color-primary) 10%, transparent)`)
+over introducing a new variable. If a new brand-level color is genuinely
+needed, add it to `_primitive-colors.scss`, then surface it through
+`_color-definitions.scss` — never reference primitives directly from
+components.

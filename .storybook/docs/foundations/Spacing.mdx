@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Foundations/Spacing" />
+
+# Spacing
+
+A geometric-ish scale in pixels. Always use the token, never hardcode
+`24px`.
+
+> Source of truth: `assets/styles/_variables.scss`.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  {[
+    ['$spacing-xs', 4],
+    ['$spacing-sm', 8],
+    ['$spacing-md', 16],
+    ['$spacing-lg', 24],
+    ['$spacing-xl', 32],
+    ['$spacing-2xl', 48],
+    ['$spacing-3xl', 64],
+    ['$spacing-4xl', 80],
+    ['$spacing-5xl', 96],
+    ['$spacing-6xl', 128],
+  ].map(([name, px]) => (
+    <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <code style={{ minWidth: 130 }}>{name}</code>
+      <div style={{ width: px, height: 24, background: '#E83752', borderRadius: 4 }} />
+      <small style={{ opacity: 0.7 }}>{px}px</small>
+    </div>
+  ))}
+</div>
+
+## Radii
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `$radius-sm` | 4px | tight pills, small inputs |
+| `$radius-md` | 8px | most cards, modals, images |
+| `$radius-lg` | 12px | larger cards |
+| `$radius-xl` | 16px | hero surfaces |
+| `$radius-full` | 9999px | pills, dots, circular buttons |
+
+## Breakpoints
+
+| Mixin | Min width | Notes |
+| --- | --- | --- |
+| `@include tablet` | 768px | covers tablet + desktop |
+| `@include desktop` | 1024px | desktop only |
+
+The gallery scrollytelling, for example, only activates at `@include desktop`
+— mobile and tablet get continuous-drift animation instead.
+
+## Transitions
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `$transition-fast` | 0.15s ease-in-out | hover, micro-interactions |
+| `$transition-base` | 0.3s ease-in-out | most state changes |
+| `$transition-slow` | 0.5s ease-in-out | section fade-ins, big swaps |
