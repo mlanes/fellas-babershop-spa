@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { featherIcons, type FeatherIconName } from './icons/feather-icons'
 import type { IconName } from '~/types/icons'
 
 /**
- * FIcon - SVG icon component using optimized Feather Icons
- * Provides a consistent icon system across the application
- * Only includes icons actually used in the app for optimal bundle size
+ * FIcon renders different SVG roots per icon name (quote/see-more/whatsapp
+ * use custom inline SVGs, everything else falls back to a Feather icon via
+ * v-html). Vue 3 can't auto-merge inherited class/style across multiple
+ * root nodes, which produced an SSR-vs-CSR class mismatch. inheritAttrs is
+ * off and we wire $attrs.class onto every root explicitly.
  */
+defineOptions({ inheritAttrs: false })
+
 interface Props {
-  /** Icon name */
   name: IconName
-  /** Icon size in pixels */
   size?: number
-  /** Icon color (CSS color value) */
   color?: string
 }
 
@@ -21,6 +22,9 @@ const props = withDefaults(defineProps<Props>(), {
   size: 24,
   color: 'currentColor',
 })
+
+const attrs = useAttrs()
+const rootClass = computed(() => ['f-icon', attrs.class as string | undefined])
 
 // Custom icons that aren't in feather-icons
 const customIcons = ['quote', 'see-more', 'checkmark', 'close', 'star-filled', 'email', 'location', 'crown', 'whatsapp']
@@ -61,7 +65,7 @@ const featherIconSvg = computed(() => {
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="f-icon"
+    :class="rootClass"
     role="img"
     :aria-label="name"
   >
@@ -79,7 +83,7 @@ const featherIconSvg = computed(() => {
     viewBox="0 0 25 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="f-icon"
+    :class="rootClass"
     role="img"
     :aria-label="name"
   >
@@ -110,7 +114,7 @@ const featherIconSvg = computed(() => {
     viewBox="0 0 30.667 30.667"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="f-icon"
+    :class="rootClass"
     role="img"
     :aria-label="name"
   >
@@ -133,7 +137,7 @@ const featherIconSvg = computed(() => {
   <!-- Feather Icons -->
   <span
     v-else
-    class="f-icon"
+    :class="rootClass"
     role="img"
     :aria-label="name"
     v-html="featherIconSvg"
