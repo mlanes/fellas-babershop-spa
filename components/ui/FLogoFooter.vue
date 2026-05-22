@@ -17,7 +17,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div :class="['f-logo-footer', `f-logo-footer--${size}`]">
-    <FellasLogoFooter class="f-logo-footer__svg" />
+    <FellasLogoFooter class="f-logo-footer__svg" role="img" aria-label="Fellas Barbers" />
   </div>
 </template>
 

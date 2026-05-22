@@ -58,7 +58,8 @@
     "lightMode": "Light Mode",
     "darkMode": "Dark Mode",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to main content"
   },
   "servicesList": {
     "combo-premium": {

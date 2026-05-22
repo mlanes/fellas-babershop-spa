@@ -58,7 +58,8 @@
     "lightMode": "Modo Claro",
     "darkMode": "Modo Escuro",
     "openMenu": "Abrir menu",
-    "closeMenu": "Fechar menu"
+    "closeMenu": "Fechar menu",
+    "skipToContent": "Saltar para o conteúdo principal"
   },
   "barbershops": {
     "label": "AS NOSSAS",
