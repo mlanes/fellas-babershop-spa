@@ -190,7 +190,6 @@ onUnmounted(() => {
                 height="711"
                 loading="lazy"
                 decoding="async"
-                placeholder
                 sizes="200px md:300px lg:400px"
               />
             </div>
@@ -223,7 +222,6 @@ onUnmounted(() => {
                 height="711"
                 loading="lazy"
                 decoding="async"
-                placeholder
                 sizes="200px md:300px lg:400px"
               />
             </div>
@@ -256,7 +254,6 @@ onUnmounted(() => {
                 height="711"
                 loading="lazy"
                 decoding="async"
-                placeholder
                 sizes="200px md:300px lg:400px"
               />
             </div>

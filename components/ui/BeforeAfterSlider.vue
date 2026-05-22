@@ -137,7 +137,6 @@ onUnmounted(() => {
         draggable="false"
         loading="lazy"
         decoding="async"
-        placeholder
         sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--after">
@@ -159,7 +158,6 @@ onUnmounted(() => {
         draggable="false"
         loading="lazy"
         decoding="async"
-        placeholder
         sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--before">

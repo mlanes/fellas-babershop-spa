@@ -128,7 +128,6 @@ onUnmounted(() => {
               width="1200"
               height="900"
               decoding="async"
-              placeholder
               sizes="100vw lg:80vw"
             />
           </div>
