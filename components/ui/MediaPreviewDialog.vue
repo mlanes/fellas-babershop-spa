@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { ref, watch } from 'vue'
+import FModal from '~/components/ui/FModal.vue'
 
 interface Props {
   isOpen: boolean
@@ -13,128 +14,48 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const dialogRef = ref<HTMLDivElement | null>(null)
 const videoRef = ref<HTMLVideoElement | null>(null)
-const closeButtonRef = ref<HTMLButtonElement | null>(null)
-let previouslyFocused: HTMLElement | null = null
 
-const closeDialog = () => {
-  emit('close')
-}
-
-const handleBackdropClick = (e: MouseEvent) => {
-  if (e.target === dialogRef.value) {
-    closeDialog()
-  }
-}
-
-const handleKeyDown = (e: KeyboardEvent) => {
-  if (e.key === 'Escape') {
-    closeDialog()
-    return
-  }
-  // Focus trap: only Tab moves focus, and only the close button is focusable
-  if (e.key === 'Tab' && props.isOpen) {
-    e.preventDefault()
-    closeButtonRef.value?.focus()
-  }
-}
-
-watch(() => props.isOpen, async (newValue) => {
-  if (!import.meta.client) return
-
-  if (newValue) {
-    previouslyFocused = document.activeElement as HTMLElement | null
-    document.body.style.overflow = 'hidden'
-    await nextTick()
-    closeButtonRef.value?.focus()
-    if (props.mediaType === 'video' && videoRef.value) {
-      videoRef.value.play()
-    }
-  } else {
-    document.body.style.overflow = ''
-    if (props.mediaType === 'video' && videoRef.value) {
-      videoRef.value.pause()
-    }
-    previouslyFocused?.focus()
-    previouslyFocused = null
-  }
-})
-
-onMounted(() => {
-  if (import.meta.client) {
-    document.addEventListener('keydown', handleKeyDown)
-  }
-})
-
-onUnmounted(() => {
-  if (import.meta.client) {
-    document.removeEventListener('keydown', handleKeyDown)
-    document.body.style.overflow = ''
-  }
-})
+// Autoplay the video when the modal opens, pause it on close.
+watch(
+  () => props.isOpen,
+  (isOpen) => {
+    if (!import.meta.client) return
+    if (props.mediaType !== 'video' || !videoRef.value) return
+    if (isOpen) videoRef.value.play()
+    else videoRef.value.pause()
+  },
+)
 </script>
 
 <template>
-  <Teleport to="body">
-    <Transition name="dialog-fade">
-      <div
-        v-if="isOpen"
-        ref="dialogRef"
-        class="media-preview-dialog"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Media preview"
-        @click="handleBackdropClick"
-      >
-        <div class="media-preview-dialog__content">
-          <button
-            ref="closeButtonRef"
-            class="media-preview-dialog__close"
-            type="button"
-            @click="closeDialog"
-            aria-label="Close preview"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-
-          <div class="media-preview-dialog__media-wrapper">
-            <video
-              v-if="mediaType === 'video'"
-              ref="videoRef"
-              :src="mediaSrc"
-              class="media-preview-dialog__media"
-              controls
-              loop
-              playsinline
-            />
-            <NuxtImg
-              v-else
-              :src="mediaSrc"
-              :alt="mediaAlt"
-              class="media-preview-dialog__media"
-              width="1200"
-              height="900"
-              decoding="async"
-              sizes="100vw lg:80vw"
-            />
-          </div>
-        </div>
-      </div>
-    </Transition>
-  </Teleport>
+  <FModal
+    :open="isOpen"
+    aria-label="Media preview"
+    @close="emit('close')"
+  >
+    <div class="media-preview-dialog__media-wrapper">
+      <video
+        v-if="mediaType === 'video'"
+        ref="videoRef"
+        :src="mediaSrc"
+        class="media-preview-dialog__media"
+        controls
+        loop
+        playsinline
+      />
+      <NuxtImg
+        v-else
+        :src="mediaSrc"
+        :alt="mediaAlt"
+        class="media-preview-dialog__media"
+        width="1200"
+        height="900"
+        decoding="async"
+        sizes="100vw lg:80vw"
+      />
+    </div>
+  </FModal>
 </template>
 
 <style scoped lang="scss">
@@ -142,90 +63,6 @@ onUnmounted(() => {
 @use '~/assets/styles/mixins' as *;
 
 .media-preview-dialog {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.95);
-  padding: $spacing-md;
-
-  @include tablet {
-    padding: $spacing-xl;
-  }
-
-  @include desktop {
-    padding: $spacing-2xl;
-  }
-
-  @include element('content') {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    max-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @include tablet {
-      max-height: 90vh;
-    }
-  }
-
-  @include element('close') {
-    position: absolute;
-    top: -$spacing-sm;
-    right: -$spacing-sm;
-    background: rgba(255, 255, 255, 0.95);
-    border: none;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #000;
-    transition: all $transition-base;
-    z-index: 10;
-
-    @include tablet {
-      width: 48px;
-      height: 48px;
-      top: -$spacing-md;
-      right: -$spacing-md;
-    }
-
-    @include desktop {
-      top: -$spacing-lg;
-      right: -$spacing-lg;
-    }
-
-    &:hover {
-      background: rgba(255, 255, 255, 1);
-      transform: scale(1.1);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-
-    svg {
-      width: 24px;
-      height: 24px;
-      stroke-width: 2.5;
-
-      @include tablet {
-        width: 26px;
-        height: 26px;
-      }
-    }
-  }
-
   @include element('media-wrapper') {
     width: 100%;
     height: 100%;
@@ -247,34 +84,6 @@ onUnmounted(() => {
       max-height: 90vh;
       border-radius: 12px;
     }
-  }
-}
-
-// Transition animations
-.dialog-fade-enter-active,
-.dialog-fade-leave-active {
-  transition: opacity $transition-base;
-
-  .media-preview-dialog__content {
-    transition: transform $transition-base;
-  }
-}
-
-.dialog-fade-enter-from,
-.dialog-fade-leave-to {
-  opacity: 0;
-
-  .media-preview-dialog__content {
-    transform: scale(0.9);
-  }
-}
-
-.dialog-fade-enter-to,
-.dialog-fade-leave-from {
-  opacity: 1;
-
-  .media-preview-dialog__content {
-    transform: scale(1);
   }
 }
 </style>

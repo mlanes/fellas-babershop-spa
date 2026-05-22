@@ -22,6 +22,7 @@ withDefaults(
 
 <style scoped lang="scss">
 @use '~/assets/styles/variables' as *;
+@use '~/assets/styles/mixins' as *;
 
 .f-eyebrow {
   margin: 0;
