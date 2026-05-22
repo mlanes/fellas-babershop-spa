@@ -33,9 +33,6 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      htmlAttrs: {
-        lang: 'pt-PT',
-      },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       title: 'Fellas Barbers - A Sua Barbearia de Confiança',
