@@ -86,7 +86,7 @@ const nextTestimonial = () => {
 </script>
 
 <template>
-  <section ref="sectionRef" id="testemunhos" class="testimonials">
+  <section ref="sectionRef" id="testimonials" class="testimonials">
     <div class="testimonials__container container">
       <div class="testimonials__layout">
         <!-- Left Side: Title, Heading and Navigation -->

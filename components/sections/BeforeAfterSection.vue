@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" id="antes-depois" class="before-after-section">
+  <section ref="sectionRef" id="before-after" class="before-after-section">
     <div class="before-after-section__container container">
       <p class="before-after-section__label">{{ t('beforeAfter.label') }}</p>
 
