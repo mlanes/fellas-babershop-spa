@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, nextTick, onMounted, onUnmounted } from 'vue'
 import FIcon from '~/components/ui/FIcon.vue'
 import { useLocale, type Locale } from '~/composables/useLocale'
 
-/**
- * FLanguageSelector - Language selection dropdown
- */
 const { locale, setLocale } = useLocale()
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+const buttonRef = ref<HTMLButtonElement | null>(null)
+const optionRefs = ref<HTMLButtonElement[]>([])
 
 const languages = [
   { code: 'pt' as Locale, label: 'Português', flag: '🇵🇹' },
@@ -29,13 +28,63 @@ const getCurrentLanguageCode = computed(() => {
   return code.toUpperCase()
 })
 
+const focusOption = (index: number) => {
+  const target = optionRefs.value[index]
+  if (target) target.focus()
+}
+
+const openDropdown = async () => {
+  isOpen.value = true
+  await nextTick()
+  const currentIndex = languages.findIndex((lang) => lang.code === locale.value)
+  focusOption(currentIndex >= 0 ? currentIndex : 0)
+}
+
+const closeDropdown = (returnFocus = true) => {
+  isOpen.value = false
+  if (returnFocus) buttonRef.value?.focus()
+}
+
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
+  if (isOpen.value) closeDropdown()
+  else openDropdown()
 }
 
 const selectLanguage = (code: Locale) => {
   setLocale(code)
-  isOpen.value = false
+  closeDropdown()
+}
+
+const handleButtonKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault()
+    openDropdown()
+  }
+}
+
+const handleOptionKeydown = (event: KeyboardEvent, index: number) => {
+  switch (event.key) {
+    case 'Escape':
+      event.preventDefault()
+      closeDropdown()
+      break
+    case 'ArrowDown':
+      event.preventDefault()
+      focusOption((index + 1) % languages.length)
+      break
+    case 'ArrowUp':
+      event.preventDefault()
+      focusOption((index - 1 + languages.length) % languages.length)
+      break
+    case 'Home':
+      event.preventDefault()
+      focusOption(0)
+      break
+    case 'End':
+      event.preventDefault()
+      focusOption(languages.length - 1)
+      break
+  }
 }
 
 const handleClickOutside = (event: MouseEvent) => {
@@ -60,8 +109,14 @@ onUnmounted(() => {
 <template>
   <div ref="dropdownRef" class="language-selector">
     <button
+      ref="buttonRef"
       class="language-selector__button"
+      type="button"
+      :aria-label="`Language: ${currentLanguage.label}`"
+      :aria-expanded="isOpen"
+      aria-haspopup="listbox"
       @click="toggleDropdown"
+      @keydown="handleButtonKeydown"
     >
       <span class="language-selector__flag" aria-hidden="true">{{ currentLanguage.flag }}</span>
       <span class="language-selector__code">{{ getCurrentLanguageCode }}</span>
@@ -74,21 +129,27 @@ onUnmounted(() => {
     </button>
 
     <transition name="dropdown">
-      <div v-if="isOpen" class="language-selector__dropdown">
+      <div v-if="isOpen" class="language-selector__dropdown" role="listbox">
         <button
-          v-for="lang in languages"
+          v-for="(lang, index) in languages"
           :key="lang.code"
+          :ref="(el) => { if (el) optionRefs[index] = el as HTMLButtonElement }"
           class="language-selector__option"
           :class="{ 'language-selector__option--active': lang.code === locale }"
+          type="button"
+          role="option"
+          :aria-selected="lang.code === locale"
           @click="selectLanguage(lang.code)"
+          @keydown="handleOptionKeydown($event, index)"
         >
-          <span class="language-selector__option-flag">{{ lang.flag }}</span>
+          <span class="language-selector__option-flag" aria-hidden="true">{{ lang.flag }}</span>
           <span class="language-selector__option-label">{{ lang.label }}</span>
           <FIcon
             v-if="lang.code === locale"
             name="check"
             :size="16"
             class="language-selector__option-check"
+            aria-hidden="true"
           />
         </button>
       </div>
