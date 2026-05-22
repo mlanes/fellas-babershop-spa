@@ -2,10 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  // Netlify deployment preset
-  nitro: {
-    preset: 'netlify',
-  },
+  // Nitro auto-detects the deployment target: 'netlify' when the
+  // NETLIFY env var is present (during Netlify builds), 'node-server'
+  // when building anywhere else (Coolify, local). Keeps the repo
+  // portable between hosts without env-var juggling.
 
   modules: [
     '@pinia/nuxt',
