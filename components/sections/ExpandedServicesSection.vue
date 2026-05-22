@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import FIcon from '~/components/ui/FIcon.vue'
+import FSectionHeading from '~/components/ui/FSectionHeading.vue'
 import FellasLogo from '~/assets/img/logo.svg'
 import { useSmoothScroll } from '~/composables/useSmoothScroll'
 import { useLocale } from '~/composables/useLocale'
@@ -59,12 +60,12 @@ onMounted(() => {
     <div class="expanded-services__container container">
       <div class="expanded-services__sidebar">
         <div class="expanded-services__sidebar-content">
-          <h2 class="expanded-services__heading text-h2">
-            {{ t('services.allServices') }}
-          </h2>
-          <p class="expanded-services__subtitle text-body-lg">
-            {{ t('services.allServicesSubtitle') }}
-          </p>
+          <FSectionHeading
+            class="expanded-services__heading"
+            align="left"
+            :heading="t('services.allServices')"
+            :subtitle="t('services.allServicesSubtitle')"
+          />
 
           <div class="expanded-services__pagination expanded-services__pagination--desktop">
             <button
@@ -209,18 +210,7 @@ onMounted(() => {
   }
 
   @include element('heading') {
-    color: var(--text-color-primary);
     margin-bottom: 0;
-  }
-
-  @include element('subtitle') {
-    color: var(--text-color-secondary);
-    margin-bottom: 0;
-    text-align: center;
-
-    @include tablet {
-      text-align: left;
-    }
   }
 
   @include element('content') {

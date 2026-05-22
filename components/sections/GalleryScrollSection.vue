@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useLocale } from '~/composables/useLocale'
+import FSectionHeading from '~/components/ui/FSectionHeading.vue'
 import MediaPreviewDialog from '~/components/ui/MediaPreviewDialog.vue'
 
 /**
@@ -173,15 +174,11 @@ onUnmounted(() => {
       <div class="gallery-scroll__header-sticky">
         <div class="gallery-scroll__header">
           <div class="gallery-scroll__header-container container">
-            <div class="gallery-scroll__label">
-              {{ t('gallery.label') }}
-            </div>
-            <h2 class="gallery-scroll__title text-h2">
-              {{ t('gallery.title') }}
-            </h2>
-            <p class="gallery-scroll__subtitle text-body-lg">
-              {{ t('gallery.subtitle') }}
-            </p>
+            <FSectionHeading
+              :eyebrow="t('gallery.label')"
+              :heading="t('gallery.title')"
+              :subtitle="t('gallery.subtitle')"
+            />
           </div>
         </div>
       </div>
@@ -315,39 +312,6 @@ onUnmounted(() => {
   @include element('header-container') {
     @include container;
     text-align: center;
-  }
-
-  @include element('label') {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    background: $gradient-brand-light-red;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    margin-bottom: $spacing-sm;
-
-    @at-root [data-theme='dark'] & {
-      background: $gradient-brand-dark-red;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-  }
-
-  @include element('title') {
-    color: var(--text-color-primary);
-    margin-bottom: $spacing-md;
-  }
-
-  @include element('subtitle') {
-    color: var(--text-color-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-
-    @include desktop {
-      margin: 0 auto $spacing-4xl auto;
-    }
   }
 
   @include element('pin-spacer') {

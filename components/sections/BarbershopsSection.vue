@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import FIcon from '~/components/ui/FIcon.vue'
+import FSectionHeading from '~/components/ui/FSectionHeading.vue'
 import { useBarbershops } from '~/composables/useBarbershops'
 
 const { t } = useI18n()
@@ -94,12 +95,12 @@ onUnmounted(() => {
 <template>
   <section id="barbershops" class="barbershops-section">
     <div class="container">
-      <!-- Section Header -->
-      <div class="barbershops-section__header">
-        <span class="barbershops-section__label">{{ t('barbershops.label') }}</span>
-        <h2 class="barbershops-section__title text-h2">{{ t('barbershops.title') }}</h2>
-        <p class="barbershops-section__subtitle text-body-lg">{{ t('barbershops.subtitle') }}</p>
-      </div>
+      <FSectionHeading
+        class="barbershops-section__heading"
+        :eyebrow="t('barbershops.label')"
+        :heading="t('barbershops.title')"
+        :subtitle="t('barbershops.subtitle')"
+      />
 
       <!-- Barbershop Cards -->
       <div class="barbershops-section__grid">
@@ -312,43 +313,8 @@ onUnmounted(() => {
     z-index: 1;
   }
 
-  &__header {
-    text-align: center;
-    margin-bottom: $spacing-5xl;
-  }
-
-  &__label {
-    text-align: center;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    background: $gradient-brand-light-red;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    margin-bottom: $spacing-sm;
-
-    @at-root [data-theme='dark'] & {
-      background: $gradient-brand-dark-red;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-  }
-
-  &__title {
-    text-align: center;
-    color: var(--text-color-primary);
-    margin-bottom: $spacing-md;
-  }
-
-  &__subtitle {
-    text-align: center;
-    color: var(--text-color-secondary);
+  &__heading {
     margin-bottom: $spacing-4xl;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 
     @include tablet {
       margin-bottom: $spacing-5xl;

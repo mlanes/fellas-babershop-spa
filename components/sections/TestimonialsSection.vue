@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import FIcon from '~/components/ui/FIcon.vue'
+import FSectionHeading from '~/components/ui/FSectionHeading.vue'
 import QuoteIcon from '~/assets/icons/quote.svg'
 import GoogleLogo from '~/assets/img/testimonials/google-logo.svg'
 import { testimonials } from '~/data/testimonials'
@@ -91,11 +92,12 @@ const nextTestimonial = () => {
       <div class="testimonials__layout">
         <!-- Left Side: Title, Heading and Navigation -->
         <div class="testimonials__left">
-          <p class="testimonials__subtitle">{{ t('testimonials.subtitle') }}</p>
-
-          <h2 class="testimonials__heading text-h2">
-            {{ t('testimonials.heading') }}
-          </h2>
+          <FSectionHeading
+            class="testimonials__heading"
+            align="left"
+            :eyebrow="t('testimonials.subtitle')"
+            :heading="t('testimonials.heading')"
+          />
 
           <div class="testimonials__google">
             <GoogleLogo class="testimonials__google-logo" />
@@ -197,27 +199,8 @@ const nextTestimonial = () => {
     gap: $spacing-xl;
   }
 
-  @include element('subtitle') {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    background: $gradient-brand-light-red;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-
-    @at-root [data-theme='dark'] & {
-      background: $gradient-brand-dark-red;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-  }
-
   @include element('heading') {
-    color: var(--text-color-primary);
     margin-bottom: $spacing-lg;
-    line-height: 1.2;
   }
 
   @include element('google') {

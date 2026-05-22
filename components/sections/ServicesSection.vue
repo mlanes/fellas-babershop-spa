@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import FIcon from '~/components/ui/FIcon.vue'
 import FButton from '~/components/ui/FButton.vue'
+import FSectionHeading from '~/components/ui/FSectionHeading.vue'
 import { useSmoothScroll } from '~/composables/useSmoothScroll'
 import { useLocale } from '~/composables/useLocale'
 import { useTranslatedServices } from '~/composables/useTranslatedServices'
@@ -47,11 +48,12 @@ onMounted(() => {
     <div class="services__container container">
       <div class="services__content">
         <div class="services__left">
-          <p class="services__subtitle">{{ t('services.subtitle') }}</p>
-
-          <h2 class="services__heading text-h2">
-            {{ t('services.heading') }}
-          </h2>
+          <FSectionHeading
+            class="services__heading"
+            align="left"
+            :eyebrow="t('services.subtitle')"
+            :heading="t('services.heading')"
+          />
 
           <div class="services__list">
             <div
@@ -145,29 +147,8 @@ onMounted(() => {
     gap: $spacing-xl;
   }
 
-  @include element('subtitle') {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    background: $gradient-brand-light-red;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    margin-bottom: -$spacing-md;
-
-    @at-root [data-theme='dark'] & {
-      background: $gradient-brand-dark-red;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-  }
-
   @include element('heading') {
-    color: var(--text-color-primary);
-    line-height: 1.2;
     margin-bottom: $spacing-lg;
-    transition: color $transition-base;
   }
 
   @include element('list') {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import BeforeAfterSlider from '~/components/ui/BeforeAfterSlider.vue'
+import FSectionHeading from '~/components/ui/FSectionHeading.vue'
 import { useLocale } from '~/composables/useLocale'
 
 const beforeImg1 = '/images/before-after/fellas-barbers-haircut-after-1.jpg'
@@ -36,15 +37,17 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" id="before-after" class="before-after-section">
     <div class="before-after-section__container container">
-      <p class="before-after-section__label">{{ t('beforeAfter.label') }}</p>
-
-      <h2 class="before-after-section__heading text-h2">
-        {{ t('beforeAfter.headingBefore') }} <span class="before-after-section__heading-accent">&</span> {{ t('beforeAfter.headingAfter') }}
-      </h2>
-
-      <p class="before-after-section__subtitle text-body-lg">
-        {{ t('beforeAfter.subtitle') }}
-      </p>
+      <FSectionHeading
+        class="before-after-section__heading"
+        :eyebrow="t('beforeAfter.label')"
+        :subtitle="t('beforeAfter.subtitle')"
+      >
+        <template #heading>
+          {{ t('beforeAfter.headingBefore') }}
+          <span class="before-after-section__heading-accent">&amp;</span>
+          {{ t('beforeAfter.headingAfter') }}
+        </template>
+      </FSectionHeading>
 
       <div class="before-after-section__grid">
         <div
@@ -87,43 +90,16 @@ onMounted(() => {
     @include container;
   }
 
-  @include element('label') {
-    text-align: center;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    background: $gradient-brand-light-red;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    margin-bottom: $spacing-sm;
-
-    @at-root [data-theme='dark'] & {
-      background: $gradient-brand-dark-red;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-  }
-
   @include element('heading') {
-    text-align: center;
-    color: var(--text-color-primary);
-    margin-bottom: $spacing-md;
-  }
-
-  @include element('heading-accent') {
-    color: $brand-red-dark;
-  }
-
-  @include element('subtitle') {
-    text-align: center;
-    color: var(--text-color-secondary);
     margin-bottom: $spacing-4xl;
 
     @include tablet {
       margin-bottom: $spacing-5xl;
     }
+  }
+
+  @include element('heading-accent') {
+    color: $brand-red-dark;
   }
 
   @include element('grid') {
