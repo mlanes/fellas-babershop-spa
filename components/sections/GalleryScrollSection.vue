@@ -127,17 +127,43 @@ const onScroll = () => {
   }
 }
 
-onMounted(() => {
-  if (import.meta.client) {
-    window.addEventListener('scroll', onScroll, { passive: true })
-    handleScroll() // Initial call
+// Pinned scroll-driven animation runs only on desktop. Mobile and tablet
+// let the page scroll past while the rows drift via a CSS keyframe
+// animation — no scroll hijack on touch devices.
+const PIN_BREAKPOINT = '(min-width: 1024px)'
+let mediaQuery: MediaQueryList | null = null
+
+const attachScrollListener = () => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  handleScroll()
+}
+
+const detachScrollListener = () => {
+  window.removeEventListener('scroll', onScroll)
+  // Reset any inline transform left from a previous run so the CSS
+  // animation can take over cleanly when shrinking past the breakpoint.
+  for (const row of [row1Ref, row2Ref, row3Ref]) {
+    if (row.value) row.value.style.transform = ''
   }
+}
+
+const handleMediaChange = (event: MediaQueryListEvent | MediaQueryList) => {
+  if (event.matches) attachScrollListener()
+  else detachScrollListener()
+}
+
+onMounted(() => {
+  if (!import.meta.client) return
+  mediaQuery = window.matchMedia(PIN_BREAKPOINT)
+  handleMediaChange(mediaQuery)
+  mediaQuery.addEventListener('change', handleMediaChange)
 })
 
 onUnmounted(() => {
-  if (import.meta.client) {
-    window.removeEventListener('scroll', onScroll)
-  }
+  if (!import.meta.client) return
+  detachScrollListener()
+  mediaQuery?.removeEventListener('change', handleMediaChange)
+  mediaQuery = null
 })
 </script>
 
@@ -325,13 +351,9 @@ onUnmounted(() => {
   }
 
   @include element('pin-spacer') {
-    // This creates the scroll height - taller = more scroll distance
-    height: 300vh;
+    // Mobile + tablet: natural flow, no scroll hijack. Desktop regains
+    // the tall spacer that the pinned scrollytelling animation needs.
     position: relative;
-
-    @include tablet {
-      height: 350vh;
-    }
 
     @include desktop {
       height: 250vh;
@@ -350,14 +372,22 @@ onUnmounted(() => {
   }
 
   @include element('sticky') {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    // Mobile + tablet: behaves as a normal block, rows drift via CSS
+    // animation; only desktop pins to viewport for the scrollytelling.
+    position: static;
     width: 100%;
+    padding: $spacing-3xl 0;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+
+    @include desktop {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 0;
+    }
 
     &::before {
       content: '';
@@ -393,14 +423,32 @@ onUnmounted(() => {
     will-change: transform;
     align-items: baseline;
 
-    @include modifier('right') {
-      // Initial position will be set by JavaScript
-      transform: translate3d(0, 0, 0);
+    // Mobile + tablet: continuous ambient drift via CSS keyframes. The
+    // rows contain a duplicated set of items, so translating by -50%
+    // loops seamlessly. Desktop turns the keyframe off and lets the JS
+    // scroll handler drive the transform.
+    @include modifier('left') {
+      animation: gallery-drift-left 45s linear infinite;
+
+      @include desktop {
+        animation: none;
+        transform: translate3d(0, 0, 0);
+      }
     }
 
-    @include modifier('left') {
-      // Initial position will be set by JavaScript
-      transform: translate3d(0, 0, 0);
+    @include modifier('right') {
+      animation: gallery-drift-right 45s linear infinite;
+
+      @include desktop {
+        animation: none;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    @include element('row') {
+      animation: none !important;
     }
   }
 
@@ -450,6 +498,24 @@ onUnmounted(() => {
   50% {
     opacity: 1;
     transform: translate(-50%, -50%) translateZ(0) scale(1.15);
+  }
+}
+
+@keyframes gallery-drift-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes gallery-drift-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }
 </style>
