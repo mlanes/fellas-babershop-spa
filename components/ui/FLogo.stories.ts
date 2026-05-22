@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 import FLogo from './FLogo.vue'
 
 const meta = {
-  title: 'UI/FLogo',
+  title: 'Components/FLogo',
   component: FLogo,
   tags: ['autodocs'],
   argTypes: {

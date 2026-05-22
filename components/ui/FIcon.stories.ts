@@ -18,7 +18,7 @@ const iconNames = [
 ]
 
 const meta = {
-  title: 'UI/FIcon',
+  title: 'Components/FIcon',
   component: FIcon,
   tags: ['autodocs'],
   argTypes: {

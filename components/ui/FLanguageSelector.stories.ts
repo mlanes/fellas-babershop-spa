@@ -7,7 +7,7 @@ import FLanguageSelector from './FLanguageSelector.vue'
  * for the whole Storybook session — that is expected.
  */
 const meta = {
-  title: 'UI/FLanguageSelector',
+  title: 'Components/FLanguageSelector',
   component: FLanguageSelector,
   tags: ['autodocs'],
   // The dropdown opens downward — give it room.

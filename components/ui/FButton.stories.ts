@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 import FButton from './FButton.vue'
 
 const meta = {
-  title: 'UI/FButton',
+  title: 'Components/FButton',
   component: FButton,
   tags: ['autodocs'],
   argTypes: {
