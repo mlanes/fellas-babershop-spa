@@ -120,8 +120,11 @@ onUnmounted(() => {
                 :src="image"
                 :alt="`${shop.name} - Interior ${index + 1}`"
                 class="barbershop-card__image"
+                width="1200"
+                height="900"
                 loading="lazy"
                 decoding="async"
+                placeholder
                 sizes="sm:100vw md:50vw lg:33vw"
               />
             </div>
@@ -143,14 +146,21 @@ onUnmounted(() => {
             </button>
 
             <!-- Dots Indicator -->
-            <div class="barbershop-card__dots">
+            <div
+              class="barbershop-card__dots"
+              role="tablist"
+              :aria-label="`${shop.name} photos`"
+            >
               <button
                 v-for="(_, index) in shop.images"
                 :key="index"
                 class="barbershop-card__dot"
                 :class="{ 'barbershop-card__dot--active': currentImageIndex[shop.id] === index }"
+                role="tab"
+                type="button"
+                :aria-selected="currentImageIndex[shop.id] === index"
+                :aria-label="`View photo ${index + 1} of ${shop.images.length} of ${shop.name}`"
                 @click="goToImage(shop.id, index, shop.images.length)"
-                :aria-label="`Go to image ${index + 1}`"
               ></button>
             </div>
           </div>

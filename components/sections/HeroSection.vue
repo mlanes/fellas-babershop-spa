@@ -66,7 +66,11 @@ onMounted(() => {
       loop
       playsinline
       preload="metadata"
-      poster="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3e%3crect fill='%23000' width='1920' height='1080'/%3e%3c/svg%3e"
+      poster="/images/hero/hero-desktop-poster.jpg"
+      width="1920"
+      height="804"
+      disablepictureinpicture
+      disableremoteplayback
       aria-hidden="true"
     >
       <source src="~/assets/videos/fellas-barbershop-header-video.webm" type="video/webm" />
@@ -83,7 +87,11 @@ onMounted(() => {
       loop
       playsinline
       preload="metadata"
-      poster="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='1920' viewBox='0 0 1080 1920'%3e%3crect fill='%23000' width='1080' height='1920'/%3e%3c/svg%3e"
+      poster="/images/hero/hero-mobile-poster.jpg"
+      width="608"
+      height="1080"
+      disablepictureinpicture
+      disableremoteplayback
       aria-hidden="true"
     >
       <source src="~/assets/videos/fellas-barbershop-mobile-hero.webm" type="video/webm" />

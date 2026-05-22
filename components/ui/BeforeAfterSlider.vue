@@ -132,9 +132,12 @@ onUnmounted(() => {
         :src="afterImage"
         :alt="afterLabel"
         class="before-after-slider__image"
+        width="800"
+        height="1067"
         draggable="false"
         loading="lazy"
         decoding="async"
+        placeholder
         sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--after">
@@ -151,9 +154,12 @@ onUnmounted(() => {
         :src="beforeImage"
         :alt="beforeLabel"
         class="before-after-slider__image"
+        width="800"
+        height="1067"
         draggable="false"
         loading="lazy"
         decoding="async"
+        placeholder
         sizes="sm:100vw md:50vw"
       />
       <div class="before-after-slider__label before-after-slider__label--before">

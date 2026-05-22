@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, watch, nextTick, onMounted, onUnmounted } from 'vue'
 
 interface Props {
   isOpen: boolean
@@ -15,6 +15,8 @@ const emit = defineEmits<{
 
 const dialogRef = ref<HTMLDivElement | null>(null)
 const videoRef = ref<HTMLVideoElement | null>(null)
+const closeButtonRef = ref<HTMLButtonElement | null>(null)
+let previouslyFocused: HTMLElement | null = null
 
 const closeDialog = () => {
   emit('close')
@@ -29,24 +31,33 @@ const handleBackdropClick = (e: MouseEvent) => {
 const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
     closeDialog()
+    return
+  }
+  // Focus trap: only Tab moves focus, and only the close button is focusable
+  if (e.key === 'Tab' && props.isOpen) {
+    e.preventDefault()
+    closeButtonRef.value?.focus()
   }
 }
 
-watch(() => props.isOpen, (newValue) => {
+watch(() => props.isOpen, async (newValue) => {
   if (!import.meta.client) return
 
   if (newValue) {
+    previouslyFocused = document.activeElement as HTMLElement | null
     document.body.style.overflow = 'hidden'
-    // Auto-play video when dialog opens
+    await nextTick()
+    closeButtonRef.value?.focus()
     if (props.mediaType === 'video' && videoRef.value) {
       videoRef.value.play()
     }
   } else {
     document.body.style.overflow = ''
-    // Pause video when dialog closes
     if (props.mediaType === 'video' && videoRef.value) {
       videoRef.value.pause()
     }
+    previouslyFocused?.focus()
+    previouslyFocused = null
   }
 })
 
@@ -78,7 +89,9 @@ onUnmounted(() => {
       >
         <div class="media-preview-dialog__content">
           <button
+            ref="closeButtonRef"
             class="media-preview-dialog__close"
+            type="button"
             @click="closeDialog"
             aria-label="Close preview"
           >
@@ -112,7 +125,10 @@ onUnmounted(() => {
               :src="mediaSrc"
               :alt="mediaAlt"
               class="media-preview-dialog__media"
+              width="1200"
+              height="900"
               decoding="async"
+              placeholder
               sizes="100vw lg:80vw"
             />
           </div>
