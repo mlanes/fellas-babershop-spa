@@ -68,7 +68,6 @@ withDefaults(
 
   @include element('subtitle') {
     margin: 0;
-    max-width: 600px;
     color: var(--text-color-secondary);
   }
 }
