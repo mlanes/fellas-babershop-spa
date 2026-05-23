@@ -8,7 +8,11 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  // 2 local workers — the bottleneck is the single Nuxt dev server,
+  // not test concurrency. More workers actually slows runs *down* and
+  // flakes timing-sensitive tests (theme toggle, mobile menu) when the
+  // dev server is still warming Vite up.
+  workers: process.env.CI ? 1 : 2,
   reporter: 'html',
   use: {
     baseURL: 'http://localhost:3000',
