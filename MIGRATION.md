@@ -1,14 +1,37 @@
-# Migration: Netlify → Hetzner + Coolify + Cloudflare
+# Migration: Wix DNS + Netlify → Hetzner + Coolify + Cloudflare
 
 A step-by-step runbook for moving `fellasbarber.com` off Netlify onto a
 self-hosted stack that can also host the future fullstack app and any
 side projects.
 
-**Target stack:** Hetzner Cloud VPS (Ubuntu 24.04) running Coolify
-(self-hosted PaaS), with Cloudflare in front for global edge cache +
-DDoS protection.
+**Players in the current setup:**
+- **Wix** — domain registrar (where `fellasbarber.com` is bought) **and**
+  the current DNS nameservers (`ns0.wixdns.net`, `ns1.wixdns.net`)
+- **Netlify** — current host (served `fellasbarber.com` until cutover)
 
-**Total cost:** ~€5.50/mo regardless of how many projects you host.
+**Target stack:**
+- **Wix** — keeps being the registrar (no domain transfer, just nameserver change)
+- **Cloudflare** — new DNS authority + global edge CDN + DDoS protection
+- **Hetzner Cloud** — VPS (Ubuntu 26.04) hosting everything
+- **Coolify** — self-hosted PaaS managing apps on the VPS
+
+**Total monthly cost: ~€5.50** regardless of how many projects you host.
+
+---
+
+## What's already done (as of cutover prep)
+
+- ✅ Hetzner CX22 provisioned at Falkenstein (IPv4 `178.105.204.69`)
+- ✅ SSH hardened: password auth off, fail2ban + unattended-upgrades installed
+- ✅ Hetzner Cloud Firewall: only TCP 22 / 80 / 443 inbound
+- ✅ 4 GB swap file (persisted in `/etc/fstab`) — required for Nuxt's Vite-build memory peak
+- ✅ Coolify v4.1 installed; admin account created (password should be rotated to a strong random one)
+- ✅ Coolify GitHub App connected to `mlanes/fellas-babershop-ssr`
+- ✅ Repo prep merged to `main` (`nuxt.config.ts` preset auto-detect, `engines.node`, `npm start` script)
+- ✅ App deployed at a temporary URL: `http://aakq18qlhgajdh7miealgb0r.178.105.204.69.sslip.io/`
+- ✅ Verified: HTTP 200, ~66ms TTFB, image provider switched to IPX (no Netlify references in output HTML)
+
+What's left = Cloudflare + the actual cutover.
 
 ---
 
@@ -45,7 +68,7 @@ The key `~/.ssh/id_ed25519_hetzner` was generated and added in
 
 → **Create & Buy now**.
 
-Note the IPv4 address; everything below uses `<VPS_IP>` as a stand-in.
+Note the IPv4 address; everything below uses `178.105.204.69` as a stand-in.
 
 ### 1.4 Firewall
 
@@ -70,7 +93,7 @@ the public internet.
 cat >> ~/.ssh/config <<EOF
 
 Host hetzner-coolify
-  HostName <VPS_IP>
+  HostName 178.105.204.69
   User root
   IdentityFile ~/.ssh/id_ed25519_hetzner
 EOF
@@ -113,7 +136,7 @@ Takes ~5 minutes. Installs Docker, Coolify itself, Traefik (reverse
 proxy + auto-HTTPS). When done it prints:
 
 ```
-Coolify is installed and running at http://<VPS_IP>:8000
+Coolify is installed and running at http://178.105.204.69:8000
 ```
 
 Open that URL in your browser, create the admin account (this is *your*
@@ -125,7 +148,7 @@ In Coolify: **Settings → General**
 - *Instance's Domain*: `coolify.fellasbarber.com`
 
 Add a Cloudflare DNS record (Phase 4 below) for that subdomain pointing
-at `<VPS_IP>`, then in Coolify hit *Save* — it'll issue a Let's Encrypt
+at `178.105.204.69`, then in Coolify hit *Save* — it'll issue a Let's Encrypt
 cert via Traefik. Now `https://coolify.fellasbarber.com` works.
 
 Once that's working, you can remove port 8000 from the firewall — all
@@ -133,37 +156,58 @@ dashboard traffic goes through HTTPS on 443.
 
 ---
 
-## Phase 4 — Cloudflare in front
+## Phase 4 — Cloudflare in front (DNS authority moves Wix → Cloudflare)
 
-### 4.1 Add the domain
+> **Domain stays at Wix** (Wix remains the registrar). Only the
+> **nameservers** change so Cloudflare answers DNS queries instead of
+> Wix. No domain transfer, no risk to ownership.
 
-- Sign up at [cloudflare.com](https://cloudflare.com) (free tier)
-- *Add a Site* → enter `fellasbarber.com` → **Free** plan
-- Cloudflare scans existing DNS records — let it import them
+### 4.1 Add the domain to Cloudflare
 
-### 4.2 Switch nameservers
+- Sign up / log in at [cloudflare.com](https://cloudflare.com) (free tier)
+- Top-right → **Add a Site** → enter `fellasbarber.com` → **Free** plan
+- Cloudflare scans the current Wix DNS records and **imports them
+  automatically** (including the A record pointing at Netlify). This is
+  the safety net: when you swap nameservers, the live site keeps
+  working because Cloudflare now answers the same way Wix did.
+- Cloudflare gives you **two nameservers** that look like
+  `xxx.ns.cloudflare.com` / `yyy.ns.cloudflare.com`. **Note them down.**
 
-Cloudflare gives you two nameservers like `xxx.ns.cloudflare.com`.
+### 4.2 Change the nameservers at Wix
 
-Go to your domain **registrar** (whoever you bought `fellasbarber.com`
-from — wherever it is now, NOT Netlify) and change the domain's
-nameservers to Cloudflare's two.
+- Log into [manage.wix.com](https://manage.wix.com) → **Domains**
+- Click `fellasbarber.com` → **Advanced** (or **DNS Settings**) →
+  look for **"Change nameservers"** / **"Use external nameservers"** /
+  **"Custom nameservers"**
+- Replace Wix's two (`ns0.wixdns.net`, `ns1.wixdns.net`) with Cloudflare's two
+- Save / Confirm
 
-Propagation: usually <1h, can take up to 24h. Cloudflare emails you
-when it sees the change.
+Wix sometimes warns "you'll lose access to Wix DNS management" — that's
+exactly the intent. If Wix tries to upsell you on keeping their DNS,
+ignore.
 
-### 4.3 DNS records
+Propagation: usually 5–30 minutes, up to 24 hours in the worst case.
+Cloudflare emails you when it detects the change. Verify yourself with:
 
-In Cloudflare **DNS** tab, set:
+```bash
+dig +short NS fellasbarber.com
+# should return *.ns.cloudflare.com, not *.wixdns.net
+```
+
+### 4.3 DNS records in Cloudflare
+
+In the Cloudflare **DNS** tab, set these records (keep `@` and `www`
+pointing at Netlify for now — we cut those over in Phase 7):
 
 | Type | Name | Content | Proxy |
 |---|---|---|---|
-| A | `@` (root) | `<VPS_IP>` | 🟠 **Proxied** |
-| A | `www` | `<VPS_IP>` | 🟠 **Proxied** |
-| A | `coolify` | `<VPS_IP>` | 🟠 **Proxied** |
+| A | `coolify` | `178.105.204.69` | 🟠 **Proxied** |
+| A | `preview` | `178.105.204.69` | 🟠 **Proxied** |
+| (existing) A | `@` | (Netlify's IP, imported) | 🟠 Proxied |
+| (existing) A | `www` | (Netlify's IP, imported) | 🟠 Proxied |
 
-Proxied (orange cloud) is what gives you the edge CDN, DDoS protection,
-and hides the VPS IP.
+Proxied (🟠 orange cloud) is what gives you the edge CDN, DDoS
+protection, and hides the VPS IP from public view.
 
 ### 4.4 SSL / TLS settings
 
@@ -239,7 +283,7 @@ That's it — `runtimeConfig.public.siteUrl` is baked into `nuxt.config.ts`.
 ### 6.5 First deploy
 
 Add `preview.fellasbarber.com` as an A record in Cloudflare pointing at
-`<VPS_IP>` (proxied), then in Coolify hit **Deploy**.
+`178.105.204.69` (proxied), then in Coolify hit **Deploy**.
 
 Watch the build log. ~3–5 minutes for the first build (`npm ci`
 downloads everything; subsequent deploys are cached).
@@ -267,7 +311,7 @@ before cutover. Speeds up the switch.
 
 In Cloudflare DNS, change the `@` and `www` A records:
 - Old content: Netlify's IPs (or whatever they pointed at)
-- New content: `<VPS_IP>` (proxied 🟠)
+- New content: `178.105.204.69` (proxied 🟠)
 
 Visitors hitting `https://fellasbarber.com` now resolve to Cloudflare,
 which fetches from your Hetzner box and caches.
