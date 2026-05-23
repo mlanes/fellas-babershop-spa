@@ -29,6 +29,7 @@
   --brand-color-primary: var(--primitive-primary);
   --brand-color-secondary: var(--primitive-primary-light);
   --brand-color-tertiary: var(--primitive-primary-dark);
+  --brand-color-accent: var(--brand-color-primary);
 
   // General
   --page-color: var(--full-contrast);
@@ -100,6 +101,7 @@
   --brand-color-primary: var(--primitive-primary);
   --brand-color-secondary: var(--primitive-primary);
   --brand-color-tertiary: var(--primitive-primary-dark);
+  --brand-color-accent: var(--primitive-primary-darker);
 
   // General
   --page-color: var(--primary-contrast);

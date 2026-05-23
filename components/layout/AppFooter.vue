@@ -161,7 +161,7 @@ const scrollToTop = () => {
   }
 
   @include element('tagline') {
-    color: $brand-red-dark;
+    color: var(--brand-color-accent);
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: $spacing-sm;

@@ -14,6 +14,7 @@
   // === BRAND COLORS ===
   --primitive-primary: oklch(63.27% 0.21 19.69deg); // #E83752 (brand red)
   --primitive-primary-dark: oklch(56.77% 0.19 19.3deg); // #D4203B
+  --primitive-primary-darker: oklch(48% 0.18 19deg); // ~#B41E32 — reserved for light-theme text on near-white surfaces (WCAG AA on $primitive-gray-100)
   --primitive-primary-light: oklch(71.61% 0.18 19.5deg); // #FA5770
 
   // === NEUTRAL COLORS ===

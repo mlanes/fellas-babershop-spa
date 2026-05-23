@@ -30,6 +30,7 @@
     "pinia": "^3.0.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@fontsource/bebas-neue": "^5.2.7",
     "@fontsource/raleway": "^5.2.8",
     "@nuxt/eslint": "^1.4.1",

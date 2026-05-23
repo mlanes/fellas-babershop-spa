@@ -58,7 +58,7 @@ const { t } = useLocale()
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: $brand-red-dark;
+    color: var(--brand-color-accent);
   }
 
   @include element('title') {
@@ -83,7 +83,7 @@ const { t } = useLocale()
     display: inline-flex;
     align-items: center;
     padding: $spacing-md $spacing-2xl;
-    background: $brand-red-dark;
+    background: var(--brand-color-accent);
     color: $white;
     font-weight: 600;
     letter-spacing: 0.03em;
