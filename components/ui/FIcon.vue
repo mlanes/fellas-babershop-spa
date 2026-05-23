@@ -77,8 +77,8 @@ const featherIconSvg = computed(() => {
 
   <svg
     v-else-if="name === 'see-more'"
-    :width="size * 0.78"
-    :height="size"
+    :width="props.size * 0.78"
+    :height="props.size"
     :style="{ color }"
     viewBox="0 0 25 32"
     fill="none"
