@@ -10,7 +10,7 @@ export interface Testimonial {
   testimonialText: string
   /** Optional date of testimonial */
   date?: string
-  /** Optional URL to customer avatar image (if not provided, initials will be shown) */
+  /** Optional URL to the customer's avatar image (if not provided, initials will be shown) */
   avatarUrl?: string
   /** Translations of the testimonial text */
   translations?: {

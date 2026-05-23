@@ -96,7 +96,7 @@ const handleScroll = () => {
     progress = 1
   }
 
-  // Get half width (one set of items) for smooth looping
+  // Get half-width (one set of items) for smooth looping
   const row1HalfWidth = row1Ref.value.scrollWidth / 2
   const row2HalfWidth = row2Ref.value.scrollWidth / 2
   const row3HalfWidth = row3Ref.value.scrollWidth / 2
