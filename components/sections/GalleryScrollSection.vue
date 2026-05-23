@@ -358,14 +358,13 @@ onUnmounted(() => {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
       width: 500px;
       height: 500px;
       background: radial-gradient(circle, rgba($brand-red-dark, 1) 0%, rgba($brand-red-dark, 0.8) 30%, transparent 70%);
       -webkit-filter: blur(80px);
       filter: blur(80px);
       z-index: -1;
-      // Force hardware acceleration for iOS
+      // translateZ(0) forces hardware acceleration for iOS
       transform: translate(-50%, -50%) translateZ(0);
       pointer-events: none;
       opacity: 0.8;
