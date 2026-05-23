@@ -78,3 +78,8 @@ CLAUDE.md
 
 *storybook.log
 storybook-static
+
+# JetBrains inspection-results HTML export (multi-GB if scope is too broad)
+/index.html
+/script.js
+/styles.css
